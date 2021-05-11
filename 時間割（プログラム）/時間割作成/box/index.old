@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+  <!--    下2行を使うとボタンを押すとdivのclass_listに教師が追加される-->
+  <p>クラス一覧<input type="text" id="class_text"><button id="class_add">クラス追加</button></p>
+  <div id="class_list"></div>
+  <!--    下2行を使うとボタンを押すとdivのteacher_listに教師が追加される-->
+  <p>教師一覧<input type="text" id="teacher_text"><button id="teacher_add">教師追加</button></p>
+  <div id="teacher_list"></div>
+  <!--    下2行を使うとボタンを押すとdivのlesson_room_listに要素が追加される-->
+  <p>使用教室一覧<input type="text" id="lesson_room_text"><button id="lesson_room_add">授業使用教室追加</button></p>
+  <div id="lesson_room_list"></div>
+
+
+  <p id="now_choice_ele">選択中：</p>
+
+
+  <!--    下3行を使うとdivのlesson_listに要素が追加される-->
+  <!--	<input type="button" id="lesson_add" value="add">-->
+  <input type="button" id="lesson_cancel" value="cancel"><br><br>
+  <div id="lesson_list"></div>
+
+  <br><br>
+  <input type="text" id="suffix" value="0"><br>
+  <input type="button" id="btn" value="set">
+  <input type="button" id="open_log" value="open">
+  <input type="button" id="copy_log" value="copy">
+
+
+  <script src="js/method_list.js"></script>
+  <script src="js/tabel_gen.js"></script>
+  <script src="js/select.js"></script>
+  <!--  <script src="data.js"></script>-->
+
+</body></html>

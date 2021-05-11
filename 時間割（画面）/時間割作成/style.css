@@ -1,0 +1,88 @@
+/*body {
+    margin: 16px;
+}*/
+
+table {
+    margin-top: 16px;
+}
+
+td {
+    border: 1px solid black;
+    width: 75px;
+    height: 75px;
+}
+
+li {
+    list-style: none;
+}
+
+ul li::before {
+    content: "\200B";
+}
+
+#class_text{
+    margin-top:0px;
+}
+
+#class_text,#teacher_text,#lesson_room_text{
+    margin-right: 10px;
+}
+
+#class_add,#teacher_add,#lesson_room_add{
+    height:30px;
+    min-width: 30px;
+    width:30px;
+}
+
+.t-table{
+    border:solid 5px #000;
+    margin:100px auto 40px auto;
+}
+
+th{
+    border: 1px solid black;
+    width: 60px;
+    height: 50px;  
+    text-align: center;  
+    vertical-align: middle;
+    font-weight: bold;
+    line-height:25px;
+}
+
+.day{
+    border-bottom:5px double #000;
+}
+
+.Gakunen th{
+    border:none;
+}
+
+h3{
+    font-size:36px;
+} 
+
+p{
+    margin-bottom:20px;
+}
+
+.operetion{
+   margin:0 29% 50px 0;
+   float: right;
+}
+
+.DownLoad,.Save,.print{
+    margin:0 35px 0 0;
+}
+
+#timetable{
+    padding:0 0 0 0;
+}
+
+#t_section{
+    width:max;
+    margin:
+}
+
+#table{
+    width: 860px;
+}
