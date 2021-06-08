@@ -157,7 +157,7 @@ function get_lesson_contents(z, num) {
 
 //tdタグのクラスから数値をとる
 function get_td_coordinate(dom) {
-  let idz = getIdNum(parent_class_search(dom, "timetable"));
+  let idz = getIdNum(parent_tag_search(dom, "table"));
   let idy = getClsNum(parent_tag_search(dom, "td"), 0);
   let idx = getClsNum(parent_tag_search(dom, "td"), 1);
   return [idz, idy, idx];

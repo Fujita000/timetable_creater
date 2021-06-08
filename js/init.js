@@ -31,7 +31,8 @@ let now_choice_lesson = -1; //選択中の授業の内容
 let now_choice_class = -1; //選択中のクラス
 
 function cell_click_event(e) {
-    let d = get_td_coordinate(e.target);
+    let q = parent_tag_search(e.target,"td");
+    let d = get_td_coordinate(q);
     if (now_choice_class == d[0]) {
         timetable[d[0]][d[1]][d[2]] = now_choice_lesson;
         update_cell(d);
@@ -426,16 +427,13 @@ function class_deleat_event(btn) {
 }
 
 function rewrite_table_id() {
-    let target_id = "timetable_list";
-    let target = document.getElementById(target_id);
+    let target = document.getElementById("timetable_list");
     let tables = target.getElementsByTagName("table");
-    let suf = 0;
     let ret = [];
     for (let i = 0; i < tables.length; i++) {
-        if (parentDom(tables[i]) == target) {
-            tables[i].id = "timetable_" + suf;
+        if (parentDom(parentDom(tables[i])) == target) {
+            tables[i].id = "timetable_" + i;
             ret.push(tables[i]);
-            suf++;
         }
     }
     return ret;
