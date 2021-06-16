@@ -233,9 +233,9 @@ function z_color_chenge(x, y) {
   for (let z = 0; z < timetable.length; z++) {
     let tmp = check_timetable(x, y, z);
     let cell_li = get_cell(z, y, x).getElementsByTagName("li");
-    tmp[0] ? cell_li[0].style.color = "red" : cell_li[0].style.backgroundColor = "white";
-    tmp[1] ? cell_li[1].style.color = "red" : cell_li[1].style.backgroundColor = "white";
-    tmp[2] ? cell_li[2].style.color = "red" : cell_li[2].style.backgroundColor = "white";
+    tmp[0] ? cell_li[0].style.color = "red" : cell_li[0].style.color = "black";
+    tmp[1] ? cell_li[1].style.color = "red" : cell_li[1].style.color = "black";
+    tmp[2] ? cell_li[2].style.color = "red" : cell_li[2].style.color = "black";
   }
 }
 

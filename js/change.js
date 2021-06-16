@@ -7,7 +7,8 @@ function class_change_btn(e) {
   let dom = getById("lesson_list_"+suf);
   dom.getElementsByClassName("p_class_name")[0].innerText = "クラス："+class_list[suf];
   timetable_list_dom.getElementsByClassName("table_name")[0].innerText = class_list[suf];
-  operation_link_sidebar.children[suf].innerText = class_list[suf];
+  rewrite_name_operation_link_sidebar(suf);
+  rewrite_class_name_timetable_sidebar(suf);
 }
 
 function teacher_change_btn(e) {

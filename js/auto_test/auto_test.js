@@ -18,8 +18,8 @@ rewrite_btn.addEventListener("click",e=>{
 });
 
 function table_create() {
-  let tx = 6;
-  let ty = 5;
+  let tx = table_SizeX;
+  let ty = table_SizeY;
   for(let z = 0;z < pass_timetable.length;z++){
     //テーブル生成
     let tbl = document.createElement("table");

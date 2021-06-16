@@ -23,7 +23,7 @@ let class_list = [];
 let teacher_list = [""];
 let room_list = [""];
 
-let table_SizeX = 5;
+let table_SizeX = 6;
 let table_SizeY = 6;
 
 //処理用
@@ -141,7 +141,7 @@ function normal_lesson_add_event(val, parent) {
     let div = creEle("div");
     div.id = ("normal_lesson_list_" + val) + "_" + (normal_lesson_list[val].length - 1);
     div.innerHTML =
-        '<input type="text" placeholder="授業" size="6">' +
+        '<input type="text" placeholder="授業" size="6" onkeyup="lesson_input_event(this)">' +
         '<select class="teacher_select"></select>' +
         '<select class="room_select"></select>' +
         '<input class="total" type="text" placeholder="授業数" size="3">'+
@@ -152,12 +152,14 @@ function normal_lesson_add_event(val, parent) {
     div.getElementsByClassName("room_select")[0].innerHTML = selector_create(room_list).innerHTML;
     getById("normal_lesson_list_" + val).appendChild(div);
     div.getElementsByClassName("get_lesson_num_btn")[0].click();
+    return div;
 }
 
 function class_add_btn() {
     init_add_event(class_name_text.value, class_list_dom, class_list, "class_change_btn", "class_deleat_btn");
     lesson_list_add_event(class_name_text.value);
     add_operation_link_sidebar(class_name_text.value)
+    add_class_timetable_sidebar(class_name_text.value)
     table_create(class_name_text.value);
     class_name_text.value = ""; //textを初期化
 }
@@ -177,7 +179,8 @@ function room_add_btn() {
 
 function normal_lesson_add_btn(e) {
     let parent = parent_class_search(e, "lesson_list");
-    normal_lesson_add_event(getIdNum(parent), parent);
+    let ret = normal_lesson_add_event(getIdNum(parent), parent);
+    add_lesson_timetable_sidebar(ret);
 }
 
 function elective_lesson_list_add_btn(e) {
@@ -223,7 +226,7 @@ function elective_lesson_add_event(val1, val2, parent) {
     let div = creEle("div");
     div.id = parent.id + "_" + (elective_lesson_list[val1][val2].length - 1);
     div.innerHTML =
-        '<input type="text" placeholder="授業" size="6">' +
+        '<input type="text" placeholder="授業" size="6" onkeyup="lesson_input_event(this)">' +
         '<select class="teacher_select"></select>' +
         '<select class="room_select"></select>' +
         '<input type="button" class="get_lesson_num_btn" value="o" onclick="get_lesson_num_btn(this)">' +
@@ -232,6 +235,7 @@ function elective_lesson_add_event(val1, val2, parent) {
     div.getElementsByClassName("room_select")[0].innerHTML = selector_create(room_list).innerHTML;
     getById("elective_lesson_list_" + val1 + "_" + val2).appendChild(div);
     div.getElementsByClassName("get_lesson_num_btn")[0].click();
+    return div;
 }
 
 function table_create(class_name_text) {
@@ -321,6 +325,7 @@ function select_chg(select_class_name, suf, insert_num) {
 function class_deleat_btn(e) {
     class_deleat_event(e);
     del_operation_link_sidebar(e);
+    del_class_timetable_sidebar(e);
     init_deleat_event(e, class_list);
     rewrite_list_id("class_list", 0);
     let ret = rewrite_list_id("lesson_list", 0);
@@ -359,6 +364,7 @@ function normal_lesson_deleat_btn(e) {
     let big_parent = parentDom(parent);
     lesson_deleat_event(e, normal_lesson_list[getIdNum(parent, 0)], 1, getIdNum(parent, 0));
     rewrite_list_id(big_parent.id, 1);
+    del_lesson_timetable_sidebar(e);
     dlt_use_functon();
 }
 
@@ -439,3 +445,21 @@ function rewrite_table_id() {
     return ret;
 }
 
+function lesson_input_check(e){
+  let val1 = getIdNum(e.parentElement,0);
+  let val2 = getIdNum(e.parentElement,1);
+  if(pareSp(e)[0] == "normal"){
+    normal_lesson_list[val1][val2][0] = e.value;
+  }else if(pareSp(e)[0] == "elective"){
+    let val3 = getIdNum(e.parentElement,2);
+    elective_lesson_list[val1][val2][val3][0] = e.value;
+  }
+}
+function lesson_input_event(e){
+  lesson_input_check(e);
+  if(pareSp(e)[0] == "normal"){
+    let val1 = getIdNum(e.parentElement,0);
+    let val2 = getIdNum(e.parentElement,1);
+    rewrite_lesson_name_timetable_sidebar(val1,val2);
+  }
+}
