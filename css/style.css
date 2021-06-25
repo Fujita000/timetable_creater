@@ -419,3 +419,6 @@ p{
   top:10%;
 }
 
+.get_lesson_num_btn{
+  display: none;
+}
