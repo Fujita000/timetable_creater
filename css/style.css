@@ -420,5 +420,21 @@ p{
 }
 
 .get_lesson_num_btn{
-  display: none;
+  /* display: none; */
+}
+
+.toggle_cell_red{
+  color: red;
+}
+.toggle_cell_black{
+  color: black;
+}
+
+
+/* 
+仮CSS（自由に変更してかまいません）
+ */
+td:hover{
+  color: white;
+  background-color:grey;
 }
