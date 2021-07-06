@@ -7,7 +7,7 @@ let pass_lesson = [
   [
     [1, 1, 5, 6, 0, 3],
     [2, 2, 1, 1, 0, 1],
-    [3, 2, 1, 1, 0, 1],
+    [3, 2, 1, 2, 0, 1],
     [4, 2, 1, 3, 0, 1],
     [5, 3, 5, 3, 3, 3],
     [6, 4, 4, 3, 0, 3],
@@ -42,32 +42,37 @@ let pass_lesson = [
 let d = pass_lesson;
 let pass_timetable = [
   [
-    [       ,        ,        , d[0][6], d[0][6], d[0][6]],
-    [d[0][6], d[0][6], d[0][6],        ,        ,        ,],
-    [       ,        ,        , d[0][6], d[0][6], d[0][6]],
-    [       ,        ,        , d[0][4], d[0][4], d[0][4]],
-    [       ,        ,        ,        ,        ,        ,],
+    [, , , d[0][6], d[0][6], d[0][6]],
+    [d[0][6], d[0][6], d[0][6], , , ,],
+    [, , , d[0][6], d[0][6], d[0][6]],
+    [, , , d[0][4], d[0][4], d[0][4]],
+    [, , , , , ,],
+    [, , , d[0][6], d[0][6], d[0][6]],
+    [d[0][6], d[0][6], d[0][6], , , ,],
+    [, , , d[0][6], d[0][6], d[0][6]],
+    [, , , d[0][4], d[0][4], d[0][4]],
+    [, , , , , ,],
   ],
   [
     [d[1][6], d[1][6], d[1][6], d[1][1], d[1][1], d[1][1]],
-    [d[1][0], d[1][0], d[1][0],        ,        ,        ,],
-    [d[1][7], d[1][7], d[1][7],        ,        ,        ,],
-    [       ,        ,        ,        ,        ,        ,],
+    [d[1][0], d[1][0], d[1][0], , , ,],
+    [d[1][7], d[1][7], d[1][7], , , ,],
+    [, , , , , ,],
     [d[1][6], d[1][6], d[1][6], d[1][3], d[1][4], d[1][4]],
   ],
   [
     [d[2][0], d[2][0], d[2][0], d[2][2], d[2][2], d[2][2]],
     [d[2][2], d[2][2], d[2][2], d[2][1], d[2][1], d[2][1]],
-    [d[2][1], d[2][1], d[2][1],        ,        ,         ,],
+    [d[2][1], d[2][1], d[2][1], , , ,],
     [d[2][3], d[2][3], d[2][3], d[2][3], d[2][3], d[2][3]],
     [d[2][0], d[2][0], d[2][0], d[2][4], d[2][5], d[2][5]],
   ],
   [
     [d[3][0], d[3][0], d[3][0], d[3][2], d[3][2], d[3][2]],
     [d[3][2], d[3][2], d[3][2], d[3][1], d[3][1], d[3][1]],
-    [d[3][1], d[3][1], d[3][1],        ,        ,        ,],
+    [d[3][1], d[3][1], d[3][1], , , ,],
     [d[3][3], d[3][3], d[3][3], d[3][3], d[3][3], d[3][3]],
-    [d[3][0], d[3][0], d[3][0],        ,        ,        ,],
+    [d[3][0], d[3][0], d[3][0], , , ,],
   ],
 ];
 
@@ -121,10 +126,10 @@ let lesson_list = [
 //アルゴリズム
 
 // 時間割で空いている時間を探す関数
-var vacant_timetable = (v_timetable,v_grade) => {
-  for(i = 0; i < v_timetable[v_grade].length; i++){
-    for(j = 0; j < v_timetable[v_grade][i].length; j++){
-      if(v_timetable[v_grade][i][j] == null){
+var vacant_timetable = (v_timetable, v_grade) => {
+  for (i = 0; i < v_timetable[v_grade].length; i++) {
+    for (j = 0; j < v_timetable[v_grade][i].length; j++) {
+      if (v_timetable[v_grade][i][j] == null) {
         return [i, j];
       }
     }
@@ -132,34 +137,34 @@ var vacant_timetable = (v_timetable,v_grade) => {
 }
 
 // 空いている時間が何時間空いているか探す関数
-var continuous = (c_timetable,c_grade,c_weekday,c_time) => {
+var continuous = (c_timetable, c_grade, c_weekday, c_time) => {
   let temp = 0;
-  for(i = 0; i < 3 && i+c_time < 6; i++){
+  for (i = 0; i < 3 && i + c_time < 6; i++) {
     temp = i;
-    if(c_timetable[c_grade][c_weekday][c_time+i] != null){
+    if (c_timetable[c_grade][c_weekday][c_time + i] != null) {
       break;
     }
   }
-  return temp+1;
+  return temp + 1;
 }
 
 //空いている教室を見つける関数
-var find_class = (f_timetable,f_weekday,f_time) => {
+var find_class = (f_timetable, f_weekday, f_time) => {
   let f_class = [];
-  for(i = 0; i < 4; i++){
-    if(f_timetable[i][f_weekday][f_time] == null){
+  for (i = 0; i < 4; i++) {
+    if (f_timetable[i][f_weekday][f_time] == null) {
       continue;
-    }else if(f_timetable[i][f_weekday][f_time][2] == 0){
-      if(f_timetable[i][f_weekday][f_time][0] == 101){
-        for(j = 0; j < choice_lesson[0].length; j++){
+    } else if (f_timetable[i][f_weekday][f_time][2] == 0) {
+      if (f_timetable[i][f_weekday][f_time][0] == 101) {
+        for (j = 0; j < choice_lesson[0].length; j++) {
           f_class.push(choice_lesson[0][j][3]);
         }
-      }else if(f_timetable[i][f_weekday][f_time][0] == 201){
-        for(j = 0; j < 2; j++){
+      } else if (f_timetable[i][f_weekday][f_time][0] == 201) {
+        for (j = 0; j < 2; j++) {
           f_class.push(choice_lesson[1][j][3]);
         }
-      }else if(f_timetable[i][f_weekday][f_time][0] == 202){
-        for(j = 2; j < 4; j++){
+      } else if (f_timetable[i][f_weekday][f_time][0] == 202) {
+        for (j = 2; j < 4; j++) {
           f_class.push(choice_lesson[1][j][3]);
         }
       }
@@ -171,22 +176,22 @@ var find_class = (f_timetable,f_weekday,f_time) => {
 }
 
 //空いている先生を見つける関数
-var find_teacher = (f_timetable,f_weekday,f_time) => {
+var find_teacher = (f_timetable, f_weekday, f_time) => {
   let f_teacher = [];
-  for(i = 0; i < 4; i++){
-    if(f_timetable[i][f_weekday][f_time] == null){
+  for (i = 0; i < 4; i++) {
+    if (f_timetable[i][f_weekday][f_time] == null) {
       continue;
-    }else if(f_timetable[i][f_weekday][f_time][1] == 0){
-      if(f_timetable[i][f_weekday][f_time][0] == 101){
-        for(j = 0; j < choice_lesson[0].length; j++){
+    } else if (f_timetable[i][f_weekday][f_time][1] == 0) {
+      if (f_timetable[i][f_weekday][f_time][0] == 101) {
+        for (j = 0; j < choice_lesson[0].length; j++) {
           f_teacher.push(choice_lesson[0][j][2]);
         }
-      }else if(f_timetable[i][f_weekday][f_time][0] == 201){
-        for(j = 0; j < 2; j++){
+      } else if (f_timetable[i][f_weekday][f_time][0] == 201) {
+        for (j = 0; j < 2; j++) {
           f_teacher.push(choice_lesson[1][j][2]);
         }
-      }else if(f_timetable[i][f_weekday][f_time][0] == 202){
-        for(j = 2; j < 4; j++){
+      } else if (f_timetable[i][f_weekday][f_time][0] == 202) {
+        for (j = 2; j < 4; j++) {
           f_teacher.push(choice_lesson[1][j][2]);
         }
       }
@@ -198,32 +203,32 @@ var find_teacher = (f_timetable,f_weekday,f_time) => {
 }
 
 //空いている先生と教室がマッチする授業を見つける
-var match = (m_teacher,m_class,m_grade) => {    //この引数(m_teacher,m_class)には配列が入ります。
+var match = (m_teacher, m_class, m_grade) => {    //この引数(m_teacher,m_class)には配列が入ります。
   let match_class;
-  for(i = 0; i < pass_lesson[m_grade].length; i++){
-    if(pass_lesson[m_grade][i][3] <= pass_lesson[m_grade][i][4]){
+  for (i = 0; i < pass_lesson[m_grade].length; i++) {
+    if (pass_lesson[m_grade][i][3] <= pass_lesson[m_grade][i][4]) {
       continue;
     }
     let not_match = false;
-    for(j = 0; j < m_teacher.length; j++){
-      for(k = 0; k < m_teacher[j].length; k++){
-        if(pass_lesson[m_grade][i][1] == m_teacher[j] && pass_lesson[m_grade][i][1] != 0){
+    for (j = 0; j < m_teacher.length; j++) {
+      for (k = 0; k < m_teacher[j].length; k++) {
+        if (pass_lesson[m_grade][i][1] == m_teacher[j] && pass_lesson[m_grade][i][1] != 0) {
           not_match = true;
           break;
         }
       }
     }
-    if(not_match == false){
-      for(j = 0; j < m_class.length; j++){
-        for(k = 0; k < m_class[j].length; k++){
-          if(pass_lesson[m_grade][i][2] == m_class[j] && pass_lesson[m_grade][i][2] != 0){
+    if (not_match == false) {
+      for (j = 0; j < m_class.length; j++) {
+        for (k = 0; k < m_class[j].length; k++) {
+          if (pass_lesson[m_grade][i][2] == m_class[j] && pass_lesson[m_grade][i][2] != 0) {
             not_match = true;
             break;
           }
         }
       }
     }
-    if(not_match == false){
+    if (not_match == false) {
       match_class = i;
       break;
     }
@@ -232,9 +237,9 @@ var match = (m_teacher,m_class,m_grade) => {    //この引数(m_teacher,m_class
 }
 
 // 空いている連続時間に授業を入れる関数
-var put_class = (p_grade,weekday,time,p_class,p_continuous) => {
-  for(i = 0; i < p_continuous; i++){
-    pass_timetable[p_grade][weekday][time+i] = p_class;
+var put_class = (p_grade, weekday, time, p_class, p_continuous) => {
+  for (i = 0; i < p_continuous; i++) {
+    pass_timetable[p_grade][weekday][time + i] = p_class;
   }
 }
 
@@ -244,25 +249,25 @@ let c_test = 0;
 let find_class_test = [];
 let find_teacher_test = [];
 let m_test;
-test = vacant_timetable(pass_timetable,0);
+test = vacant_timetable(pass_timetable, 0);
 
 console.log(test)
 
-c_test = continuous(pass_timetable,0,test[0],test[1]);
+c_test = continuous(pass_timetable, 0, test[0], test[1]);
 
-find_class_test[0] = find_class(pass_timetable,test[0],test[1]);
-find_class_test[1] = find_class(pass_timetable,test[0],1);
-find_class_test[2] = find_class(pass_timetable,test[0],2);
-find_teacher_test[0] = find_teacher(pass_timetable,test[0],test[1]);
-find_teacher_test[1] = find_teacher(pass_timetable,test[0],1);
-find_teacher_test[2] = find_teacher(pass_timetable,test[0],2);
+find_class_test[0] = find_class(pass_timetable, test[0], test[1]);
+find_class_test[1] = find_class(pass_timetable, test[0], 1);
+find_class_test[2] = find_class(pass_timetable, test[0], 2);
+find_teacher_test[0] = find_teacher(pass_timetable, test[0], test[1]);
+find_teacher_test[1] = find_teacher(pass_timetable, test[0], 1);
+find_teacher_test[2] = find_teacher(pass_timetable, test[0], 2);
 
 console.log(find_class_test);
 // console.log(find_class_test[1]);
 // console.log(find_class_test[2]);
 console.log(find_teacher_test);
 
-m_test = match(find_teacher_test,find_class_test,0);
+m_test = match(find_teacher_test, find_class_test, 0);
 
 console.log(m_test);
 
@@ -271,11 +276,11 @@ console.log(find_class_test);
 // console.log(find_class_test[2]);
 console.log(find_teacher_test);
 
-m_test = match(find_teacher_test,find_class_test,0);
+m_test = match(find_teacher_test, find_class_test, 0);
 
 console.log(m_test);
 
-put_class(0,test[0],test[1],d[0][0],c_test);
+put_class(0, test[0], test[1], d[0][0], c_test);
 
 console.log(pass_timetable[0][0][0]);
 console.log(pass_timetable[0][0][1]);
