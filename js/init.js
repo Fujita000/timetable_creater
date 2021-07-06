@@ -128,9 +128,9 @@ function lesson_list_add_event(val) {
     div.className = "lesson_list";
     div.innerHTML =
         "<br><p class='p_class_name linkname'>&lt;" + val + "&gt;</p>" +
-        "<p>授業<button onclick=normal_lesson_add_btn(this)>追加</button><button onclick=lesson_clear_btn(this)>消しゴム</button></p>" +
+        "<p>授業<button onclick=normal_lesson_add_btn(this) class=a_btn>追加</button><button onclick=lesson_clear_btn(this) class=d_btn>消しゴム</button></p>" +
         "<div id='normal_" + div.id + "' class='normal_lesson_list'></div>" +
-        "<p>選択授業<button onclick=elective_lesson_list_add_btn(this)>追加</button></p>" +
+        "<p>選択授業<button onclick=elective_lesson_list_add_btn(this) class=a_btn>追加</button></p>" +
         "<div id='elective_" + div.id + "' class='elective_lesson_list_list'></div>";
     lesson_list_dom.appendChild(div);
 }
@@ -147,7 +147,7 @@ function normal_lesson_add_event(val, parent) {
         '<input class="total" type="text" placeholder="授業数" size="3">'+
         '<input class="continuity" type="text" placeholder="連続時間" size="3">'+
         '<input type="button" class="get_lesson_num_btn" value="o" onclick="get_lesson_num_btn(this)">' +
-        '<input type="button" value="削除" onclick="normal_lesson_deleat_btn(this)">';
+        '<input type="button" value="削除" onclick="normal_lesson_deleat_btn(this)" class="del_btn">';
     div.getElementsByClassName("teacher_select")[0].innerHTML = selector_create(teacher_list).innerHTML;
     div.getElementsByClassName("room_select")[0].innerHTML = selector_create(room_list).innerHTML;
     getById("normal_lesson_list_" + val).appendChild(div);
@@ -203,9 +203,9 @@ function elective_lesson_list_add_event(val, parent) {
         '<p>選択授業' + (elective_lesson_list[val].length) +
         '<input class="total" type="text" placeholder="授業数" size="3">'+
         '<input class="continuity" type="text" placeholder="連続時間" size="3">'+
-        '<input type="button" value="時間決定" onclick="elective_lesson_time_enter(this)">' +
-        '<input type="button" value="追加" onclick="elective_lesson_add_btn(this)">' +
-        '<input type="button" value="削除" onclick="elective_lesson_list_deleat_btn(this)"></p>';
+        '<input type="button" value="時間決定" onclick="elective_lesson_time_enter(this)" class=time_btn>' +
+        '<input type="button" value="追加" onclick="elective_lesson_add_btn(this)" class="a_btn">' +
+        '<input type="button" value="削除" onclick="elective_lesson_list_deleat_btn(this)" class="del_btn"></p>';
     getById("elective_lesson_list_" + val).appendChild(div);
 }
 
@@ -274,6 +274,8 @@ function table_create(class_name_text) {
     }
     tbl.appendChild(tblBody);
     let div = document.createElement("div");
+    div.className = "newtable";
+    //div.className = "mdl-cell mdl-cell--6-col newtable";
     div.appendChild(p);
     div.appendChild(tbl);
     timetable_list_dom.appendChild(div);

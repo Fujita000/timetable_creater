@@ -111,7 +111,7 @@ html, body {
   margin-bottom: 48px;
 }
 .mdl-demo section.section--center {
-  max-width: 860px;
+  max-width: 950px;
 }
 .mdl-demo #features section.section--center {
   max-width: 620px;
@@ -419,3 +419,39 @@ p{
   top:10%;
 }
 
+#timetable_list{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.newtable{
+  margin-right: 60px;
+}
+
+#lesson_list{
+  width:80%;
+}
+
+.lesson_list{
+  background-color: #fff;
+  padding:0 10% 20px 10%;
+  margin-bottom:50px;
+}
+
+.lesson_list p{
+  margin-top:20px;
+  color:#000;
+}
+
+.teacher_select,.room_select,.total,.continuity{
+  margin-left:5px;
+}
+
+.a_btn,.d_btn,.get_lesson_num_btn,.del_btn,.time_btn{
+  margin-left:10px;
+  background-color:#f4ffff;
+}
+
+.continuity{
+  width:60px;
+}
