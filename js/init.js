@@ -29,7 +29,7 @@ let table_SizeY = 6;
 //処理用
 let now_choice_lesson = -1; //選択中の授業の内容
 let now_choice_class = -1; //選択中のクラス
-let elaser = false;//消しゴム機能
+let elaser_flag = false;//消しゴム機能
 
 function cell_click_event(e) {
   let q = parent_tag_search(e.target, "td");
@@ -37,7 +37,7 @@ function cell_click_event(e) {
   if (cell_change_flag) {
     cell_change_event(e);
   } else {
-    if (now_choice_class == d[0] || elaser) {
+    if (now_choice_class == d[0] || elaser_flag) {
       timetable[d[0]][d[1]][d[2]] = now_choice_lesson;
       update_cell(d);
     }
@@ -48,7 +48,7 @@ function cell_click_event(e) {
 // function cell_click_event(e) {
 //   let q = parent_tag_search(e.target, "td");
 //   let d = get_td_coordinate(q);
-//   if (now_choice_class == d[0] || elaser) {
+//   if (now_choice_class == d[0] || elaser_flag) {
 //     timetable[d[0]][d[1]][d[2]] = now_choice_lesson;
 //     update_cell(d);  
 //   }
@@ -64,7 +64,8 @@ function lesson_clear_btn(e) {
 
 
 function get_lesson_num_btn(e) {
-  elaser = false;
+  elaser_flag = false;
+  cell_change_reset();
   let par = parentDom(e);
   let type = nodeSp(par)[0];
   let suf1 = getIdNum(par, 0);
@@ -81,7 +82,8 @@ function get_lesson_num_btn(e) {
 }
 
 function get_ele_lesson_num_btn(e) {
-  elaser = false;
+  elaser_flag = false;
+  cell_change_reset();
   let par = e.parentElement;
   let suf1 = getIdNum(par, 0);
   let suf2 = getIdNum(par, 1);

@@ -1,5 +1,6 @@
 let timetable_sidebar = document.getElementById('timetable_link_sidebar');
 //timetable_sliderにプログラムで追加される要素のtimetable_slider子要素での開始番号
+//timetable_link_sidebar直下の要素数を変更したときに一緒に変更
 let start_num = 1;
 
 
@@ -86,5 +87,7 @@ let timetable_sidebar_eraser = document.getElementById("timetable_sidebar_eraser
 timetable_sidebar_eraser.addEventListener("click", e => {
   now_choice_lesson = 0;
   now_choice_class = 0;
-  elaser = true;
+  elaser_flag = !elaser_flag;
+  cell_change_reset();
+
 });
