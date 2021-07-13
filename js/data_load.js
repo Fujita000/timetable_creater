@@ -2,6 +2,8 @@ function data_load() {
   //クラス作成
   qs('#class_name_text').value = "1-1";
   qs('#class_add_btn').click();
+  qs('#class_name_text').value = "2-1";
+  qs('#class_add_btn').click();
 
   //教師作成
   qs('#teacher_name_text').value = "教師太郎";
