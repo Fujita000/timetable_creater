@@ -1,6 +1,6 @@
 window.addEventListener('load', () => {
-  const button1 = document.getElementById('button1');
-  button1.addEventListener('click', download_btn_clicked);
+  const download = document.getElementById('download');
+  download.addEventListener('click', download_btn_clicked);
 });
 
 function download_btn_clicked(evt) {
