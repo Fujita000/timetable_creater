@@ -111,7 +111,7 @@ html, body {
   margin-bottom: 48px;
 }
 .mdl-demo section.section--center {
-  max-width: 950px;
+  max-width: 1050px;
 }
 .mdl-demo #features section.section--center {
   max-width: 620px;
@@ -425,7 +425,7 @@ p{
 }
 
 .newtable{
-  margin-right: 60px;
+  margin:0 30px;
 }
 
 #lesson_list{
