@@ -1,9 +1,9 @@
 window.addEventListener('load', () => {
   const button1 = document.getElementById('button1');
-  button1.addEventListener('click', button1_clicked);
+  button1.addEventListener('click', download_btn_clicked);
 });
 
-function button1_clicked(evt) {
+function download_btn_clicked(evt) {
   evt.preventDefault();
   var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);
   var content = '';
