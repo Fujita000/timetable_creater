@@ -357,7 +357,7 @@ p{
 }
 
 #table{
-  margin-left: 5%;
+  margin-left: 0px;
 }
 
 #table1{
@@ -425,7 +425,7 @@ p{
 }
 
 .newtable{
-  margin:0 30px;
+  margin:0 20px;
 }
 
 #lesson_list{
