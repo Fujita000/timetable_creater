@@ -117,7 +117,6 @@
             </div>
           </main>
         </div>
-        <!-- セクションここだった -->
         <a href="#top" id="view-source"
           class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">TOP</a>
       </div>
@@ -126,11 +125,12 @@
       <div class="mdl-layout__tab-panel" id="timetable">
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
           <div class="mdl-layout__drawer" id="backcol2">
-            <!-- <span class="mdl-layout-title">TimeTable</span> -->
             <nav id="timetable_link_sidebar" class="mdl-navigation">
-              <a class="mdl-navigation__link" href="#timetable">1年</a>
-              <a class="mdl-navigation__link" href="#timetable">2年</a>
-              <a class="mdl-navigation__link" href="#timetable">4年</a>
+              <div>
+                <p id="timetable_sidebar_eraser">消しゴム</p>
+                <p id="cell_change_btn">入れ替え</p>
+                <p><button id="button1">Download Text</button></p>
+              </div>
             </nav>
           </div>
           <main class="mdl-layout__content" id="side_nav">
@@ -144,7 +144,6 @@
             </div>
           </main>
         </div>
-        <!-- セクションここだった -->
         <a href="#top" id="view-source"
           class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">TOP</a>
       </div>
@@ -152,15 +151,24 @@
     </main>
   </div>
   <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+
+  <!-- ルート（いろいろ） -->
   <script src="js/original_method.js"></script>
-  <script src="js/check.js"></script>
-  <script src="js/html_set.js"></script>
   <script src="js/init.js"></script>
-  <!-- <script src="js/auto_set.js"></script> -->
-  <script src="js/change.js"></script>
-  <script src="js/sidebar_operation.js"></script>
-  <!-- <script src="js/read_data.js"></script> -->
-  <!-- <script src="add.js"></script> -->
+  <script src="js/timetable_save.js"></script>
+  
+  <!-- dom_opetationフォルダ -->
+  <script src="js/dom_opetation/input_change.js"></script>
+  <script src="js/dom_opetation/sidebar_operation.js"></script>
+  <script src="js/dom_opetation/sidebar_timetable.js"></script>
+  <script src="js/dom_opetation/infoTAB_create.js"></script>
+  <script src="js/dom_opetation/cell_change.js"></script>
+
+  <!-- auto_createフォルダ -->
+  <script src="js/auto_create/read_auto_timetable.js"></script>
+  <script src="js/auto_create/pass_auto_timetable.js"></script>
+  
 </body>
 
 </html>

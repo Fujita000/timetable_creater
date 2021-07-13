@@ -111,14 +111,14 @@ function update_cell(arr) {
   let x = arr[2];
   let dom = get_cell(z, y, x);
   let lesson = get_lesson_status(z, timetable[z][y][x]);
-  lesson = trans_after_lesson([z,timetable[z][y][x],lesson[1],lesson[2]]);
+  lesson = trans_after_lesson([z, timetable[z][y][x], lesson[1], lesson[2]]);
   dom.innerHTML =
     "<ul>" +
     "<li>" + lesson[0] + "</li>" +
     "<li>" + lesson[1] + "</li>" +
     "<li>" + lesson[2] + "</li>" +
     "</ul>";
-  
+
 }
 
 //指定したセルの要素を変更する。
@@ -233,10 +233,20 @@ function z_color_chenge(x, y) {
   for (let z = 0; z < timetable.length; z++) {
     let tmp = check_timetable(x, y, z);
     let cell_li = get_cell(z, y, x).getElementsByTagName("li");
-    tmp[0] ? cell_li[0].style.color = "red" : cell_li[0].style.backgroundColor = "white";
-    tmp[1] ? cell_li[1].style.color = "red" : cell_li[1].style.backgroundColor = "white";
-    tmp[2] ? cell_li[2].style.color = "red" : cell_li[2].style.backgroundColor = "white";
+    toggle_cell_color(cell_li[0], tmp[0])
+    toggle_cell_color(cell_li[1], tmp[1])
+    toggle_cell_color(cell_li[2], tmp[2])
   }
+}
+
+
+function toggle_cell_color(dom, tmp) {
+  if (tmp) {
+    dom.className = "toggle_cell_red";
+  } else {
+    dom.className = "toggle_cell_black";
+  }
+
 }
 
 function all_color_change() {
@@ -249,15 +259,15 @@ function all_color_change() {
 
 //タイムテーブルの被りを調べる
 function check_timetable(sx, sy, sz) {
-  let ret = [];
-  for (let z = 0; z < timetable.length; z++)
-    if (z != sz && timetable[sz][sy][sx] != 0) ret = comparison_lesson(z, timetable[z][sy][sx], sz, timetable[sz][sy][sx]);
+  let ret = [false, false, false];
+  for (let z = 0; z < timetable.length; z++) {
+    if (z != sz && timetable[sz][sy][sx] != 0) ret = comparison_lesson(z, timetable[z][sy][sx], sz, timetable[sz][sy][sx], ret);
+  }
   if (timetable[sz][sy][sx] >= 100 && (ret[1] || ret[2])) ret[0] = true;
   return ret;
 }
 
-function comparison_lesson(cls1, lsn_num1, cls2, lsn_num2) {
-  let ret = [false, false, false];
+function comparison_lesson(cls1, lsn_num1, cls2, lsn_num2, ret = [false, false, false]) {
   let lesson1 = get_lesson_contents(cls1, lsn_num1);
   let lesson2 = get_lesson_contents(cls2, lsn_num2);
   if (lsn_num1 < 100) lesson1 = [lesson1];
@@ -273,35 +283,35 @@ function comparison_lesson(cls1, lsn_num1, cls2, lsn_num2) {
 }
 
 //番号を変換して先生名を取得する
-function tgt(num){
-  return teacher_list[num]  == undefined  ? "" : teacher_list[num];
+function tgt(num) {
+  return teacher_list[num] == undefined ? "" : teacher_list[num];
 }
 
 //番号を変換して教室名を取得する
-function tgr(num){
-  return room_list[num] == undefined  ? "" : room_list[num];
+function tgr(num) {
+  return room_list[num] == undefined ? "" : room_list[num];
 }
 
 //学級番号と授業番号を変換して通常授業名を取得する
-function ntgsn(cls,num){
+function ntgsn(cls, num) {
   return normal_lesson_list[cls][num][0] == undefined ? "" : normal_lesson_list[cls][num][0];
 }
 
 //学級番号と授業番号を変換して選択授業名を取得する
-function etgsn(cls,num){
+function etgsn(cls, num) {
   return elective_lesson_list[cls][num][0] == undefined ? "" : elective_lesson_list[cls][num][0];
 }
 
 //学級番号、授業番号、教師番号、教室番号を変換して授業の文字データを取得する
-function trans_after_lesson([cls,num,teacher,room]){
+function trans_after_lesson([cls, num, teacher, room]) {
   num = zt(num);
   teacher = zt(teacher);
   room = zt(room);
-  let name = num < 100 ?  ntgsn(cls,num) : "選択授業"+(num-99);
-  return [name,tgt(teacher),tgr(room)];
+  let name = num < 100 ? ntgsn(cls, num) : "選択授業" + (num - 99);
+  return [name, tgt(teacher), tgr(room)];
 }
 
 //zero trans 文字列を0に変換する
-function zt(num){
-  return isNaN(Number(num)) ? 0 : Number(num) ;
+function zt(num) {
+  return isNaN(Number(num)) ? 0 : Number(num);
 }
