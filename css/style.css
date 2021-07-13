@@ -110,9 +110,9 @@ html, body {
   position: relative;
   margin-bottom: 48px;
 }
-/*.mdl-demo section.section--center {
-  max-width: 1050px;
-}*/
+.mdl-demo section.section--center {
+  width:80%;
+}
 .mdl-demo #features section.section--center {
   max-width: 620px;
 }
