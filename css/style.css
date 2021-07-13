@@ -111,7 +111,7 @@ html, body {
   margin-bottom: 48px;
 }
 .mdl-demo section.section--center {
-  max-width: 1100px;
+  max-width: 1050px;
 }
 .mdl-demo #features section.section--center {
   max-width: 620px;
@@ -354,7 +354,7 @@ p{
 
 #t-section{
   position:relative;
-  margin:0 2%;
+  margin:0 3%;
 }
 
 #table{
