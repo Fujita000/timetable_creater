@@ -456,7 +456,7 @@ p{
   width:60px;
 }
 .get_lesson_num_btn{
-  /* display: none; */
+  display: none;
 }
 
 .toggle_cell_red{
@@ -466,7 +466,15 @@ p{
   color: black;
 }
 
-
+input.total,
+input.continuity
+{
+  width:60px;
+}
+.selected{
+  background-color: lightslategray;
+  color: #efffff;
+}
 /* 
 仮CSS（自由に変更してかまいません）
  */
