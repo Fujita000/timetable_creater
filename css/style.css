@@ -111,7 +111,7 @@ html, body {
   margin-bottom: 48px;
 }
 .mdl-demo section.section--center {
-  max-width: 950px;
+  max-width: 1100px;
 }
 .mdl-demo #features section.section--center {
   max-width: 620px;
@@ -354,10 +354,11 @@ p{
 
 #t-section{
   position:relative;
+  margin:0 3%;
 }
 
 #table{
-  margin-left: 5%;
+  margin-left: 0px;
 }
 
 #table1{
@@ -425,7 +426,7 @@ p{
 }
 
 .newtable{
-  margin-right: 60px;
+  margin:0 30px;
 }
 
 #lesson_list{
@@ -455,15 +456,33 @@ p{
 .continuity{
   width:60px;
 }
+<<<<<<< HEAD
 .get_lesson_num_btn{
   display: none;
 }
+=======
+/*.get_lesson_num_btn{
+   display: none; 
+}*/
+>>>>>>> 619488ee2bf9322b67c7726da8670a85a5dc9de2
 
 .toggle_cell_red{
   color: red;
 }
 .toggle_cell_black{
   color: black;
+}
+.information{
+  padding:5% 10%;
+}
+
+#timetable_sidebar_eraser,#cell_change_btn,#download{
+  color:#4169e1;
+  padding-left:30px;
+}
+
+.timetable_tab_class{
+  padding-left:30px;
 }
 
 input.total,
