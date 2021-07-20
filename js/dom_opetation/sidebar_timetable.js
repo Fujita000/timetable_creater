@@ -89,5 +89,17 @@ timetable_sidebar_eraser.addEventListener("click", e => {
   now_choice_class = 0;
   elaser_flag = !elaser_flag;
   cell_change_reset();
-
+  // add_selected(e.target);
 });
+
+
+function add_selected(e) {
+  const selected = document.querySelector("selected");
+  if (selected != null) selected.classList.toggle("selected");
+  e.classList.toggle("selected", true);
+}
+
+function select_reset() {
+  const selected = document.querySelector("selected");
+  if (selected != null) selected.classList.toggle("selected");
+}
