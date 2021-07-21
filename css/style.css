@@ -456,15 +456,9 @@ p{
 .continuity{
   width:60px;
 }
-<<<<<<< HEAD
 .get_lesson_num_btn{
   display: none;
 }
-=======
-/*.get_lesson_num_btn{
-   display: none; 
-}*/
->>>>>>> 619488ee2bf9322b67c7726da8670a85a5dc9de2
 
 .toggle_cell_red{
   color: red;
