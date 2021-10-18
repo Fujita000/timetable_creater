@@ -26,6 +26,11 @@ let room_list = [""];
 let table_SizeX = 5;
 let table_SizeY = 6;
 
+function cts(x,y){
+  table_SizeX = x;
+  table_SizeY = y;
+}
+
 //処理用
 let now_choice_lesson = -1; //選択中の授業の内容
 let now_choice_class = -1; //選択中のクラス
@@ -44,16 +49,6 @@ function cell_click_event(e) {
   }
   z_color_chenge(d[2], d[1]);
 }
-// バグ多発時に入れ替え機能を消したこっちを使う
-// function cell_click_event(e) {
-//   let q = parent_tag_search(e.target, "td");
-//   let d = get_td_coordinate(q);
-//   if (now_choice_class == d[0] || elaser_flag) {
-//     timetable[d[0]][d[1]][d[2]] = now_choice_lesson;
-//     update_cell(d);  
-//   }
-//   z_color_chenge(d[2], d[1]);
-// }
 
 function lesson_clear_btn(e) {
   let par = parentDom(parentDom(e));

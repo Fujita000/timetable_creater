@@ -30,7 +30,7 @@ function del_class_timetable_sidebar(btn) {
   // rewrite_class_id_timetable_sidebar();
 }
 function rewrite_class_name_timetable_sidebar(suf) {
-  timetable_sidebar.children[start_num + suf].children[0].innerText = class_list[suf];
+  timetable_sidebar.children[start_num + suf].children[0].children[0].innerText = class_list[suf];
 }
 //ーーーーーーーークラス系の処理ここまで
 
@@ -87,7 +87,7 @@ let timetable_sidebar_eraser = document.getElementById("timetable_sidebar_eraser
 timetable_sidebar_eraser.addEventListener("click", e => {
   now_choice_lesson = 0;
   now_choice_class = 0;
-  elaser_flag = !elaser_flag;
+  elaser_flag = true;
   cell_change_reset();
   // add_selected(e.target);
 });

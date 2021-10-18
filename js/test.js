@@ -1,6 +1,9 @@
+data_load();
 function data_load() {
   //クラス作成
   list_add('#class_name_text', '#class_add_btn', '情報システム科１年');
+  cts(5,7)
+  console.log("change");
   list_add('#class_name_text', '#class_add_btn', '情報システム科２年');
 
   //教師作成
