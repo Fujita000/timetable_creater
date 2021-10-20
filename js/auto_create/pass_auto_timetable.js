@@ -11,6 +11,8 @@
 //
 
 function pass_auto_timetable() {
+  //授業一覧,時間割,選択授業の内容一覧
+  return [join_lesson_and_fixed(),lesson_in_timetable(),get_ele_list()]
   log(get_ele_list());
   log(join_lesson_and_fixed());
   log(lesson_in_timetable());

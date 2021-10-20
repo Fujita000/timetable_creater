@@ -54,18 +54,19 @@ function total_change_event(e) {
   let val1 = getIdNum(e.parentElement, 0);
   let val2 = getIdNum(e.parentElement, 1);
   if (pareSp(e)[0] == "normal") {
-    normal_lesson_list[val1][val2]["total"] = e.value;
+    normal_lesson_list[val1][val2]["total"] = Number(e.value);
   } else if (pareSp(e)[0] == "elective") {
-    elective_lesson_list[val1][val2]["total"] = e.value;
+    elective_lesson_list[val1][val2]["total"] = Number(e.value);
   }
 }
 
 function continuity_change_event(e) {
+  log("tet")
   let val1 = getIdNum(e.parentElement, 0);
   let val2 = getIdNum(e.parentElement, 1);
   if (pareSp(e)[0] == "normal") {
-    normal_lesson_list[val1][val2]["continuity"] = e.value;
+    normal_lesson_list[val1][val2]["continuity"] = Number(e.value);
   } else if (pareSp(e)[0] == "elective") {
-    elective_lesson_list[val1][val2]["continuity"] = e.value;
+    elective_lesson_list[val1][val2]["continuity"] = Number(e.value);
   }
 }
