@@ -67,8 +67,6 @@ function data_load() {
   qs("#elective_lesson_list_0_0").children[2].value = 3;
   qs("#elective_lesson_list_0_0").children[1].onkeyup();
   qs("#elective_lesson_list_0_0").children[2].onkeyup();
-  // play_event(qs("#elective_lesson_list_0_0").children[1]);
-  // play_event(qs("#elective_lesson_list_0_0").children[2]);
   ele_lesson_add("#elective_lesson_list_0_0",5)
   ele_lesson_opt("#elective_lesson_list_0_0_0","CG",8,2)
   ele_lesson_opt("#elective_lesson_list_0_0_1","Eスポーツ",0,8)
@@ -81,8 +79,6 @@ function data_load() {
   qs("#elective_lesson_list_1_0").children[2].value = 3;
   qs("#elective_lesson_list_1_0").children[1].onkeyup();
   qs("#elective_lesson_list_1_0").children[2].onkeyup();
-  // play_event(qs("#elective_lesson_list_1_0").children[1]);
-  // play_event(qs("#elective_lesson_list_1_0").children[2]);
   ele_lesson_add("#elective_lesson_list_1_0",2)
   ele_lesson_opt("#elective_lesson_list_1_0_0","CG",8,2)
   ele_lesson_opt("#elective_lesson_list_1_0_1","SE",6,4)
@@ -92,8 +88,6 @@ function data_load() {
   qs("#elective_lesson_list_1_1").children[2].value = 3;
   qs("#elective_lesson_list_1_1").children[1].onkeyup();
   qs("#elective_lesson_list_1_1").children[2].onkeyup();
-  // play_event(qs("#elective_lesson_list_1_1").children[1]);
-  // play_event(qs("#elective_lesson_list_1_1").children[2]);
   ele_lesson_add("#elective_lesson_list_1_1",2)
   ele_lesson_opt("#elective_lesson_list_1_1_0","CG",8,2)
   ele_lesson_opt("#elective_lesson_list_1_1_1","SE",6,4)
@@ -128,11 +122,6 @@ function lesson_opt(target,name,teacher_num,room_num,lesson_num,continuity_num){
   qs(target).children[2].selectedIndex = room_num;
   qs(target).children[3].value = lesson_num;
   qs(target).children[4].value = continuity_num;
-  // play_event(qs(target).children[0]);
-  // play_event(qs(target).children[1]);
-  // play_event(qs(target).children[2]);
-  // play_event(qs(target).children[3]);
-  // play_event(qs(target).children[4]);
 }
 
 function ele_lesson_add(target,num){
@@ -145,9 +134,6 @@ function ele_lesson_opt(target,name,teacher_num,room_num){
   qs(target).children[0].value = name;
   qs(target).children[1].selectedIndex = teacher_num;
   qs(target).children[2].selectedIndex = room_num;
-  // play_event(qs(target).children[0]);
-  // play_event(qs(target).children[1]);
-  // play_event(qs(target).children[2]);
 }
 
 
