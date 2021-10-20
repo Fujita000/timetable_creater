@@ -105,6 +105,7 @@ let choice_lesson = [
     [101, 0, 6, 4],
   ],
 ];
+
 console.log(pass_lesson);
 console.log(pass_timetable);
 
