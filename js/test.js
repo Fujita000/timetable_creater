@@ -123,6 +123,7 @@ function lesson_add(target,num){
 
 function lesson_opt(target,name,teacher_num,room_num,lesson_num,continuity_num){
   qs(target).children[0].value = name;
+  qs(target).children[0].onkeyup();
   qs(target).children[1].selectedIndex = teacher_num;
   qs(target).children[2].selectedIndex = room_num;
   qs(target).children[3].value = lesson_num;
