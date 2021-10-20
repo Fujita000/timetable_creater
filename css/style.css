@@ -367,7 +367,13 @@ p{
 }
 
 #lesson,#teacher,#lessonroom{
-  margin-bottom:30px;
+  margin:0 auto 30px auto;
+  text-align: center;
+}
+#lesson p,#teacher p,#lessonroom p{
+  margin:0 auto 20px auto;
+  text-align: left;
+  width:57%;
 }
 
 .operetion{
