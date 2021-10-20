@@ -462,9 +462,9 @@ p{
 .continuity{
   width:60px;
 }
-/*.get_lesson_num_btn{
-   display: none; 
-}*/
+.get_lesson_num_btn{
+  display: none;
+}
 
 .toggle_cell_red{
   color: red;
@@ -485,11 +485,28 @@ p{
   padding-left:30px;
 }
 
-
+input.total,
+input.continuity
+{
+  width:60px;
+}
+.selected{
+  background-color: lightslategray;
+  color: #efffff;
+}
 /* 
 仮CSS（自由に変更してかまいません）
  */
 td:hover{
   color: white;
   background-color:grey;
+}
+
+table ul{
+  color: black;
+}
+
+#timetable_link_sidebar > div:nth-child(1) p:hover{
+  cursor: pointer;
+  color: RED;
 }

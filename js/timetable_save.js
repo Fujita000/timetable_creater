@@ -21,9 +21,10 @@ function download_btn_clicked(evt) {
       }
       content += '\n';
     }
+    content.unshift("test"+z+'\n');
     content += '\n';
   }
-
+  
   var blob = new Blob([bom, content], { "type": "text/csv" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");

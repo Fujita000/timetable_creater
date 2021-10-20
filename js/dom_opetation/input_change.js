@@ -43,6 +43,7 @@ function lesson_name_change_event(e) {
     let val3 = getIdNum(e.parentElement, 2);
     elective_lesson_list[val1][val2][val3][0] = e.value;
   }
+  update_timetable();
 }
 
 function selecter_change_event(e) {

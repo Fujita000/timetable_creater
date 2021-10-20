@@ -101,7 +101,8 @@ function log(str) {
 
 //テーブルDOMの指定された座標の要素を返す
 function get_cell(z, y, x) {
-  return document.getElementsByClassName(y + "_" + x)[z];
+  let dom = document.querySelector("#timetable_"+z)
+  return dom.getElementsByClassName(y + "_" + x)[0];
 }
 
 //テーブルDOMの指定された座標の要素を更新する。
@@ -112,6 +113,7 @@ function update_cell(arr) {
   let dom = get_cell(z, y, x);
   let lesson = get_lesson_status(z, timetable[z][y][x]);
   lesson = trans_after_lesson([z, timetable[z][y][x], lesson[1], lesson[2]]);
+  // console.log(dom)
   dom.innerHTML =
     "<ul>" +
     "<li>" + lesson[0] + "</li>" +
@@ -232,10 +234,13 @@ function rewrite_list_id(target_id, start_num) {
 function z_color_chenge(x, y) {
   for (let z = 0; z < timetable.length; z++) {
     let tmp = check_timetable(x, y, z);
-    let cell_li = get_cell(z, y, x).getElementsByTagName("li");
-    toggle_cell_color(cell_li[0], tmp[0])
-    toggle_cell_color(cell_li[1], tmp[1])
-    toggle_cell_color(cell_li[2], tmp[2])
+    let cell = get_cell(z, y, x)
+    if(cell != undefined){
+      let cell_li = cell.getElementsByTagName("li");
+      toggle_cell_color(cell_li[0], tmp[0])
+      toggle_cell_color(cell_li[1], tmp[1])
+      toggle_cell_color(cell_li[2], tmp[2])
+    }
   }
 }
 
@@ -260,10 +265,14 @@ function all_color_change() {
 //タイムテーブルの被りを調べる
 function check_timetable(sx, sy, sz) {
   let ret = [false, false, false];
-  for (let z = 0; z < timetable.length; z++) {
-    if (z != sz && timetable[sz][sy][sx] != 0) ret = comparison_lesson(z, timetable[z][sy][sx], sz, timetable[sz][sy][sx], ret);
+  let is_range = (z,y,x) =>{
+    return timetable[z][y] != undefined && timetable[z][y][x] != undefined
   }
-  if (timetable[sz][sy][sx] >= 100 && (ret[1] || ret[2])) ret[0] = true;
+  for (let z = 0; z < timetable.length; z++) {
+    if(is_range(sz,sy,sx) && is_range(z,sy,sx) && z != sz && timetable[sz][sy][sx] != 0) 
+      ret = comparison_lesson(z, timetable[z][sy][sx], sz, timetable[sz][sy][sx], ret);
+  }
+  if (is_range(sz,sy,sx)  && timetable[sz][sy][sx] >= 100 && (ret[1] || ret[2])) ret[0] = true;
   return ret;
 }
 

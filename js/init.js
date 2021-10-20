@@ -23,8 +23,13 @@ let class_list = [];
 let teacher_list = [""];
 let room_list = [""];
 
-let table_SizeX = 6;
+let table_SizeX = 5;
 let table_SizeY = 6;
+
+function cts(x,y){
+  table_SizeX = x;
+  table_SizeY = y;
+}
 
 //処理用
 let now_choice_lesson = -1; //選択中の授業の内容
@@ -44,16 +49,6 @@ function cell_click_event(e) {
   }
   z_color_chenge(d[2], d[1]);
 }
-// バグ多発時に入れ替え機能を消したこっちを使う
-// function cell_click_event(e) {
-//   let q = parent_tag_search(e.target, "td");
-//   let d = get_td_coordinate(q);
-//   if (now_choice_class == d[0] || elaser_flag) {
-//     timetable[d[0]][d[1]][d[2]] = now_choice_lesson;
-//     update_cell(d);  
-//   }
-//   z_color_chenge(d[2], d[1]);
-// }
 
 function lesson_clear_btn(e) {
   let par = parentDom(parentDom(e));
@@ -172,16 +167,18 @@ function normal_lesson_add_event(val, parent) {
     '<input type="text" placeholder="授業" size="6" onkeyup="lesson_name_change_event(this)">' +
     '<select class="teacher_select" onchange="selecter_change_event(this)"></select>' +
     '<select class="room_select" onchange="selecter_change_event(this)"></select>' +
-    '<input class="total" type="text" onkeyup="total_change_event(this)" placeholder="授業数" size="3">' +
-    '<input class="continuity" onkeyup="continuity_change_event(this)"  type="text" placeholder="連続時間" size="3">' +
+    '<input class="total" onkeyup="total_change_event(this)" type="number" type="text" placeholder="授業数" size="3">' +
+    '<input class="continuity" onkeyup="continuity_change_event(this)" type="number" type="text" placeholder="連続時間" size="3">' +
     '<input type="button" class="get_lesson_num_btn" value="o" onclick="get_lesson_num_btn(this)">' +
     '<input type="button" value="削除" onclick="normal_lesson_deleat_btn(this)" class="del_btn" tabindex="-1">';
   div.getElementsByClassName("teacher_select")[0].innerHTML = selector_create(teacher_list).innerHTML;
   div.getElementsByClassName("room_select")[0].innerHTML = selector_create(room_list).innerHTML;
+
   getById("normal_lesson_list_" + val).appendChild(div);
   div.getElementsByClassName("get_lesson_num_btn")[0].click();
   return div;
 }
+
 
 function class_add_btn() {
   init_add_event(class_name_text.value, class_list_dom, class_list, "class_name_change_event", "class_deleat_btn");
