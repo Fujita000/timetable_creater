@@ -26,7 +26,7 @@ let room_list = [""];
 let table_SizeX = 5;
 let table_SizeY = 6;
 
-function cts(x,y){
+function cts(x, y) {
   table_SizeX = x;
   table_SizeY = y;
 }
@@ -235,7 +235,7 @@ function elective_lesson_list_add_event(val, parent) {
     '<input type="button" value="時間決定" onclick="elective_lesson_time_enter(this)" class=time_btn>' +
     '<input type="button" class="get_lesson_num_btn" value="o" onclick="get_ele_lesson_num_btn(this)">' +
     '<input type="button" value="追加" onclick="elective_lesson_add_btn(this)" class="a_btn">' +
-    '<input type="button" value="削除" onclick="elective_lesson_list_deleat_btn(this)" class="del_btn" tabindex="-1"></p>';
+    '<input type="button" value="削除" onclick="elective_lesson_list_deleat_btn(this)" class="del_btn" tabindex="-1">';
   getById("elective_lesson_list_" + val).appendChild(div);
   return div;
 }
