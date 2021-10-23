@@ -97,14 +97,14 @@ function update_lesson_list(par) {
     normal_lesson_list[suf1][suf2][0] = par.children[0].value;
     normal_lesson_list[suf1][suf2][1] = par.children[1].selectedIndex > -1 ? par.children[1].selectedIndex : "";
     normal_lesson_list[suf1][suf2][2] = par.children[2].selectedIndex > -1 ? par.children[2].selectedIndex : "";
-    normal_lesson_list[suf1][suf2]["continuity"] = zt(par.children[3].value);
-    normal_lesson_list[suf1][suf2]["total"] = zt(par.children[4].value);
+    normal_lesson_list[suf1][suf2]["total"] = zt(par.children[3].value);
+    normal_lesson_list[suf1][suf2]["continuity"] = zt(par.children[4].value);
   } else if (type == "elective") {
     elective_lesson_list[suf1][suf2][suf3][0] = par.children[0].value;
     elective_lesson_list[suf1][suf2][suf3][1] = par.children[1].selectedIndex > -1 ? par.children[1].selectedIndex : "";
     elective_lesson_list[suf1][suf2][suf3][2] = par.children[2].selectedIndex > -1 ? par.children[2].selectedIndex : "";
-    elective_lesson_list[suf1][suf2]["continuity"] = zt(par.children[3].value);
-    elective_lesson_list[suf1][suf2]["total"] = zt(par.children[4].value);
+    elective_lesson_list[suf1][suf2]["total"] = zt(par.children[3].value);
+    elective_lesson_list[suf1][suf2]["continuity"] = zt(par.children[4].value);
   }
 }
 
@@ -243,8 +243,8 @@ function elective_lesson_list_add_event(val, parent) {
 function elective_lesson_time_enter(dom) {
   let parent = parent_class_search(dom, "elective_lesson_list");
   par = dom.parentElement;
-  elective_lesson_list[getIdNum(parent, 0)][getIdNum(parent, 1)]["continuity"] = par.getElementsByClassName("continuity")[0].value;
-  elective_lesson_list[getIdNum(parent, 0)][getIdNum(parent, 1)]["total"] = par.getElementsByClassName("total")[0].value;
+  elective_lesson_list[getIdNum(parent, 0)][getIdNum(parent, 1)]["continuity"] = Number(par.getElementsByClassName("continuity")[0].value);
+  elective_lesson_list[getIdNum(parent, 0)][getIdNum(parent, 1)]["total"] = Number(par.getElementsByClassName("total")[0].value);
 }
 
 function elective_lesson_add_event(val1, val2, parent) {

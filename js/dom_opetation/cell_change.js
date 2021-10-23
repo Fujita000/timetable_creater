@@ -32,3 +32,4 @@ function cell_change_reset() {
   cell_change_flag = false;
   cell_change_target = [null, null, null];
 }
+

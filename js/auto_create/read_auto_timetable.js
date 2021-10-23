@@ -4,7 +4,11 @@ function lesson_out_timetable(arr) {
   for (let i = 0; i < arr2.length; i++) {
     for (let j = 0; j < arr2[i].length; j++) {
       for (let k = 0; k < arr2[i][j].length; k++) {
-        arr2[i][j][k] = arr2[i][j][k][0];
+        if (arr2[i][j][k][0] == undefined) {
+          arr2[i][j][k] = 0;
+        } else {
+          arr2[i][j][k] = arr2[i][j][k][0];
+        }
       }
     }
   }

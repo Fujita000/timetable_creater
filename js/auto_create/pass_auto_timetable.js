@@ -9,10 +9,16 @@
 
 //必要な出力
 //
-
+//join_lesson_and_fixed:授業一覧を返す
+//lesson_in_timetable:時間割を返す
+//get_ele_list:選択授業を返す
 function pass_auto_timetable() {
+  // console.table(lesson_in_timetable())
   //授業一覧,時間割,選択授業の内容一覧
-  return [join_lesson_and_fixed(),lesson_in_timetable(),get_ele_list()]
+  let q = get_ele_list();
+  q.pop()
+  q.pop()
+  return [lesson_in_timetable(), join_lesson_and_fixed(), q]
   log(get_ele_list());
   log(join_lesson_and_fixed());
   log(lesson_in_timetable());
@@ -110,6 +116,9 @@ function join_lesson_and_fixed() {
       } else {
         nor[i][j][4] = 0;
       }
+      if (j == 0) {
+        nor[i][j][4] = 0;
+      }
     }
   }
   for (let i = 0; i < ele.length; i++) {
@@ -153,11 +162,11 @@ function lesson_in_timetable() {
   for (let i = 0; i < arr2.length; i++) {
     for (let j = 0; j < arr2[i].length; j++) {
       for (let k = 0; k < arr2[i][j].length; k++) {
-        arr2[i][j][k] = get_num_to_lesson(arr2[i][j][k], i, lsn);
+        if (arr2[i][j][k] != 0) arr2[i][j][k] = get_num_to_lesson(arr2[i][j][k], i, lsn);
       }
     }
   }
-  return arr2;
+  return rev_x_y(arr2);
 }
 
 function get_num_to_lesson(num, cls, lsn) {
@@ -165,4 +174,36 @@ function get_num_to_lesson(num, cls, lsn) {
     if (lsn[cls][i][0] == num) return lsn[cls][i];
   }
   return [0, 0, 0, 0, 0, 0]
+}
+let rew
+function rev_x_y(table) {
+  let arr1 = JSON.parse(JSON.stringify(table));
+  let arr2 = [];
+  // log(table)
+  rew = table
+  for (let z = 0; z < arr1.length; z++) {
+    arr2.push([]);
+    for (let y = 0; y < arr1[z][y].length; y++) {
+      arr2[z].push([]);
+      for (let x = 0; x < arr1[z].length; x++) {
+        arr2[z][y].push(arr1[z][x][y]);
+      }
+    }
+  }
+  return arr2;
+}
+
+function rev_y_x(table) {
+  let arr1 = JSON.parse(JSON.stringify(table));
+  let arr2 = [];
+  for (let z = 0; z < arr1.length; z++) {
+    arr2.push([]);
+    for (let y = 0; y < arr1[z][0].length; y++) {
+      arr2[z].push([]);
+      for (let x = 0; x < arr1[z].length; x++) {
+        arr2[z][y].push(arr1[z][x][y]);
+      }
+    }
+  }
+  return arr2;
 }
