@@ -516,3 +516,7 @@ table ul{
 .mdl-layout__tab.right{
   justify-content: flex-end !important;
 }
+
+#file_load{
+  display: none;
+}

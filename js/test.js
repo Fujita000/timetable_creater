@@ -1,8 +1,8 @@
 
 
 
-data_load();
-function data_load() {
+test_data_load();
+function test_data_load() {
   //クラス作成
   list_add('#class_name_text', '#class_add_btn', '情報システム科１年');
   list_add('#class_name_text', '#class_add_btn', '情報システム科２年');
@@ -149,6 +149,7 @@ function data_load() {
     qs(target).value = name;
     qs(target_btn).click();
   }
+
   function lesson_add(target, num) {
     //'target'で指定した授業コマ設定の授業追加ボタンを'num'回クリック
     for (let i = 0; i < num; i++) {
