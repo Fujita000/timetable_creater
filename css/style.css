@@ -477,7 +477,7 @@ p{
   padding:5% 10%;
 }
 
-#timetable_sidebar_eraser,#cell_change_btn,#download{
+#timetable_sidebar_eraser,#cell_change_btn,#download,#auto_create{
   color:#4169e1;
   padding-left:30px;
 }
