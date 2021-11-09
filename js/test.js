@@ -30,7 +30,6 @@ function data_load() {
   list_add('#room_name_text', '#room_add_btn', 'スタジアム');
   list_add('#room_name_text', '#room_add_btn', '学生会館2F-B');
 
-
   //授業追加
   lesson_add("#lesson_list_0", 6);
   lesson_opt("#normal_lesson_list_0_1", "JAVA", 1, 4, 6, 3)
@@ -62,36 +61,25 @@ function data_load() {
   lesson_opt("#normal_lesson_list_3_3", "プログラミング実習", 5, 3, 6, 3);
   lesson_opt("#normal_lesson_list_3_4", "プログラミング演習", 5, 3, 6, 3);
 
+
   //選択授業追加
-  qa('button[onclick="elective_lesson_list_add_btn(this)"]')[0].click();//１年選択授業
-  qs("#elective_lesson_list_0_0").children[1].value = 9;
-  qs("#elective_lesson_list_0_0").children[2].value = 3;
-  qs("#elective_lesson_list_0_0").children[1].onkeyup();
-  qs("#elective_lesson_list_0_0").children[2].onkeyup();
-  ele_lesson_add("#elective_lesson_list_0_0", 5)
-  ele_lesson_opt("#elective_lesson_list_0_0_0", "CG", 8, 2)
-  ele_lesson_opt("#elective_lesson_list_0_0_1", "Eスポーツ", 0, 8)
-  ele_lesson_opt("#elective_lesson_list_0_0_2", "ロボ", 1, 9)
-  ele_lesson_opt("#elective_lesson_list_0_0_3", "ドローン", 2, 1)
-  ele_lesson_opt("#elective_lesson_list_0_0_4", "SE", 6, 4)
+  ele_lesson_add(0, 0, 9, 3)
+  ele_lesson_item_add("#elective_lesson_list_0_0", 5)
+  ele_lesson_item_opt("#elective_lesson_list_0_0_0", "CG", 8, 2)
+  ele_lesson_item_opt("#elective_lesson_list_0_0_1", "Eスポーツ", 0, 8)
+  ele_lesson_item_opt("#elective_lesson_list_0_0_2", "ロボ", 1, 9)
+  ele_lesson_item_opt("#elective_lesson_list_0_0_3", "ドローン", 2, 1)
+  ele_lesson_item_opt("#elective_lesson_list_0_0_4", "SE", 6, 4)
 
-  qa('button[onclick="elective_lesson_list_add_btn(this)"]')[1].click();//２年選択授業
-  qs("#elective_lesson_list_1_0").children[1].value = 6;
-  qs("#elective_lesson_list_1_0").children[2].value = 3;
-  qs("#elective_lesson_list_1_0").children[1].onkeyup();
-  qs("#elective_lesson_list_1_0").children[2].onkeyup();
-  ele_lesson_add("#elective_lesson_list_1_0", 2)
-  ele_lesson_opt("#elective_lesson_list_1_0_0", "CG", 8, 2)
-  ele_lesson_opt("#elective_lesson_list_1_0_1", "SE", 6, 4)
+  ele_lesson_add(1, 0, 6, 3)//２年選択授業
+  ele_lesson_item_add("#elective_lesson_list_1_0", 2)
+  ele_lesson_item_opt("#elective_lesson_list_1_0_0", "CG", 8, 2)
+  ele_lesson_item_opt("#elective_lesson_list_1_0_1", "SE", 6, 4)
 
-  qa('button[onclick="elective_lesson_list_add_btn(this)"]')[1].click();//２年選択授業
-  qs("#elective_lesson_list_1_1").children[1].value = 3;
-  qs("#elective_lesson_list_1_1").children[2].value = 3;
-  qs("#elective_lesson_list_1_1").children[1].onkeyup();
-  qs("#elective_lesson_list_1_1").children[2].onkeyup();
-  ele_lesson_add("#elective_lesson_list_1_1", 2)
-  ele_lesson_opt("#elective_lesson_list_1_1_0", "CG", 8, 1)
-  ele_lesson_opt("#elective_lesson_list_1_1_1", "SE", 6, 4)
+  ele_lesson_add(1, 1, 3, 3)//２年選択授業
+  ele_lesson_item_add("#elective_lesson_list_1_1", 2)
+  ele_lesson_item_opt("#elective_lesson_list_1_1_0", "CG", 8, 1)
+  ele_lesson_item_opt("#elective_lesson_list_1_1_1", "SE", 6, 4)
 
   qa('.get_lesson_num_btn').forEach(i => {
     //授業の決定ボタン、これを押さないと反映されない隠されてるやつ
@@ -102,10 +90,7 @@ function data_load() {
     i.click()
   });
 
-
   //時間割の作成
-  // choice_lesson = (, ,);
-  // click_timetable = (, , )
   t_click_ele_lesson(0, 0, true);
   t_f_les(0, 0, 3, 3)
   t_f_les(0, 1, 0, 3)
@@ -159,74 +144,82 @@ function data_load() {
   t_click_ele_lesson(z, 1);
   t_f_les(z, 1, 3, 3)
 
-}
-function t_f_les(target_Z, x, y, n) {
-  for (let i = y; i < n + y; i++) {
-    t_click_timetable(target_Z, x, i)
+  function list_add(target, target_btn, name) {
+    //情報設定の情報の追加
+    qs(target).value = name;
+    qs(target_btn).click();
   }
-}
-function t_click_ele_lesson(cls_num, lsn_num, ele_flg = false) {
-  //lsn_num:通常授業の0番目から、または、選択授業の0番目から
-  //ele_flg:選択授業の時
-  cls_num++;
-  let lsn = document.querySelector('#timetable_link_sidebar').children[cls_num];
-  if (ele_flg) {
-    //選択授業の時
-    lsn.querySelector(".timetable_tab_elective_lesson").children[lsn_num].click();
-  } else {
-    //通常授業の時
-    lsn.querySelector(".timetable_tab_normal_lesson").children[lsn_num].click();
+  function lesson_add(target, num) {
+    //'target'で指定した授業コマ設定の授業追加ボタンを'num'回クリック
+    for (let i = 0; i < num; i++) {
+      qs(target).children[2].children[0].click();
+    }
   }
-}
 
-function t_click_timetable(target_Z, x, y) {
-  qs("#timetable_" + target_Z).querySelectorAll('tr')[y].querySelectorAll('td')[x].querySelector('li').click();
-  // return qs('#timetable_0').querySelectorAll('tr')[0].querySelectorAll('td')[0];
-}
-function qs(attr) {
-  //要素の取得
-  return document.querySelector(attr);
-}
-
-function qa(attr) {
-  //要素の全取得
-  return document.querySelectorAll(attr);
-}
-function list_add(target, target_btn, name) {
-  //情報設定の情報の追加
-  qs(target).value = name;
-  qs(target_btn).click();
-}
-
-function lesson_add(target, num) {
-  //'target'で指定した授業コマ設定の授業追加ボタンを'num'回クリック
-  for (let i = 0; i < num; i++) {
-    qs(target).children[2].children[0].click();
+  function lesson_opt(target, name, teacher_num, room_num, lesson_num, continuity_num) {
+    //'target'で指定した、授業の設定を行う
+    qs(target).children[0].value = name;
+    qs(target).children[0].onkeyup();
+    qs(target).children[1].selectedIndex = teacher_num;
+    qs(target).children[2].selectedIndex = room_num;
+    qs(target).children[3].value = lesson_num;
+    qs(target).children[4].value = continuity_num;
   }
-}
 
-function lesson_opt(target, name, teacher_num, room_num, lesson_num, continuity_num) {
-  //'target'で指定した、授業の設定を行う
-  qs(target).children[0].value = name;
-  qs(target).children[0].onkeyup();
-  qs(target).children[1].selectedIndex = teacher_num;
-  qs(target).children[2].selectedIndex = room_num;
-  qs(target).children[3].value = lesson_num;
-  qs(target).children[4].value = continuity_num;
-}
-
-function ele_lesson_add(target, num) {
-  //'target'で指定した授業コマ設定の選択授業追加ボタンを'num'回クリック
-  for (let i = 0; i < num; i++) {
-    qs(target).children[5].click();
+  function ele_lesson_add(cls_num, offset, lesson_num, continuity_num) {
+    qa('button[onclick="elective_lesson_list_add_btn(this)"]')[cls_num].click();
+    qs("#elective_lesson_list_" + cls_num + "_" + offset).children[1].value = lesson_num;
+    qs("#elective_lesson_list_" + cls_num + "_" + offset).children[2].value = continuity_num;
+    qs("#elective_lesson_list_" + cls_num + "_" + offset).children[1].onkeyup();
+    qs("#elective_lesson_list_" + cls_num + "_" + offset).children[2].onkeyup();
   }
+  function ele_lesson_item_add(target, num) {
+    //'target'で指定した授業コマ設定の選択授業追加ボタンを'num'回クリック
+    for (let i = 0; i < num; i++) {
+      qs(target).children[5].click();
+    }
+  }
+
+  function ele_lesson_item_opt(target, name, teacher_num, room_num) {
+    //'target'で指定した、授業の設定を行う
+    qs(target).children[0].value = name;
+    qs(target).children[1].selectedIndex = teacher_num;
+    qs(target).children[2].selectedIndex = room_num;
+  }
+
+  function t_f_les(target_Z, x, y, n) {
+    for (let i = y; i < n + y; i++) {
+      qs("#timetable_" + target_Z).querySelectorAll('tr')[i].querySelectorAll('td')[x].querySelector('li').click();
+    }
+  }
+  function t_click_ele_lesson(cls_num, lsn_num, ele_flg = false) {
+    //lsn_num:通常授業の0番目から、または、選択授業の0番目から
+    //ele_flg:選択授業の時
+    cls_num++;
+    let lsn = document.querySelector('#timetable_link_sidebar').children[cls_num];
+    if (ele_flg) {
+      //選択授業の時
+      lsn.querySelector(".timetable_tab_elective_lesson").children[lsn_num].click();
+    } else {
+      //通常授業の時
+      lsn.querySelector(".timetable_tab_normal_lesson").children[lsn_num].click();
+    }
+  }
+  function qs(attr) {
+    //要素の取得
+    return document.querySelector(attr);
+  }
+
+  function qa(attr) {
+    //要素の全取得
+    return document.querySelectorAll(attr);
+  }
+
 }
 
-function ele_lesson_opt(target, name, teacher_num, room_num) {
-  //'target'で指定した、授業の設定を行う
-  qs(target).children[0].value = name;
-  qs(target).children[1].selectedIndex = teacher_num;
-  qs(target).children[2].selectedIndex = room_num;
-}
+
+
+
+
 
 
