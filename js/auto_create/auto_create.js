@@ -141,7 +141,6 @@ var put_class = (p_grade, weekday, time, p_class, p_continuous) => {
   }
 }
 
-let ccc = 0;
 function run_timetable() {
   let run_vacant = [];
   let run_continuous = 0;
@@ -181,7 +180,7 @@ function run_timetable() {
     }
     if (run_count >= pass_lesson[c].length) {
       exit_count++;
-      if (exit_count > 100) { 
+      if (exit_count > 100) {
         break;
       }
       run_count = 0;
@@ -217,19 +216,13 @@ function ddd() {
   //開始ボタンを押したとき
   let tps = pass_auto_timetable();
   run_initial = JSON.parse(JSON.stringify(tps[0]));
-  // console.log(run_initial)
   lesson_initial = JSON.parse(JSON.stringify(tps[1]));
   au_choice_lesson = JSON.parse(JSON.stringify(tps[2]));
   initialization();
-  // console.log(run_initial);
 
   let rt = run_timetable()
-  // console.log(rt);
-
   timetable = lesson_out_timetable(rev_y_x(JSON.parse(JSON.stringify(rt))))
 
-  // console
-  // console.log(rt);
   update_timetable()
   all_color_change()
 }
