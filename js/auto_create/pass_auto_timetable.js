@@ -145,9 +145,7 @@ function get_ele_list() {
   let ret = [];
   for (let i = 0; i < elective_lesson_list.length; i++) {
     ret.push([]);
-    let q = 0;
     for (let j = 0; j < elective_lesson_list[i].length; j++) {
-      q++;
       for (let k = 0; k < elective_lesson_list[i][j].length; k++) {
         let tmp = [...elective_lesson_list[i][j][k]];
         tmp[0] = j + 100;
@@ -178,12 +176,11 @@ function get_num_to_lesson(num, cls, lsn) {
   }
   return [0, 0, 0, 0, 0, 0]
 }
-let rew
 function rev_x_y(table) {
   let arr1 = JSON.parse(JSON.stringify(table));
   let arr2 = [];
   // log(table)
-  rew = table
+  let rew = table
   for (let z = 0; z < arr1.length; z++) {
     arr2.push([]);
     for (let y = 0; y < arr1[z][y].length; y++) {

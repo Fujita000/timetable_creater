@@ -41,6 +41,7 @@ html, body {
 .mdl-demo .mdl-layout__tab-bar {
   padding: 0;
   padding-left: 16px;
+  padding-right: 16px;
   box-sizing: border-box;
   height: 100%;
   width: 100%;
@@ -508,4 +509,13 @@ table ul{
 #timetable_link_sidebar > div:nth-child(1) p:hover{
   cursor: pointer;
   color: RED;
+}
+
+
+.mdl-layout__tab.right{
+  justify-content: flex-end !important;
+}
+
+#file_load{
+  display: none;
 }

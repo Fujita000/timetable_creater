@@ -67,6 +67,10 @@
         <a href="#information" class="mdl-layout__tab is-active">情報設定</a>
         <a href="#classlist" class="mdl-layout__tab">授業コマ設定</a>
         <a href="#timetable" class="mdl-layout__tab">時間割</a>
+        <span class="mdl-layout-spacer"></span><!-- 右寄せに切り替えるためのスペース -->
+        <span class="mdl-layout__tab flex-end" id="data_load">データの読込</span>
+        <span class="mdl-layout__tab flex-end" id="data_save">データの保存</span>
+        <input type="file" id="file_load" style="display: none">
       </div>
     </header>
     <main class="mdl-layout__content">
@@ -167,7 +171,11 @@
   <script src="js/auto_create/auto_create.js"></script>
   
   <!-- テスト用ファイル -->
-  <script src="js/test.js"></script>
+  <!-- <script src="js/test.js"></script> -->
+
+  <!-- データ保存＆ロード -->
+  <script src="js/data_controll/data_load.js"></script>
+  <script src="js/data_controll/data_save.js"></script>
 
 </body>
 
