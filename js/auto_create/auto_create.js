@@ -37,7 +37,7 @@ var continuous = (c_timetable, c_grade, c_weekday, c_time) => {
 //空いている教室を見つける関数
 var find_class = (f_timetable, f_weekday, f_time) => {
   let f_class = [];
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < pass_timetable.length; i++) {
     if (f_timetable[i][f_weekday][f_time] == 0) {
       continue;
     } else if (f_timetable[i][f_weekday][f_time][2] == 0) {
@@ -59,7 +59,7 @@ var find_class = (f_timetable, f_weekday, f_time) => {
 //空いている先生を見つける関数
 var find_teacher = (f_timetable, f_weekday, f_time) => {
   let f_teacher = [];
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < pass_timetable.length; i++) {
     if (f_timetable[i][f_weekday][f_time] == 0) {
       continue;
     } else if (f_timetable[i][f_weekday][f_time][1] == 0) {
@@ -150,8 +150,8 @@ function run_timetable() {
   let run_match;
   let run_count = 0;
   let random = Math.floor(Math.random() * 169);
-
-  loop: for (c = 0; c < 4; c++) {
+  let exit_count = 0;
+  loop: for (c = 0; c < pass_timetable.length; c++) {
     for (run_weekday = 0; run_weekday < pass_timetable[c].length; run_weekday++) {
       for (run_time = 0; run_time < pass_timetable[c][run_weekday].length; run_time++) {
         run_vacant = [];
@@ -180,11 +180,9 @@ function run_timetable() {
       }
     }
     if (run_count >= pass_lesson[c].length) {
-      // console.log("ダメでした");
-      if (ccc >= 100) {
+      exit_count++;
+      if (exit_count > 100) { 
         break;
-      } else {
-        ccc++
       }
       run_count = 0;
       for (i = 0; i < pass_lesson[c].length; i++) {
@@ -219,9 +217,11 @@ function ddd() {
   //開始ボタンを押したとき
   let tps = pass_auto_timetable();
   run_initial = JSON.parse(JSON.stringify(tps[0]));
+  // console.log(run_initial)
   lesson_initial = JSON.parse(JSON.stringify(tps[1]));
   au_choice_lesson = JSON.parse(JSON.stringify(tps[2]));
   initialization();
+  // console.log(run_initial);
 
   let rt = run_timetable()
   // console.log(rt);

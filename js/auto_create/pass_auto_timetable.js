@@ -12,6 +12,9 @@
 //join_lesson_and_fixed:授業一覧を返す
 //lesson_in_timetable:時間割を返す
 //get_ele_list:選択授業を返す
+document.querySelector("#auto_create").addEventListener("click",e => {
+  ddd();
+})
 function pass_auto_timetable() {
   // console.table(lesson_in_timetable())
   //授業一覧,時間割,選択授業の内容一覧

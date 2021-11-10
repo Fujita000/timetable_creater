@@ -1,6 +1,3 @@
-
-
-
 data_load();
 function data_load() {
   //クラス作成
@@ -33,7 +30,7 @@ function data_load() {
 
   //授業追加
   lesson_add("#lesson_list_0", 6);
-  lesson_opt("#normal_lesson_list_0_1", "JAVA", 1, 4, 6, 3)
+  lesson_opt("#normal_lesson_list_0_1", "JAVA", 1, 5, 6, 3)
   lesson_opt("#normal_lesson_list_0_2", "一般教養", 2, 1, 1, 1)
   lesson_opt("#normal_lesson_list_0_3", "ビジネス実務", 2, 1, 2, 1)
   lesson_opt("#normal_lesson_list_0_4", "NW", 2, 1, 3, 1)

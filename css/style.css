@@ -462,10 +462,9 @@ p{
 .continuity{
   width:60px;
 }
-.get_lesson_num_btn{
+.get_lesson_num_btn,.d_btn,.time_btn{
   display: none;
 }
-
 .toggle_cell_red{
   color: red;
 }
@@ -476,7 +475,7 @@ p{
   padding:5% 10%;
 }
 
-#timetable_sidebar_eraser,#cell_change_btn,#download{
+#timetable_sidebar_eraser,#cell_change_btn,#download,#auto_create{
   color:#4169e1;
   padding-left:30px;
 }
