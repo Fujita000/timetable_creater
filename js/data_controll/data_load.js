@@ -4,11 +4,13 @@ document.querySelector("#data_load").addEventListener("click", () => {
 
 (function () {
   const file = document.querySelector("#file_load");
+  const reader = new FileReader();
+  file.addEventListener("click", e => e.target.value = '');
   file.addEventListener("change", e => {
     let input = e.target;
     const file = input.files[0];
-    const reader = new FileReader();
     reader.onload = () => {
+      console.log("aaa")
       reset()
 
       const obj = JSON.parse(reader.result);
@@ -55,7 +57,6 @@ document.querySelector("#data_load").addEventListener("click", () => {
         //授業の決定ボタン、これを押さないと反映されない隠されてるやつ
         i.click()
       });
-
     };
     reader.readAsText(file);
 
@@ -68,13 +69,13 @@ document.querySelector("#data_load").addEventListener("click", () => {
     function lesson_add(target, num) {
       //'target'で指定した授業コマ設定の授業追加ボタンを'num'回クリック
       for (let i = 0; i < num; i++) {
+        console.log(target)
         document.querySelector(target).children[2].children[0].click();
       }
     }
 
     function lesson_opt(target, name, teacher_num, room_num, lesson_num, continuity_num) {
       //'target'で指定した、授業の設定を行う
-      console.log(target)
       document.querySelector(target).children[0].value = name;
       document.querySelector(target).children[0].onkeyup();
       document.querySelector(target).children[1].selectedIndex = teacher_num;
@@ -105,6 +106,17 @@ document.querySelector("#data_load").addEventListener("click", () => {
     }
 
     function reset() {
+      //dom削除
+      document.querySelectorAll('button[onclick="class_deleat_btn(this)"]').forEach(ele => {
+        ele.click();
+      });
+      document.querySelectorAll('button[onclick="teacher_deleat_btn(this)"]').forEach(ele => {
+        ele.click();
+      });
+      document.querySelectorAll('button[onclick="room_deleat_btn(this)"]').forEach(ele => {
+        ele.click();
+      });
+
       now_choice_lesson = -1; //選択中の授業の内容
       now_choice_class = -1; //選択中のクラス
       elaser_flag = false;//消しゴム機能
@@ -115,77 +127,6 @@ document.querySelector("#data_load").addEventListener("click", () => {
       class_list = [];
       teacher_list = [""];
       room_list = [""];
-
-      const body = `
-  <main class="mdl-layout__content">
-      <!-- 情報設定パネル -->
-      <div class="mdl-layout__tab-panel is-active" id="information">
-        <section class="section--center mdl-grid mdl-grid--no-spacing">
-          <div class="mdl-cell mdl-cell--4-col" id="lesson">
-            <p>クラス一覧</p>
-            <input type="text" id="class_name_text"><button id="class_add_btn" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" onclick="class_add_btn()" data-upgraded=",MaterialButton"><i class="material-icons">add</i></button>
-            <div id="class_list"></div>
-          </div>
-          <div class="mdl-cell mdl-cell--4-col" id="teacher">
-            <p>教師一覧</p>
-            <input type="text" id="teacher_name_text"><button id="teacher_add_btn" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" onclick="teacher_add_btn()" data-upgraded=",MaterialButton"><i class="material-icons">add</i></button>
-            <div id="teacher_list"></div>
-          </div>
-          <div class="mdl-cell mdl-cell--4-col" id="lessonroom">
-            <p>使用教室一覧</p>
-            <input type="text" id="room_name_text"><button id="room_add_btn" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" onclick="room_add_btn()" data-upgraded=",MaterialButton"><i class="material-icons">add</i></button>
-            <div id="room_list"></div>
-          </div>
-        </section>
-      </div>
-      <!-- 情報設定パネルここまで -->
-      <!-- 授業コマ設定パネル -->
-      <div class="mdl-layout__tab-panel" id="classlist">
-        <div class="mdl-layout__container"><div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer has-drawer is-small-screen is-upgraded" data-upgraded=",MaterialLayout">
-          <div class="mdl-layout__drawer" id="backcol1" aria-hidden="true">
-            <nav id="operation_link_sidebar" class="mdl-navigation"></nav>
-          </div>
-          <div aria-expanded="false" role="button" tabindex="0" class="mdl-layout__drawer-button"><i class="material-icons"></i></div><main class="mdl-layout__content" id="side_nav">
-            <div class="page-content">
-              <!--Your content goes here -->
-              <section class="section--center mdl-grid mdl-grid--no-spacing" id="l-section">
-                <div class="l-frame">
-                  <div id="lesson_list"></div>
-                </div>
-              </section>
-            </div>
-          </main>
-        <div class="mdl-layout__obfuscator"></div></div></div>
-      </div>
-      <!-- 授業コマ設定パネルここまで -->
-      <!-- 時間割パネル -->
-      <div class="mdl-layout__tab-panel" id="timetable">
-        <div class="mdl-layout__container"><div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer has-drawer is-small-screen is-upgraded" data-upgraded=",MaterialLayout">
-          <div class="mdl-layout__drawer" id="backcol2" aria-hidden="true">
-            <nav id="timetable_link_sidebar" class="mdl-navigation">
-              <div>
-                <p id="timetable_sidebar_eraser">消しゴム</p>
-                <p id="cell_change_btn">入れ替え</p>
-                <p id="download">CSVダウンロード</p>
-                <p id="auto_create">自動生成</p>
-              </div>
-            </nav>
-          </div>
-          <div aria-expanded="false" role="button" tabindex="0" class="mdl-layout__drawer-button"><i class="material-icons"></i></div><main class="mdl-layout__content" id="side_nav">
-            <div class="page-content">
-              <!-- Your content goes here -->
-              <section class="section--center mdl-grid mdl-grid--no-spacing" id="t-section">
-                <div id="table">
-                  <div id="timetable_list"></div>
-                </div>
-              </section>
-            </div>
-          </main>
-        <div class="mdl-layout__obfuscator"></div></div></div>
-      </div>
-      <!-- 時間割パネルここまで -->
-    </main>
-    `;
     }
   });
 }());

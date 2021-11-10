@@ -81,6 +81,7 @@ var find_teacher = (f_timetable, f_weekday, f_time) => {
 //空いている先生と教室がマッチする授業を見つける
 var match = (m_teacher, m_class, m_grade, m_continuous) => {    //この引数(m_teacher,m_class)には配列が入ります。
   let match_class = [];
+  let now_lesson;
   for (i = 0; i < pass_lesson[m_grade].length; i++) {
     if (pass_lesson[m_grade][i][3] <= pass_lesson[m_grade][i][4]) {
       continue;
@@ -91,10 +92,14 @@ var match = (m_teacher, m_class, m_grade, m_continuous) => {    //この引数(m
         not_match = true;
         break;
       } else if (pass_lesson[m_grade][i][1] == 0) {  //変える予定
+        now_lesson = pass_lesson[m_grade][i][0];
         for (k = 0; k < au_choice_lesson[m_grade].length; k++) {
-          if (au_choice_lesson[i] === void 0) {
+          if (now_lesson = !au_choice_lesson[m_grade][k][0]) {
             continue;
           }
+          // if (au_choice_lesson[i] === void 0) {
+          //   continue;
+          // }
           if (au_choice_lesson[m_grade][k][2] == m_teacher[j]) {
             not_match = true;
           }
@@ -107,10 +112,14 @@ var match = (m_teacher, m_class, m_grade, m_continuous) => {    //この引数(m
           not_match = true;
           break;
         } else if (pass_lesson[m_grade][i][1] == 0) {  //変える予定
+          now_lesson = pass_lesson[m_grade][i][0];
           for (k = 0; k < au_choice_lesson[m_grade].length; k++) {
-            if (au_choice_lesson[i] === void 0) {
+            if (now_lesson = !au_choice_lesson[m_grade][k][0]) {
               continue;
             }
+            // if (au_choice_lesson[i] === void 0) {
+            //   continue;
+            // }
             if (au_choice_lesson[m_grade][k][3] == m_teacher[j]) {
               not_match = true;
             }
