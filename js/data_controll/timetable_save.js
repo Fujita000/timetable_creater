@@ -1,14 +1,14 @@
 window.addEventListener('load', () => {
   const download = document.getElementById('download');
-  download.addEventListener('click', download_btn_clicked);
+  download.addEventListener('click', download_btn_clicked, e);
 });
-function get_youbi(s,e){
+function get_youbi(s, e) {
   //sで指定eまで取得
   //s=0,e=4のとき=>"月,火,水,木,金"
-  let youbi = ["月","火","水","木","金","土","日"];
+  let youbi = ["月", "火", "水", "木", "金", "土", "日"];
   let ret = "";
-  for(let i = s;i <= e;i++){
-    ret+=youbi[i]+",";
+  for (let i = s; i <= e; i++) {
+    ret += youbi[i] + ",";
   }
   return ret;
 }
@@ -18,10 +18,10 @@ function download_btn_clicked(evt) {
   var content = '';
 
   for (let z = 0; z < timetable.length; z++) {
-    content += class_list[z]+'\n';//クラス名
-    content += ","+get_youbi(0,4)+'\n';
+    content += class_list[z] + '\n';//クラス名
+    content += "," + get_youbi(0, 4) + '\n';
     for (let y = 0; y < timetable[z].length; y++) {
-      content += (y+1)+",";
+      content += (y + 1) + ",";
       for (let x = 0; x < timetable[z][y].length; x++) {
         let tmp = get_lesson_status(z, timetable[z][y][x]);
         tmp = trans_after_lesson([z, timetable[z][y][x], tmp[1], tmp[2]]);
@@ -35,7 +35,7 @@ function download_btn_clicked(evt) {
     }
     content += '\n';
   }
-  
+
   var blob = new Blob([bom, content], { "type": "text/csv" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
