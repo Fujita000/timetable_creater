@@ -214,14 +214,16 @@ function run_timetable() {
   return pass_timetable;
 }
 
-
-
 function initialization() {
   pass_timetable = JSON.parse(JSON.stringify(run_initial));
   pass_lesson = JSON.parse(JSON.stringify(lesson_initial));
 }
 
-function ddd() {
+document.querySelector("#auto_create").addEventListener("click", e => {
+  click_auto_create();
+})
+
+function click_auto_create() {
   //開始ボタンを押したとき
   let tps = pass_auto_timetable();
   run_initial = JSON.parse(JSON.stringify(tps[0]));
