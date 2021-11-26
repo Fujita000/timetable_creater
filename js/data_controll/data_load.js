@@ -10,7 +10,6 @@ document.querySelector("#data_load").addEventListener("click", () => {
     let input = e.target;
     const file = input.files[0];
     reader.onload = () => {
-      console.log("aaa")
       reset()
 
       const obj = JSON.parse(reader.result);
@@ -69,7 +68,6 @@ document.querySelector("#data_load").addEventListener("click", () => {
     function lesson_add(target, num) {
       //'target'で指定した授業コマ設定の授業追加ボタンを'num'回クリック
       for (let i = 0; i < num; i++) {
-        console.log(target)
         document.querySelector(target).children[2].children[0].click();
       }
     }

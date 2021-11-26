@@ -6,8 +6,8 @@ function test_data_load() {
   //クラス作成
   list_add('#class_name_text', '#class_add_btn', '情報システム科１年');
   list_add('#class_name_text', '#class_add_btn', '情報システム科２年');
-  list_add('#class_name_text', '#class_add_btn', '情報システム科３年');
-  list_add('#class_name_text', '#class_add_btn', '情報システム科４年');
+  // list_add('#class_name_text', '#class_add_btn', '情報システム科３年');
+  // list_add('#class_name_text', '#class_add_btn', '情報システム科４年');
 
   //教師作成
   list_add('#teacher_name_text', '#teacher_add_btn', '教師一郎');
@@ -47,19 +47,19 @@ function test_data_load() {
   lesson_opt("#normal_lesson_list_1_5", "就職実務", 1, 2, 2, 1);
   lesson_opt("#normal_lesson_list_1_6", "JAVA", 1, 6, 6, 3);
 
-  lesson_add("#lesson_list_2", 6);
-  lesson_opt("#normal_lesson_list_2_1", "システム開発", 6, 4, 9, 3);
-  lesson_opt("#normal_lesson_list_2_2", "開発演習", 6, 3, 3, 3);
-  lesson_opt("#normal_lesson_list_2_3", "プログラミング実習", 5, 3, 6, 3);
-  lesson_opt("#normal_lesson_list_2_4", "プログラミング演習", 5, 3, 6, 3);
-  lesson_opt("#normal_lesson_list_2_5", "一般教養", 1, 3, 1, 1);
-  lesson_opt("#normal_lesson_list_2_6", "就職実務", 1, 3, 2, 1);
+  // lesson_add("#lesson_list_2", 6);
+  // lesson_opt("#normal_lesson_list_2_1", "システム開発", 6, 4, 9, 3);
+  // lesson_opt("#normal_lesson_list_2_2", "開発演習", 6, 3, 3, 3);
+  // lesson_opt("#normal_lesson_list_2_3", "プログラミング実習", 5, 3, 6, 3);
+  // lesson_opt("#normal_lesson_list_2_4", "プログラミング演習", 5, 3, 6, 3);
+  // lesson_opt("#normal_lesson_list_2_5", "一般教養", 1, 3, 1, 1);
+  // lesson_opt("#normal_lesson_list_2_6", "就職実務", 1, 3, 2, 1);
 
-  lesson_add("#lesson_list_3", 4);
-  lesson_opt("#normal_lesson_list_3_1", "システム開発", 6, 4, 9, 3);
-  lesson_opt("#normal_lesson_list_3_2", "開発演習", 6, 3, 3, 3);
-  lesson_opt("#normal_lesson_list_3_3", "プログラミング実習", 5, 3, 6, 3);
-  lesson_opt("#normal_lesson_list_3_4", "プログラミング演習", 5, 3, 6, 3);
+  // lesson_add("#lesson_list_3", 4);
+  // lesson_opt("#normal_lesson_list_3_1", "システム開発", 6, 4, 9, 3);
+  // lesson_opt("#normal_lesson_list_3_2", "開発演習", 6, 3, 3, 3);
+  // lesson_opt("#normal_lesson_list_3_3", "プログラミング実習", 5, 3, 6, 3);
+  // lesson_opt("#normal_lesson_list_3_4", "プログラミング演習", 5, 3, 6, 3);
 
 
   //選択授業追加
@@ -90,59 +90,59 @@ function test_data_load() {
     i.click()
   });
 
-  //時間割の作成
-  t_click_ele_lesson(0, 0, true);
-  t_f_les(0, 0, 3, 3)
-  t_f_les(0, 1, 0, 3)
-  t_f_les(0, 2, 3, 3)
-  t_click_ele_lesson(0, 4);
-  t_f_les(0, 3, 3, 3)
+  // //時間割の作成
+  // t_click_ele_lesson(0, 0, true);
+  // t_f_les(0, 0, 3, 3)
+  // t_f_les(0, 1, 0, 3)
+  // t_f_les(0, 2, 3, 3)
+  // t_click_ele_lesson(0, 4);
+  // t_f_les(0, 3, 3, 3)
 
-  t_click_ele_lesson(1, 0, true);
-  t_f_les(1, 0, 0, 3)
-  t_f_les(1, 4, 0, 3)
-  t_click_ele_lesson(1, 1);
-  t_f_les(1, 0, 3, 3)
-  t_click_ele_lesson(1, 0);
-  t_f_les(1, 1, 0, 3)
-  t_click_ele_lesson(1, 1, true);
-  t_f_les(1, 2, 0, 3)
-  t_click_ele_lesson(1, 3);
-  t_f_les(1, 4, 3, 1)
-  t_click_ele_lesson(1, 4);
-  t_f_les(1, 4, 4, 2)
+  // t_click_ele_lesson(1, 0, true);
+  // t_f_les(1, 0, 0, 3)
+  // t_f_les(1, 4, 0, 3)
+  // t_click_ele_lesson(1, 1);
+  // t_f_les(1, 0, 3, 3)
+  // t_click_ele_lesson(1, 0);
+  // t_f_les(1, 1, 0, 3)
+  // t_click_ele_lesson(1, 1, true);
+  // t_f_les(1, 2, 0, 3)
+  // t_click_ele_lesson(1, 3);
+  // t_f_les(1, 4, 3, 1)
+  // t_click_ele_lesson(1, 4);
+  // t_f_les(1, 4, 4, 2)
 
-  let z = 2
-  t_click_ele_lesson(z, 0);
-  t_f_les(z, 0, 0, 3)
-  t_f_les(z, 2, 0, 3)
-  t_f_les(z, 4, 0, 3)
-  t_click_ele_lesson(z, 2);
-  t_f_les(z, 0, 3, 3)
-  t_f_les(z, 1, 0, 3)
-  t_click_ele_lesson(z, 3);
-  t_f_les(z, 3, 0, 3)
-  t_f_les(z, 3, 3, 3)
-  t_click_ele_lesson(z, 1);
-  t_f_les(z, 1, 3, 3)
-  t_click_ele_lesson(z, 4);
-  t_f_les(z, 4, 3, 1)
-  t_click_ele_lesson(z, 5);
-  t_f_les(z, 4, 4, 2)
+  // let z = 2
+  // t_click_ele_lesson(z, 0);
+  // t_f_les(z, 0, 0, 3)
+  // t_f_les(z, 2, 0, 3)
+  // t_f_les(z, 4, 0, 3)
+  // t_click_ele_lesson(z, 2);
+  // t_f_les(z, 0, 3, 3)
+  // t_f_les(z, 1, 0, 3)
+  // t_click_ele_lesson(z, 3);
+  // t_f_les(z, 3, 0, 3)
+  // t_f_les(z, 3, 3, 3)
+  // t_click_ele_lesson(z, 1);
+  // t_f_les(z, 1, 3, 3)
+  // t_click_ele_lesson(z, 4);
+  // t_f_les(z, 4, 3, 1)
+  // t_click_ele_lesson(z, 5);
+  // t_f_les(z, 4, 4, 2)
 
-  z = 3
-  t_click_ele_lesson(z, 0);
-  t_f_les(z, 0, 0, 3)
-  t_f_les(z, 2, 0, 3)
-  t_f_les(z, 4, 0, 3)
-  t_click_ele_lesson(z, 2);
-  t_f_les(z, 0, 3, 3)
-  t_f_les(z, 1, 0, 3)
-  t_click_ele_lesson(z, 3);
-  t_f_les(z, 3, 0, 3)
-  t_f_les(z, 3, 3, 3)
-  t_click_ele_lesson(z, 1);
-  t_f_les(z, 1, 3, 3)
+  // z = 3
+  // t_click_ele_lesson(z, 0);
+  // t_f_les(z, 0, 0, 3)
+  // t_f_les(z, 2, 0, 3)
+  // t_f_les(z, 4, 0, 3)
+  // t_click_ele_lesson(z, 2);
+  // t_f_les(z, 0, 3, 3)
+  // t_f_les(z, 1, 0, 3)
+  // t_click_ele_lesson(z, 3);
+  // t_f_les(z, 3, 0, 3)
+  // t_f_les(z, 3, 3, 3)
+  // t_click_ele_lesson(z, 1);
+  // t_f_les(z, 1, 3, 3)
 
   function list_add(target, target_btn, name) {
     //情報設定の情報の追加

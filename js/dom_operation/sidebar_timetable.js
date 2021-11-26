@@ -37,7 +37,6 @@ function rewrite_class_name_timetable_sidebar(suf) {
 //ーーーーーーーー授業系の処理
 
 function add_lesson_timetable_sidebar(div, tar) {
-  // console.log(div);
   let p = document.createElement("p");
   p.className = "mdl-navigation__link";
   p.innerText = div.children[0].value;

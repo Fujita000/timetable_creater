@@ -5,7 +5,7 @@ function class_name_change_event(e) {
   class_list[suf] = parentDom(e).children[0].value;
   //HTMLの変更
   let dom = getById("lesson_list_" + suf);
-  dom.getElementsByClassName("p_class_name")[0].innerText = "クラス：" + class_list[suf];
+  dom.getElementsByClassName("p_class_name")[0].innerText = "<" + class_list[suf] + ">";
   timetable_list_dom.getElementsByClassName("table_name")[suf].innerText = class_list[suf];
   rewrite_name_operation_link_sidebar(suf);
   rewrite_class_name_timetable_sidebar(suf);

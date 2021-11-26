@@ -10,9 +10,6 @@ function pass_auto_timetable() {
   let q = get_ele_list();
 
   return [lesson_in_timetable(), join_lesson_and_fixed(), q]
-  log(get_ele_list());
-  log(join_lesson_and_fixed());
-  log(lesson_in_timetable());
 }
 
 //normal_lesson_listの名前の出力
