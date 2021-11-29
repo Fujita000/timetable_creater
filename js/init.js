@@ -167,8 +167,8 @@ function normal_lesson_add_event(val, parent) {
     '<input type="text" placeholder="授業" size="6" onkeyup="lesson_name_change_event(this)">' +
     '<select class="teacher_select" onchange="selecter_change_event(this)"></select>' +
     '<select class="room_select" onchange="selecter_change_event(this)"></select>' +
-    '<input class="total" onkeyup="total_change_event(this)" type="number" type="text" placeholder="授業数" size="3">' +
-    '<input class="continuity" onkeyup="continuity_change_event(this)" type="number" type="text" placeholder="連続時間" size="3">' +
+    '<input class="total" onkeyup="total_change_event(this)" type="number" placeholder="授業数" size="3">' +
+    '<input class="continuity" onkeyup="continuity_change_event(this)" type="number" placeholder="連続時間" size="3">' +
     '<input type="button" class="get_lesson_num_btn" value="o" onclick="get_lesson_num_btn(this)">' +
     '<input type="button" value="削除" onclick="normal_lesson_deleat_btn(this)" class="del_btn" tabindex="-1">';
   div.getElementsByClassName("teacher_select")[0].innerHTML = selector_create(teacher_list).innerHTML;
@@ -230,8 +230,8 @@ function elective_lesson_list_add_event(val, parent) {
   div.className = "elective_lesson_list";
   div.innerHTML =
     '<p>選択授業' + (elective_lesson_list[val].length) + '</p>' +
-    '<input class="total" onkeyup="total_change_event(this)" type="text" placeholder="授業数" size="3">' +
-    '<input class="continuity" onkeyup="continuity_change_event(this)"  type="text" placeholder="連続時間" size="3">' +
+    '<input class="total" onkeyup="total_change_event(this)" type="number"  placeholder="授業数" size="3">' +
+    '<input class="continuity" onkeyup="continuity_change_event(this)"  type="number"  placeholder="連続時間" size="3">' +
     '<input type="button" value="時間決定" onclick="elective_lesson_time_enter(this)" class=time_btn>' +
     '<input type="button" class="get_lesson_num_btn" value="o" onclick="get_ele_lesson_num_btn(this)">' +
     '<input type="button" value="追加" onclick="elective_lesson_add_btn(this)" class="a_btn">' +
