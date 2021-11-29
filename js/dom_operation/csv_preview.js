@@ -1,136 +1,37 @@
 (function () {
   const csv_preview = document.querySelector("#csv_preview");
   const csv_preview_btn = document.querySelector("#csv_preview_btn");
-
-
+  let ts;
   csv_preview_btn.addEventListener("click", e => {
-
-    // console.log(csv_preview.classList.toggle('dis_none'))//消えるときtrue/つけるときfalse
-
     if (csv_preview.classList.toggle('dis_none')) {
       //消えたとき
-
     } else {
       //ついたとき
       csv_preview.innerHTML = "";
 
-      const ts = {
+      ts = {
         x: table_SizeX,
         y: table_SizeY,
         z: timetable.length
       }
 
-      //先生-データ作成
-      const teacher_timetable = teacher_timetable_create();
-      //先生-テーブル出力
-      teacher_timetable_table(teacher_timetable)
-
-
-
-      //教室
-
-
+      const teacher_timetable = timetable_source_create(teacher_list);
+      timetable_source_to_table(timetable_source_trans(teacher_timetable, "教師"), teacher_list)
+      const room_timetable = timetable_source_create(room_list);
+      timetable_source_to_table(timetable_source_trans(room_timetable, "教室"), room_list)
     }
   });
 
-  function teacher_timetable_create() {
-    let ret = [];
-    class Lesson_data {
-      constructor(_cls_num = 0, _lsn_num = 0) {
-        this.lsn_num = _lsn_num;
-        this.cls_num = _cls_num;
+  function name_check(source, add_name) {
+    // すでにつかされている名前の時に追加しない
+    let ret = false;
+    arr = source.split("・");
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] == add_name) {
+        return true;
       }
     }
-    const ts = {
-      x: table_SizeX,
-      y: table_SizeY,
-      z: timetable.length
-    }
-    //教師時間割の配列を返す
-    teacher_list.forEach((v, i) => {
-      //教師配列の作成
-      ret.push([]);
-      for (let y = 0; y < ts.y; y++) {
-        ret[i].push([]);
-        for (let x = 0; x < ts.x; x++) {
-          ret[i][y].push([]);
-        }
-      }
-      // console.log(ret);
-    });
-
-    teacher_list.forEach((v, i) => {
-      //教師配列にデータの挿入
-      for (let z = 0; z < ts.z; z++) {
-        //時間割軸
-        for (let y = 0; y < ts.y; y++) {
-          for (let x = 0; x < ts.x; x++) {
-            const status = get_lesson_status(z, timetable[z][y][x]);
-            status.forEach((v) => {
-              if (v[1] == i && i != 0) {
-                ret[i][y][x].push({
-                  //テーブルデータの中身
-                  lsn_num: timetable[z][y][x],
-                  cls_num: z
-                })
-              }
-            });
-          }
-        }
-      }
-    });
-    return ret;
-  }
-
-  function teacher_timetable_table(arr) {
-    const ts = {
-      x: table_SizeX,
-      y: table_SizeY,
-      z: timetable.length
-    }
-    teacher_list.forEach((v, i) => {
-
-      if (i > 0) {//1から開始
-        const div = cre_dom("div");
-        let p = cre_dom("p", v);
-        const table = table_create(ts.x, ts.y);
-        //時間割軸
-        for (let y = 0; y < ts.y; y++) {
-          for (let x = 0; x < ts.x; x++) {
-            arr[i][y][x].forEach(ele => {
-              const status = get_lesson_status(ele.cls_num, ele.lsn_num);
-              // if (status[1] != 0) {
-              //   console.log(status);
-              // }
-              // const lesson = trans_after_lesson([z, timetable[z][y][x], status[1], status[2]]);
-              // console.log(lesson);
-              status.forEach((val) => {
-                if (val[1] == i) {
-                  let lesson = [];
-                  if (timetable[ele.cls_num][y][x] >= 100) {
-                    //選択授業
-                    lesson = trans_after_lesson([ele.cls_num, 0, val[1], val[2]]);
-                    lesson[0] = val[0];
-                  } else {
-                    //通常授業
-                    lesson = trans_after_lesson([ele.cls_num, timetable[ele.cls_num][y][x], val[1], val[2]]);
-                  }
-                  const td = get_td(table, x, y);
-                  td_li(td, 0).innerText += lesson[0] + "・";
-                  td_li(td, 1).innerText += lesson[1] + "・";
-                  td_li(td, 2).innerText += lesson[2] + "・";
-                }
-              });
-            });
-          }
-        }
-
-        div.append(p);
-        div.append(table);
-        csv_preview.append(div);
-        // console.log(cre_dom("p"))
-      }
-    });
+    return false;
   }
 
   function cre_dom(name, innerText = "") {
@@ -139,6 +40,9 @@
     return ret;
   }
 
+  function trans_after_class(cls_num) {
+    return class_list[cls_num];
+  }
   function trans_after_lesson([cls, num, teacher, room]) {
     num = zt(num);
     teacher = zt(teacher);
@@ -197,5 +101,126 @@
 
   function td_li(td, li_num) {
     return td.children[0].children[li_num]
+  }
+
+  function timetable_source_create(list) {
+    let ret = [];
+
+    list.forEach((v, i) => {
+      //教室配列の作成
+      ret.push([]);
+      for (let y = 0; y < ts.y; y++) {
+        ret[i].push([]);
+        for (let x = 0; x < ts.x; x++) {
+          ret[i][y].push([]);
+        }
+      }
+    });
+
+    list.forEach((v, i) => {
+      //教室配列にデータの挿入
+      for (let z = 0; z < ts.z; z++) {
+        //時間割軸
+        for (let y = 0; y < ts.y; y++) {
+          for (let x = 0; x < ts.x; x++) {
+            const status = get_lesson_status(z, timetable[z][y][x]);
+            status.forEach((v) => {
+              if (v[1] == i && i != 0) {
+                ret[i][y][x].push({
+                  //テーブルデータの中身
+                  lsn_num: timetable[z][y][x],
+                  cls_num: z
+                })
+              }
+            });
+          }
+        }
+      }
+    });
+    return ret;
+  }
+
+  function timetable_source_trans(arr, list_name) {
+    // list_name
+    // 教師:teacher_list
+    // 教室:room_list
+    let offset, list;
+    if (list_name == "教師") {
+      offset = 2
+      list = teacher_list;
+    } else if (list_name == "教室") {
+      offset = 1
+      list = room_list;
+    }
+    let ret = [];
+
+    arr.forEach((v, i) => {
+      ret.push([]);
+      for (let y = 0; y < ts.y; y++) {
+        ret[i].push([]);
+        for (let x = 0; x < ts.x; x++) {
+          ret[i][y].push([]);
+          let td = {
+            li1: "",
+            li2: "",
+            li3: "",
+          };
+          ret[i][y][x] = td;
+        }
+      }
+    });
+    list.forEach((v, i) => {
+      if (i > 0) {//1から開始
+        //時間割軸
+        for (let y = 0; y < ts.y; y++) {
+          for (let x = 0; x < ts.x; x++) {
+            arr[i][y][x].forEach(data => {
+              const status = get_lesson_status(data.cls_num, data.lsn_num);
+              status.forEach((val) => {
+                if (val[1] == i) {
+                  let lesson = [];
+                  if (timetable[data.cls_num][y][x] >= 100) {
+                    //選択授業
+                    lesson = trans_after_lesson([data.cls_num, 0, val[1], val[2]]);
+                    lesson[0] = val[0];
+                  } else {
+                    //通常授業
+                    lesson = trans_after_lesson([data.cls_num, timetable[data.cls_num][y][x], val[1], val[2]]);
+                  }
+                  //同名ではないときに追加
+                  if (!name_check(ret[i][y][x].li1, lesson[0])) ret[i][y][x].li1 += ret[i][y][x].li1 == "" ? lesson[0] : "・" + lesson[0];//コース
+                  if (!name_check(ret[i][y][x].li2, lesson[offset])) ret[i][y][x].li2 += ret[i][y][x].li2 == "" ? lesson[offset] : "・" + lesson[offset];//教室
+                  if (!name_check(ret[i][y][x].li3, trans_after_class(data.cls_num))) ret[i][y][x].li3 += ret[i][y][x].li3 == "" ? trans_after_class(data.cls_num) : "・" + trans_after_class(data.cls_num);//クラス
+                }
+              });
+            });
+          }
+        }
+      }
+    });
+    return ret;
+  }
+
+  function timetable_source_to_table(arr, target_list) {
+    target_list.forEach((v, i) => {
+      if (i > 0) {//1から開始
+        const div = cre_dom("div");
+        let p = cre_dom("p", v);
+        const table = table_create(ts.x, ts.y);
+        //時間割軸
+        for (let y = 0; y < ts.y; y++) {
+          for (let x = 0; x < ts.x; x++) {
+            let data = arr[i][y][x]
+            const td = get_td(table, x, y);
+            td_li(td, 0).innerText += td_li(td, 0).innerText == "" ? data.li1 : "・" + data.li1;//コース
+            td_li(td, 1).innerText += td_li(td, 1).innerText == "" ? data.li2 : "・" + data.li2;//教師
+            td_li(td, 2).innerText += td_li(td, 2).innerText == "" ? data.li3 : "・" + data.li3;//クラス
+          }
+        }
+        div.append(p);
+        div.append(table);
+        csv_preview.append(div);
+      }
+    });
   }
 }());
