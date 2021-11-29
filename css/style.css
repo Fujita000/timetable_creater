@@ -459,7 +459,7 @@ p{
 }
 
 .a_btn,.d_btn,.get_lesson_num_btn,.del_btn,.time_btn{
-  margin-left:10px;
+  margin:0 0 5px 10px;
   background-color:#f4ffff;
 }
 
