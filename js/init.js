@@ -170,7 +170,7 @@ function normal_lesson_add_event(val, parent) {
     '<input class="total"  type="number" placeholder="授業数" size="3">' +
     '<input class="continuity"  type="number" placeholder="連続時間" size="3">' +
     '<input type="button" class="get_lesson_num_btn" value="o" onclick="get_lesson_num_btn(this)">' +
-    '<input type="button" value="削除" onclick="normal_lesson_deleat_btn(this)" class="del_btn original_btn" tabindex="-1">';
+    '<input type="button" value="削除" onclick="normal_lesson_deleat_btn(this)" class="original_btn" tabindex="-1">';
   div.querySelector(".total").addEventListener("input", e => {
     total_change_event(e)
   })
@@ -241,7 +241,7 @@ function elective_lesson_list_add_event(val, parent) {
     '<input type="button" value="時間決定" onclick="elective_lesson_time_enter(this)" class=time_btn>' +
     '<input type="button" class="get_lesson_num_btn" value="o" onclick="get_ele_lesson_num_btn(this)">' +
     '<input type="button" value="追加" onclick="elective_lesson_add_btn(this)" class="a_btn">' +
-    '<input type="button" value="削除" onclick="elective_lesson_list_deleat_btn(this)" class="del_btn" tabindex="-1">';
+    '<input type="button" value="削除" onclick="elective_lesson_list_deleat_btn(this)" class="original_btn" tabindex="-1">';
   div.querySelector(".total").addEventListener("input", e => {
     total_change_event(e)
   })
