@@ -170,7 +170,7 @@ function normal_lesson_add_event(val, parent) {
     '<input class="total"  type="number" placeholder="授業数" size="3">' +
     '<input class="continuity"  type="number" placeholder="連続時間" size="3">' +
     '<input type="button" class="get_lesson_num_btn" value="o" onclick="get_lesson_num_btn(this)">' +
-    '<input type="button" value="削除" onclick="normal_lesson_deleat_btn(this)" class="del_btn" tabindex="-1">';
+    '<input type="button" value="削除" onclick="normal_lesson_deleat_btn(this)" class="del_btn original_btn" tabindex="-1">';
   div.querySelector(".total").addEventListener("input", e => {
     total_change_event(e)
   })
@@ -270,7 +270,7 @@ function elective_lesson_add_event(val1, val2, parent) {
     '<select class="teacher_select" onchange="selecter_change_event(this)"></select>' +
     '<select class="room_select" onchange="selecter_change_event(this)"></select>' +
     '<input type="button" class="get_lesson_num_btn" value="o" onclick="get_lesson_num_btn(this)">' +
-    '<input type="button" value="削除" onclick="elective_lesson_deleat_btn(this)" class="del_btn" tabindex="-1">';
+    '<input type="button" value="削除" onclick="elective_lesson_deleat_btn(this)" class="original_btn" tabindex="-1">';
   div.getElementsByClassName("teacher_select")[0].innerHTML = selector_create(teacher_list).innerHTML;
   div.getElementsByClassName("room_select")[0].innerHTML = selector_create(room_list).innerHTML;
   getById("elective_lesson_list_" + val1 + "_" + val2).appendChild(div);
