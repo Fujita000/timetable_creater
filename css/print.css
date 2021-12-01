@@ -1,0 +1,45 @@
+#print{
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  width: 80%;
+}
+#print > div{
+  margin-bottom: 1em;
+}
+
+#print div label{
+  margin-left: 1em;
+}
+
+.paper_sise input[type="number"]{
+  width: 5em;
+  margin-top: 0.5em;
+  /* height: 2em; */
+}
+
+
+.a4{
+
+}
+
+.a3{
+  
+}
+
+.yoko{
+
+}
+
+.tate{
+
+}
+
+.per_page input{
+  width: 3em;
+  margin-top: 0.5em;
+  /* height: 2em; */
+}

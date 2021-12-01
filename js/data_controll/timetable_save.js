@@ -16,7 +16,7 @@ function download_btn_clicked(evt) {
   evt.preventDefault();
   var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);
   var content = '';
-
+  // //クラスごと時間割
   for (let z = 0; z < timetable.length; z++) {
     content += class_list[z] + '\n';//クラス名
     content += "," + get_youbi(0, 4) + '\n';
@@ -35,6 +35,54 @@ function download_btn_clicked(evt) {
     }
     content += '\n';
   }
+  //教師・教室時間割
+
+  ts = {
+    x: table_SizeX,
+    y: table_SizeY,
+    z: timetable.length
+  }
+
+  const teacher_timetable = timetable_source_create(teacher_list);
+  timetable_source_trans(teacher_timetable, "教師").forEach((y, _z) => {
+    if (_z != 0) {
+      content += teacher_list[_z] + '\n';//教師名
+      content += "," + get_youbi(0, 4) + '\n';
+      y.forEach((x, _y) => {
+        content += (_y + 1) + ",";
+        x.forEach((data, x) => {
+          let tmp = '"' +
+            data.li1 + '\n' +
+            data.li2 + '\n' +
+            data.li3 + '"';
+          content += tmp + ',';
+        });
+        content += '\n';
+      });
+      content += '\n';
+    }
+  })
+
+  const room_timetable = timetable_source_create(room_list);
+  timetable_source_trans(room_timetable, "教室").forEach((y, _z) => {
+    if (_z != 0) {
+      content += room_list[_z] + '\n';//教師名
+      content += "," + get_youbi(0, 4) + '\n';
+      y.forEach((x, _y) => {
+        content += (_y + 1) + ",";
+        x.forEach((data, x) => {
+          let tmp = '"' +
+            data.li1 + '\n' +
+            data.li2 + '\n' +
+            data.li3 + '"';
+          content += tmp + ',';
+        });
+        content += '\n';
+      });
+      content += '\n';
+    }
+  })
+
 
   var blob = new Blob([bom, content], { "type": "text/csv" });
   const url = URL.createObjectURL(blob);

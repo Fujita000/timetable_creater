@@ -171,8 +171,8 @@ function test_data_load() {
     qa('button[onclick="elective_lesson_list_add_btn(this)"]')[cls_num].click();
     qs("#elective_lesson_list_" + cls_num + "_" + offset).children[1].value = lesson_num;
     qs("#elective_lesson_list_" + cls_num + "_" + offset).children[2].value = continuity_num;
-    qs("#elective_lesson_list_" + cls_num + "_" + offset).children[1].onkeyup();
-    qs("#elective_lesson_list_" + cls_num + "_" + offset).children[2].onkeyup();
+    // qs("#elective_lesson_list_" + cls_num + "_" + offset).children[1].onkeyup();
+    // qs("#elective_lesson_list_" + cls_num + "_" + offset).children[2].onkeyup();
   }
   function ele_lesson_item_add(target, num) {
     //'target'で指定した授業コマ設定の選択授業追加ボタンを'num'回クリック

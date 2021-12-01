@@ -86,8 +86,8 @@ document.querySelector("#data_load").addEventListener("click", () => {
       document.querySelectorAll('button[onclick="elective_lesson_list_add_btn(this)"]')[cls_num].click();
       document.querySelector("#elective_lesson_list_" + cls_num + "_" + offset).children[1].value = lesson_num;
       document.querySelector("#elective_lesson_list_" + cls_num + "_" + offset).children[2].value = continuity_num;
-      document.querySelector("#elective_lesson_list_" + cls_num + "_" + offset).children[1].onkeyup();
-      document.querySelector("#elective_lesson_list_" + cls_num + "_" + offset).children[2].onkeyup();
+      // document.querySelector("#elective_lesson_list_" + cls_num + "_" + offset).children[1].onkeyup();
+      // document.querySelector("#elective_lesson_list_" + cls_num + "_" + offset).children[2].onkeyup();
     }
     function ele_lesson_item_add(target, num) {
       //'target'で指定した授業コマ設定の選択授業追加ボタンを'num'回クリック

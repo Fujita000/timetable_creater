@@ -51,6 +51,7 @@ function selecter_change_event(e) {
 }
 
 function total_change_event(e) {
+  e = e.target;
   let val1 = getIdNum(e.parentElement, 0);
   let val2 = getIdNum(e.parentElement, 1);
   if (pareSp(e)[0] == "normal") {
@@ -61,6 +62,7 @@ function total_change_event(e) {
 }
 
 function continuity_change_event(e) {
+  e = e.target;
   let val1 = getIdNum(e.parentElement, 0);
   let val2 = getIdNum(e.parentElement, 1);
   if (pareSp(e)[0] == "normal") {

@@ -102,3 +102,4 @@ function select_reset() {
   const selected = document.querySelector("selected");
   if (selected != null) selected.classList.toggle("selected");
 }
+

@@ -2,6 +2,59 @@
 let run_initial, lesson_initial, au_choice_lesson, pass_timetable, pass_lesson;
 // let run_initial = JSON.parse(JSON.stringify(pass_timetable));
 // let lesson_initial = JSON.parse(JSON.stringify(pass_lesson));
+let tmp_timetable, auto_create_flag = false;
+document.querySelector("#auto_create_cancel").addEventListener("click", e => {
+  if (auto_create_flag) {
+    timetable = JSON.parse(JSON.stringify(tmp_timetable));
+    update_timetable()
+    all_color_change()
+    auto_create_flag = false;
+    tmp_timetable = undefined;
+  }
+});
+document.querySelector("#auto_create").addEventListener("click", e => {
+  if (!auto_create_flag) tmp_timetable = JSON.parse(JSON.stringify(timetable));
+  click_auto_create();
+  auto_create_flag = true;
+})
+
+function click_auto_create() {
+  //開始ボタンを押したとき
+  if (auto_create_flag) timetable = JSON.parse(JSON.stringify(tmp_timetable));
+  let tps = pass_auto_timetable();
+  run_initial = JSON.parse(JSON.stringify(tps[0]));
+  lesson_initial = JSON.parse(JSON.stringify(tps[1]));
+  au_choice_lesson = JSON.parse(JSON.stringify(tps[2]));
+  initialization();
+
+  let rt = run_timetable()
+  timetable = lesson_out_timetable(rev_y_x(JSON.parse(JSON.stringify(rt))))
+
+  update_timetable()
+  all_color_change()
+}
+
+function validate_timetable(timetable) {
+  let tt = shallow_copy(timetable);
+  //timetableの中にある授業が現在存在するかの確認
+  //ない場合は削除する
+  tt.forEach(arr => {
+    arr.forEach(table => {
+      table.forEach(data => {
+        console.log(data);
+      });
+    })
+  });
+}
+
+function confirm_auto_create() {
+  auto_create_flag = false;
+  tmp_timetable = undefined;
+}
+
+function shallow_copy(arr) {
+  return JSON.parse(JSON.stringify(arr));
+}
 
 // 二次元配列をコピーする
 function copyMatrix(base) {
@@ -219,21 +272,3 @@ function initialization() {
   pass_lesson = JSON.parse(JSON.stringify(lesson_initial));
 }
 
-document.querySelector("#auto_create").addEventListener("click", e => {
-  click_auto_create();
-})
-
-function click_auto_create() {
-  //開始ボタンを押したとき
-  let tps = pass_auto_timetable();
-  run_initial = JSON.parse(JSON.stringify(tps[0]));
-  lesson_initial = JSON.parse(JSON.stringify(tps[1]));
-  au_choice_lesson = JSON.parse(JSON.stringify(tps[2]));
-  initialization();
-
-  let rt = run_timetable()
-  timetable = lesson_out_timetable(rev_y_x(JSON.parse(JSON.stringify(rt))))
-
-  update_timetable()
-  all_color_change()
-}

@@ -167,10 +167,16 @@ function normal_lesson_add_event(val, parent) {
     '<input type="text" placeholder="授業" size="6" onkeyup="lesson_name_change_event(this)">' +
     '<select class="teacher_select" onchange="selecter_change_event(this)"></select>' +
     '<select class="room_select" onchange="selecter_change_event(this)"></select>' +
-    '<input class="total" onkeyup="total_change_event(this)" type="number" placeholder="授業数" size="3">' +
-    '<input class="continuity" onkeyup="continuity_change_event(this)" type="number" placeholder="連続時間" size="3">' +
+    '<input class="total"  type="number" placeholder="授業数" size="3">' +
+    '<input class="continuity"  type="number" placeholder="連続時間" size="3">' +
     '<input type="button" class="get_lesson_num_btn" value="o" onclick="get_lesson_num_btn(this)">' +
     '<input type="button" value="削除" onclick="normal_lesson_deleat_btn(this)" class="del_btn" tabindex="-1">';
+  div.querySelector(".total").addEventListener("input", e => {
+    total_change_event(e)
+  })
+  div.querySelector(".continuity").addEventListener("input", e => {
+    continuity_change_event(e)
+  })
   div.getElementsByClassName("teacher_select")[0].innerHTML = selector_create(teacher_list).innerHTML;
   div.getElementsByClassName("room_select")[0].innerHTML = selector_create(room_list).innerHTML;
 
@@ -230,12 +236,18 @@ function elective_lesson_list_add_event(val, parent) {
   div.className = "elective_lesson_list";
   div.innerHTML =
     '<p>選択授業' + (elective_lesson_list[val].length) + '</p>' +
-    '<input class="total" onkeyup="total_change_event(this)" type="number"  placeholder="授業数" size="3">' +
-    '<input class="continuity" onkeyup="continuity_change_event(this)"  type="number"  placeholder="連続時間" size="3">' +
+    '<input class="total" type="number"  placeholder="授業数" size="3">' +
+    '<input class="continuity" type="number"  placeholder="連続時間" size="3">' +
     '<input type="button" value="時間決定" onclick="elective_lesson_time_enter(this)" class=time_btn>' +
     '<input type="button" class="get_lesson_num_btn" value="o" onclick="get_ele_lesson_num_btn(this)">' +
     '<input type="button" value="追加" onclick="elective_lesson_add_btn(this)" class="a_btn">' +
     '<input type="button" value="削除" onclick="elective_lesson_list_deleat_btn(this)" class="del_btn" tabindex="-1">';
+  div.querySelector(".total").addEventListener("input", e => {
+    total_change_event(e)
+  })
+  div.querySelector(".continuity").addEventListener("input", e => {
+    continuity_change_event(e)
+  })
   getById("elective_lesson_list_" + val).appendChild(div);
   return div;
 }
@@ -299,6 +311,7 @@ function table_create(class_name_text) {
       cell.setAttribute("class", y + "_" + x);
       cell.addEventListener("click", e => {
         cell_click_event(e);
+        confirm_auto_create()
       });
       row.appendChild(cell);
     }
@@ -351,7 +364,40 @@ function select_chg(select_class_name, suf, insert_num) {
   }
 }
 
+function tmp_timetable_validate(cls_num, lsn_num, target) {
+  // target:lessonまたはclass
+  // 削除する対象を書く
+  console.log(cls_num, lsn_num, target)
+  if (tmp_timetable != undefined) {
+    switch (target) {
+      case "lesson":
+        const z = cls_num;
+        for (let y = 0; y < tmp_timetable[z].length; y++) {
+          for (let x = 0; x < tmp_timetable[z][y].length; x++) {
+
+            if (tmp_timetable[z][y][x] == lsn_num) {
+              tmp_timetable[z][y][x] = 0;
+            } else if (tmp_timetable[z][y][x] > lsn_num) {
+              if (lsn_num >= 100 && tmp_timetable[z][y][x] >= 100) {
+                tmp_timetable[z][y][x]--;
+              } else if (lsn_num < 100 && tmp_timetable[z][y][x] < 100) {
+                tmp_timetable[z][y][x]--;
+              }
+            }
+
+          }
+        }
+        break;
+      case "class":
+        tmp_timetable.splice(cls_num, 1)
+        break;
+    }
+  }
+}
+
 function class_deleat_btn(e) {
+  let num = pareSp(btn)[2];
+  tmp_timetable_validate(num, 0, "class");
   class_deleat_event(e);
   del_operation_link_sidebar(e);
   del_class_timetable_sidebar(e);
@@ -391,6 +437,7 @@ function room_deleat_btn(e) {
 function normal_lesson_deleat_btn(e) {
   let parent = parentDom(e);
   let big_parent = parentDom(parent);
+  tmp_timetable_validate(getIdNum(parent, 0), getIdNum(parent, 1), "lesson");
   lesson_deleat_event(e, normal_lesson_list[getIdNum(parent, 0)], 1, getIdNum(parent, 0));
   rewrite_list_id(big_parent.id, 1);
   del_lesson_timetable_sidebar(e, "timetable_tab_normal_lesson");
@@ -399,6 +446,7 @@ function normal_lesson_deleat_btn(e) {
 function elective_lesson_list_deleat_btn(e) {
   let parent = e.parentElement
   let big_parent = e.parentElement.parentElement;
+  tmp_timetable_validate(getIdNum(parent, 0), getIdNum(parent, 1) + 100, "lesson");
   lesson_deleat_event(e, elective_lesson_list[getIdNum(parent, 0)], 1, getIdNum(parent, 0));
   // 番号の再割り当て
   let ret = rewrite_list_id(big_parent.id, 0);

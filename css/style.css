@@ -479,9 +479,14 @@ p{
   padding:5% 10%;
 }
 
-#timetable_sidebar_eraser,#cell_change_btn,#download,#auto_create{
+.timetable_side_opt{
   color:#4169e1;
-  padding-left:30px;
+  margin-left:30px;
+}
+#auto_create_cancel{
+  padding-left: 5px;
+  margin-left: 5px;
+  border-left: black 3px solid;
 }
 
 .timetable_tab_class{
@@ -511,11 +516,15 @@ table ul{
   color: black;
 }
 
-#timetable_link_sidebar > div:nth-child(1) p:hover{
+.timetable_side_opt:hover{
   cursor: pointer;
   color: RED;
 }
 
+#auto_create,#auto_create_cancel{
+  width: auto;
+  height: auto;
+}
 
 .mdl-layout__tab.right{
   justify-content: flex-end !important;
@@ -540,10 +549,7 @@ td{
 }
 
 /* csv_preview系ここから */
-#csv_preview_btn{
-  color:#4169e1;
-  padding-left:30px;
-}
+
 #csv_preview{
   z-index: 100;
   width: 100px;
@@ -563,4 +569,14 @@ td{
 
 .dis_none{
   display: none;
+}
+
+#auto_create > .enter{
+  border: solid 1px black;
+}
+
+
+#auto_create > span:nth-child(2){
+  border: solid 1px black;
+
 }

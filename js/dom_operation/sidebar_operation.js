@@ -1,14 +1,14 @@
 let operation_link_sidebar = document.getElementById('operation_link_sidebar');
 
-function add_operation_link_sidebar(val){
+function add_operation_link_sidebar(val) {
   let anker = document.createElement("a");
-  anker.href = "#lesson_list_"+(class_list.length-1);
+  anker.href = "#lesson_list_" + (class_list.length - 1);
   anker.className = "mdl-navigation__link";
   anker.innerText = val;
   operation_link_sidebar.appendChild(anker);
 }
 
-function del_operation_link_sidebar(btn){
+function del_operation_link_sidebar(btn) {
   let num = pareSp(btn)[2];
   operation_link_sidebar.children[num].remove();
   rewrite_id_operation_link_sidebar();
