@@ -33,7 +33,7 @@ function name_check(source, add_name) {
   return false;
 }
 
-function cre_dom(name, innerText = "") {
+function createElement(name, innerText = "") {
   const ret = document.createElement(name);
   ret.innerText = innerText;
   return ret;
@@ -52,17 +52,17 @@ function cp_trans_after_lesson([cls, num, teacher, room]) {
 }
 
 function cp_table_create(_x, _y) {
-  const table = cre_dom("table");
+  const table = createElement("table");
   for (let y = 0; y < _y; y++) {
-    const tr = cre_dom("tr");
+    const tr = createElement("tr");
     table.append(tr);
     for (let x = 0; x < _x; x++) {
-      const td = cre_dom("td");
+      const td = createElement("td");
 
-      const ul = cre_dom("ul")
-      ul.append(cre_dom("li"))
-      ul.append(cre_dom("li"))
-      ul.append(cre_dom("li"))
+      const ul = createElement("ul")
+      ul.append(createElement("li"))
+      ul.append(createElement("li"))
+      ul.append(createElement("li"))
 
       td.append(ul);
       tr.append(td);
@@ -196,8 +196,8 @@ function timetable_source_trans(arr, list_name) {
 function timetable_source_to_table(arr, target_list) {
   target_list.forEach((v, i) => {
     if (i > 0) {//1から開始
-      const div = cre_dom("div");
-      let p = cre_dom("p", v);
+      const div = createElement("div");
+      let p = createElement("p", v);
       const table = cp_table_create(ts.x, ts.y);
       //時間割軸
       for (let y = 0; y < ts.y; y++) {
