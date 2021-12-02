@@ -55,26 +55,81 @@
 </head>
 
 <body class="mdl-demo mdl-base">
-  <!-- <div id="print" class="dis_none">
-    <p>test</p>
+  <div id="print">
     <div class="print_target">
+      印刷対象
+      <div class="check_out_wrap">
+        <div class="check_wrap" id="class_check_list">
+          <div>
+            <label for="class_check"><input type="checkbox" id="class_check">クラス</label>
+          </div>
+        </div>
 
+        <div class="check_wrap" id="teacher_check_list">
+          <div>
+            <label for="teacher_check"><input type="checkbox" id="teacher_check">教師</label>
+          </div>
+        </div>
+
+        <div class="check_wrap" id="room_check_list">
+          <div>
+            <label for="room_check"><input type="checkbox" id="room_check">教室</label>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="muki">
-      <p><input type="radio" name="muki"></p>
-      <p><input type="radio" name="muki"></p>
-    </div>
-    <div class="paper_sise">
-      <input type="radio" name="peper_size" value="A4">
-      <input type="radio" name="peper_size" value="A3">
-    </div>
-    <div class="per_page">
-      <input type="text" class="per_page_X">
-      <input type="text" class="per_page_Y">
+      印刷時の向き
+      <div>
+        <label for="tate"><input type="radio" name="muki" id="tate" checked>縦</label>
+      </div>
+      <div>
+        <label for="yoko"><input type="radio" name="muki" id="yoko">横</label>
+      </div>
     </div>
 
-    <table class="timetable t-table"><tbody><tr><td class="0_0"><ul><li class="toggle_cell_black">EXCEL</li><li class="toggle_cell_black">大原四郎</li><li class="toggle_cell_black">701</li></ul></td><td class="0_1"><ul><li class="toggle_cell_black">JAVA</li><li class="toggle_cell_black">教師一郎</li><li class="toggle_cell_black">大原201</li></ul></td><td class="0_2"><ul><li class="toggle_cell_black">NW</li><li class="toggle_cell_black">宮情次郎</li><li class="toggle_cell_black">501</li></ul></td><td class="0_3"><ul><li class="toggle_cell_black">選択授業1</li><li class="toggle_cell_black"></li><li class="toggle_cell_black"></li></ul></td><td class="0_4"><ul><li class="toggle_cell_black">選択授業1</li><li class="toggle_cell_black"></li><li class="toggle_cell_black"></li></ul></td></tr><tr><td class="1_0"><ul><li class="toggle_cell_black">EXCEL</li><li class="toggle_cell_black">大原四郎</li><li class="toggle_cell_black">701</li></ul></td><td class="1_1"><ul><li class="toggle_cell_black">JAVA</li><li class="toggle_cell_black">教師一郎</li><li class="toggle_cell_black">大原201</li></ul></td><td class="1_2"><ul><li class="toggle_cell_black">NW</li><li class="toggle_cell_black">宮情次郎</li><li class="toggle_cell_black">501</li></ul></td><td class="1_3"><ul><li class="toggle_cell_black">選択授業1</li><li class="toggle_cell_black"></li><li class="toggle_cell_black"></li></ul></td><td class="1_4"><ul><li class="toggle_cell_black">選択授業1</li><li class="toggle_cell_black"></li><li class="toggle_cell_black"></li></ul></td></tr><tr><td class="2_0"><ul><li class="toggle_cell_black">EXCEL</li><li class="toggle_cell_black">大原四郎</li><li class="toggle_cell_black">701</li></ul></td><td class="2_1"><ul><li class="toggle_cell_black">JAVA</li><li class="toggle_cell_black">教師一郎</li><li class="toggle_cell_black">大原201</li></ul></td><td class="2_2"><ul><li class="toggle_cell_black">NW</li><li class="toggle_cell_black">宮情次郎</li><li class="toggle_cell_black">501</li></ul></td><td class="2_3"><ul><li class="toggle_cell_black">選択授業1</li><li class="toggle_cell_black"></li><li class="toggle_cell_black"></li></ul></td><td class="2_4"><ul><li class="toggle_cell_black">選択授業1</li><li class="toggle_cell_black"></li><li class="toggle_cell_black"></li></ul></td></tr><tr><td class="3_0"><ul><li class="toggle_cell_black">JAVA</li><li class="toggle_cell_black">教師一郎</li><li class="toggle_cell_black">大原201</li></ul></td><td class="3_1"><ul><li class="toggle_cell_black">WEB</li><li class="toggle_cell_black">宮崎三郎</li><li class="toggle_cell_black">大原201</li></ul></td><td class="3_2"><ul><li class="toggle_cell_black">一般教養</li><li class="toggle_cell_black">宮情次郎</li><li class="toggle_cell_black">501</li></ul></td><td class="3_3"><ul><li class="toggle_cell_black">選択授業1</li><li class="toggle_cell_black"></li><li class="toggle_cell_black"></li></ul></td><td class="3_4"><ul><li class="toggle_cell_black"></li><li class="toggle_cell_black"></li><li class="toggle_cell_black"></li></ul></td></tr><tr><td class="4_0"><ul><li class="toggle_cell_black">JAVA</li><li class="toggle_cell_black">教師一郎</li><li class="toggle_cell_black">大原201</li></ul></td><td class="4_1"><ul><li class="toggle_cell_black">WEB</li><li class="toggle_cell_black">宮崎三郎</li><li class="toggle_cell_black">大原201</li></ul></td><td class="4_2"><ul><li class="toggle_cell_black">ビジネス実務</li><li class="toggle_cell_black">宮情次郎</li><li class="toggle_cell_black">501</li></ul></td><td class="4_3"><ul><li class="toggle_cell_black">選択授業1</li><li class="toggle_cell_black"></li><li class="toggle_cell_black"></li></ul></td><td class="4_4"><ul><li class="toggle_cell_black"></li><li class="toggle_cell_black"></li><li class="toggle_cell_black"></li></ul></td></tr><tr><td class="5_0"><ul><li class="toggle_cell_black">JAVA</li><li class="toggle_cell_black">教師一郎</li><li class="toggle_cell_black">大原201</li></ul></td><td class="5_1"><ul><li class="toggle_cell_black">WEB</li><li class="toggle_cell_black">宮崎三郎</li><li class="toggle_cell_black">大原201</li></ul></td><td class="5_2"><ul><li class="toggle_cell_black">ビジネス実務</li><li class="toggle_cell_black">宮情次郎</li><li class="toggle_cell_black">501</li></ul></td><td class="5_3"><ul><li class="toggle_cell_black">選択授業1</li><li class="toggle_cell_black"></li><li class="toggle_cell_black"></li></ul></td><td class="5_4"><ul><li class="toggle_cell_black"></li><li class="toggle_cell_black"></li><li class="toggle_cell_black"></li></ul></td></tr></tbody></table>
-  </div> -->
+    <div class="paper_sise">
+      印刷サイズ
+      <div class="paper_sise_radio">
+        <!-- <div>
+        <label for="A4"><input type="radio" name="paper_sise" id="A4" checked>A4</label>
+      </div>
+      <div>  
+        <label for="A3"><input type="radio" name="paper_sise" id="A3">A3</label>
+      </div> -->
+      </div>
+
+
+      <div>
+        <label for="paper_sise_X">ページの横幅：<input value="1" type="number" id="paper_sise_X">mm</label>
+      </div>
+      <div>
+        <label for="paper_sise_Y">ページの縦幅：<input value="1" type="number" id="paper_sise_Y">mm</label>
+      </div>
+    </div>
+
+    <div class="per_page">
+      一ページ当たりの時間割の数
+      <div>
+        <label for="per_page_X">一行当たり：<input value="1" type="number" id="per_page_X"></label>
+      </div>
+      <div>
+        <label for="per_page_Y">一列当たり：<input value="1" type="number" id="per_page_Y"></label>
+      </div>
+    </div>
+
+    <div>
+      <button id="print_btn" onclick="print()">印刷画面を開く</button>
+    </div>
+
+    <div id="print_preview">
+      <p>印刷プレビュー</p>
+      <div id="print_table_list">
+
+      </div>
+    </div>
+  </div>
+
   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
       <!-- <div class="mdl-layout--large-screen-only mdl-layout__header-row" id="top">
@@ -154,10 +209,10 @@
                 <p class="timetable_side_opt" id="csv_preview_btn">CSVプレビュー</p>
                 <p class="timetable_side_opt" id="download">CSVダウンロード</p>
                 <p>
-                  <span class="timetable_side_opt" id="auto_create">自動生成</span> 
-                  <span class="timetable_side_opt" id="auto_create_cancel">キャンセル</span> 
+                  <span class="timetable_side_opt" id="auto_create">自動生成</span>
+                  <span class="timetable_side_opt" id="auto_create_cancel">キャンセル</span>
                 </p>
-                <p class="timetable_side_opt" id="print_btn">印刷</p>
+                <p class="timetable_side_opt" id="print_opt_btn">印刷設定</p>
 
               </div>
             </nav>
@@ -166,13 +221,13 @@
             <div class="page-content">
               <!-- Your content goes here -->
               <section class="section--center mdl-grid mdl-grid--no-spacing" id="t-section">
-                
-                
+
+
                 <div id="table">
 
                   <div id="csv_preview" class="dis_none">
                     <div id="csv_preview_list">
-  
+
                     </div>
                   </div>
 
@@ -186,13 +241,13 @@
       <!-- 時間割パネルここまで -->
     </main>
   </div>
-  <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <!-- <script src="https://code.getmdl.io/1.3.0/material.min.js"></script> -->
 
 
   <!-- ルート（いろいろ） -->
   <script src="js/method.js"></script>
   <script src="js/init.js"></script>
-  
+
   <!-- dom_opetationフォルダ -->
   <script src="js/dom_operation/input_change.js"></script>
   <script src="js/dom_operation/sidebar_operation.js"></script>
@@ -205,7 +260,7 @@
   <script src="js/auto_create/read_auto_timetable.js"></script>
   <script src="js/auto_create/pass_auto_timetable.js"></script>
   <script src="js/auto_create/auto_create.js"></script>
-  
+
   <!-- テスト用ファイル -->
   <script src="js/test/test.js"></script>
 
@@ -215,11 +270,10 @@
   <script src="js/data_controll/timetable_save.js"></script>
 
   <!-- 印刷 -->
-  <script src="js/print/print.js"></script>
+  <script src="/js/print/print_data.js"></script>
+  <script src="/js/print/print.js"></script>
 
 
 </body>
 
 </html>
-
-

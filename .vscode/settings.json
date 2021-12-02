@@ -1,5 +1,5 @@
 {
   "liveServer.settings.port": 5501,
-  "editor.defaultFormatter": "vscode.typescript-language-features",
+  "editor.defaultFormatter": "HookyQR.beautify",
   "editor.formatOnSave": true
 }

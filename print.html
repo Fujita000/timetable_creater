@@ -57,33 +57,55 @@
 <body class="mdl-demo mdl-base">
   <div id="print">
     <div class="print_target">
+      <div class="check_wrap" id="class_check_list">
+        <div>
+          <input type="checkbox" id="class_check" name="print_target">
+          <label for="class_check">クラス</label>
+        </div>
+      </div>
+
+      <div class="check_wrap" id="teacher_check_list">
+        <div>
+          <input type="checkbox" id="teacher_check" name="print_target">
+          <label for="teacher_check">教師</label>
+        </div>
+      </div>
+
+      <div class="check_wrap" id="room_check_list">
+        <div>
+          <input type="checkbox" id="room_check" name="print_target">
+          <label for="room_check">教室</label>
+        </div>
+      </div>
 
     </div>
-    <div class="muki">  
+    <div class="muki">
       印刷時の向き
       <div>
         <label for="tate"><input type="radio" name="muki" id="tate" checked>縦</label>
       </div>
-      <div>  
+      <div>
         <label for="yoko"><input type="radio" name="muki" id="yoko">横</label>
       </div>
     </div>
 
     <div class="paper_sise">
       印刷サイズ
-      <div>
+      <div class="paper_sise_radio">
+        <!-- <div>
         <label for="A4"><input type="radio" name="paper_sise" id="A4" checked>A4</label>
       </div>
       <div>  
         <label for="A3"><input type="radio" name="paper_sise" id="A3">A3</label>
+      </div> -->
       </div>
-      
+
 
       <div>
-        <label for="paper_sise_X">ページの横幅：<input value="1" type="number" id="per_page_X">mm</label>
+        <label for="paper_sise_X">ページの横幅：<input value="1" type="number" id="paper_sise_X">mm</label>
       </div>
       <div>
-        <label for="paper_sise_Y">ページの縦幅：<input value="1" type="number" id="per_page_Y">mm</label>
+        <label for="paper_sise_Y">ページの縦幅：<input value="1" type="number" id="paper_sise_Y">mm</label>
       </div>
     </div>
 
@@ -93,24 +115,27 @@
         <label for="per_page_X">一行当たり：<input value="1" type="number" id="per_page_X"></label>
       </div>
       <div>
-          <label for="per_page_Y">一列当たり：<input value="1" type="number" id="per_page_Y"></label>
+        <label for="per_page_Y">一列当たり：<input value="1" type="number" id="per_page_Y"></label>
       </div>
     </div>
 
-    <table class="timetable t-table"><tbody><tr><td class="0_0"><ul><li class="toggle_cell_black">EXCEL</li><li class="toggle_cell_black">大原四郎</li><li class="toggle_cell_black">701</li></ul></td><td class="0_1"><ul><li class="toggle_cell_black">JAVA</li><li class="toggle_cell_black">教師一郎</li><li class="toggle_cell_black">大原201</li></ul></td><td class="0_2"><ul><li class="toggle_cell_black">NW</li><li class="toggle_cell_black">宮情次郎</li><li class="toggle_cell_black">501</li></ul></td><td class="0_3"><ul><li class="toggle_cell_black">選択授業1</li><li class="toggle_cell_black"></li><li class="toggle_cell_black"></li></ul></td><td class="0_4"><ul><li class="toggle_cell_black">選択授業1</li><li class="toggle_cell_black"></li><li class="toggle_cell_black"></li></ul></td></tr><tr><td class="1_0"><ul><li class="toggle_cell_black">EXCEL</li><li class="toggle_cell_black">大原四郎</li><li class="toggle_cell_black">701</li></ul></td><td class="1_1"><ul><li class="toggle_cell_black">JAVA</li><li class="toggle_cell_black">教師一郎</li><li class="toggle_cell_black">大原201</li></ul></td><td class="1_2"><ul><li class="toggle_cell_black">NW</li><li class="toggle_cell_black">宮情次郎</li><li class="toggle_cell_black">501</li></ul></td><td class="1_3"><ul><li class="toggle_cell_black">選択授業1</li><li class="toggle_cell_black"></li><li class="toggle_cell_black"></li></ul></td><td class="1_4"><ul><li class="toggle_cell_black">選択授業1</li><li class="toggle_cell_black"></li><li class="toggle_cell_black"></li></ul></td></tr><tr><td class="2_0"><ul><li class="toggle_cell_black">EXCEL</li><li class="toggle_cell_black">大原四郎</li><li class="toggle_cell_black">701</li></ul></td><td class="2_1"><ul><li class="toggle_cell_black">JAVA</li><li class="toggle_cell_black">教師一郎</li><li class="toggle_cell_black">大原201</li></ul></td><td class="2_2"><ul><li class="toggle_cell_black">NW</li><li class="toggle_cell_black">宮情次郎</li><li class="toggle_cell_black">501</li></ul></td><td class="2_3"><ul><li class="toggle_cell_black">選択授業1</li><li class="toggle_cell_black"></li><li class="toggle_cell_black"></li></ul></td><td class="2_4"><ul><li class="toggle_cell_black">選択授業1</li><li class="toggle_cell_black"></li><li class="toggle_cell_black"></li></ul></td></tr><tr><td class="3_0"><ul><li class="toggle_cell_black">JAVA</li><li class="toggle_cell_black">教師一郎</li><li class="toggle_cell_black">大原201</li></ul></td><td class="3_1"><ul><li class="toggle_cell_black">WEB</li><li class="toggle_cell_black">宮崎三郎</li><li class="toggle_cell_black">大原201</li></ul></td><td class="3_2"><ul><li class="toggle_cell_black">一般教養</li><li class="toggle_cell_black">宮情次郎</li><li class="toggle_cell_black">501</li></ul></td><td class="3_3"><ul><li class="toggle_cell_black">選択授業1</li><li class="toggle_cell_black"></li><li class="toggle_cell_black"></li></ul></td><td class="3_4"><ul><li class="toggle_cell_black"></li><li class="toggle_cell_black"></li><li class="toggle_cell_black"></li></ul></td></tr><tr><td class="4_0"><ul><li class="toggle_cell_black">JAVA</li><li class="toggle_cell_black">教師一郎</li><li class="toggle_cell_black">大原201</li></ul></td><td class="4_1"><ul><li class="toggle_cell_black">WEB</li><li class="toggle_cell_black">宮崎三郎</li><li class="toggle_cell_black">大原201</li></ul></td><td class="4_2"><ul><li class="toggle_cell_black">ビジネス実務</li><li class="toggle_cell_black">宮情次郎</li><li class="toggle_cell_black">501</li></ul></td><td class="4_3"><ul><li class="toggle_cell_black">選択授業1</li><li class="toggle_cell_black"></li><li class="toggle_cell_black"></li></ul></td><td class="4_4"><ul><li class="toggle_cell_black"></li><li class="toggle_cell_black"></li><li class="toggle_cell_black"></li></ul></td></tr><tr><td class="5_0"><ul><li class="toggle_cell_black">JAVA</li><li class="toggle_cell_black">教師一郎</li><li class="toggle_cell_black">大原201</li></ul></td><td class="5_1"><ul><li class="toggle_cell_black">WEB</li><li class="toggle_cell_black">宮崎三郎</li><li class="toggle_cell_black">大原201</li></ul></td><td class="5_2"><ul><li class="toggle_cell_black">ビジネス実務</li><li class="toggle_cell_black">宮情次郎</li><li class="toggle_cell_black">501</li></ul></td><td class="5_3"><ul><li class="toggle_cell_black">選択授業1</li><li class="toggle_cell_black"></li><li class="toggle_cell_black"></li></ul></td><td class="5_4"><ul><li class="toggle_cell_black"></li><li class="toggle_cell_black"></li><li class="toggle_cell_black"></li></ul></td></tr></tbody></table>
-  
-    <div id="">
-
+    <div>
+      <button id="print_btn">印刷画面を開く</button>
     </div>
-  
-  </div>
-  
-  <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 
+    <div id="print_preview">
+      <p>印刷プレビュー</p>
+      <div id="print_table_list">
+
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <script src="/js/print/print_data.js"></script>
+  <script src="/js/print/print.js"></script>
 
 
 </body>
 
 </html>
-
-
