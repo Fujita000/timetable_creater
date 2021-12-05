@@ -278,12 +278,12 @@ function refresh_table_preview() {
   }
 }
 
-document.querySelector("#auto_create").click();
+// document.querySelector("#auto_create").click();
 //テストのため後で消す
 
-print_size_html();
-printer();
-print_target_append();
-add_event_parent_check("#cls_check");
-add_event_parent_check("#teacher_check");
-add_event_parent_check("#room_check");
+// print_size_html();
+// printer();
+// print_target_append();
+// add_event_parent_check("#cls_check");
+// add_event_parent_check("#teacher_check");
+// add_event_parent_check("#room_check");
