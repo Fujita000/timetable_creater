@@ -15,9 +15,9 @@ csv_preview_btn.addEventListener("click", e => {
     }
 
     const teacher_timetable = timetable_source_create(teacher_list);
-    timetable_source_to_table(timetable_source_trans(teacher_timetable, "教師"), teacher_list)
+    timetable_source_to_table(timetable_source_trans(teacher_timetable, "教師"), teacher_list, csv_preview)
     const room_timetable = timetable_source_create(room_list);
-    timetable_source_to_table(timetable_source_trans(room_timetable, "教室"), room_list)
+    timetable_source_to_table(timetable_source_trans(room_timetable, "教室"), room_list, csv_preview)
   }
 });
 
@@ -109,7 +109,7 @@ function timetable_source_create(list) {
     }
   });
 
-  list.forEach((v, i) => {
+  list.forEach((t, i) => {
     //教室配列にデータの挿入
     for (let z = 0; z < ts.z; z++) {
       //時間割軸
@@ -193,7 +193,7 @@ function timetable_source_trans(arr, list_name) {
   return ret;
 }
 
-function timetable_source_to_table(arr, target_list) {
+function timetable_source_to_table(arr, target_list, append_target) {
   target_list.forEach((v, i) => {
     if (i > 0) {//1から開始
       const div = createElement("div");
@@ -211,7 +211,7 @@ function timetable_source_to_table(arr, target_list) {
       }
       div.append(p);
       div.append(table);
-      csv_preview.append(div);
+      append_target.append(div);
     }
   });
 }

@@ -1,0 +1,114 @@
+#print {
+  /* position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto; */
+
+  /* 上のcssは画面の大きさがおかしくなる */
+
+  height: auto;
+  background-color: rgb(250, 250, 250);
+
+  #print_table_list {
+    > div {
+      display: flex;
+      flex-wrap: wrap;
+      table {
+        margin-top: 16px;
+      }
+    }
+  }
+
+  td:hover {
+    color: white;
+    background-color: grey;
+  }
+
+  ul li {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  td {
+    border: 1px solid black;
+    width: 75px;
+    height: 75px;
+  }
+
+  li {
+    list-style: none;
+    ::before {
+      content: "\200B";
+    }
+  }
+
+  th {
+    border: 1px solid black;
+    width: 60px;
+    height: 50px;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+    line-height: 25px;
+  }
+
+  h3 {
+    font-size: 36px;
+  }
+
+  p {
+    margin-bottom: 20px;
+  }
+}
+
+#print > div {
+  margin-bottom: 1em;
+}
+
+#print div label {
+  margin-left: 1em;
+}
+
+.paper_sise input[type="number"] {
+  width: 5em;
+  margin-top: 0.5em;
+  /* height: 2em; */
+}
+
+input[type="radio"] {
+  width: 10px;
+  height: 10px;
+}
+
+.paper_sise_radio label {
+  width: 40px;
+  height: 20px;
+}
+
+.per_page input {
+  width: 3em;
+  margin-top: 0.5em;
+  /* height: 2em; */
+}
+
+.check_out_wrap {
+  display: flex;
+  /* justify-content: space-between; */
+  flex-wrap: wrap;
+}
+
+.check_out_wrap > div {
+  width: 25%;
+  /* background: #3D9FB1; */
+}
+
+.check_out_wrap > div > div {
+  margin-left: 30px;
+}
+
+.check_out_wrap > div > div:first-child {
+  /* margin-top: 1em; */
+  margin-left: 0px;
+}

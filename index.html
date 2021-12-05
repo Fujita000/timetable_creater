@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <!--
   Material Design Lite
   Copyright 2015 Google Inc. All rights reserved.
@@ -16,264 +16,335 @@
   limitations under the License
 -->
 <html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="description"
+      content="A front-end template that helps you build fast, modern mobile web apps."
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
+    />
+    <title>時間割</title>
 
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-  <title>時間割</title>
+    <!-- Add to homescreen for Chrome on Android -->
+    <!-- <meta name="mobile-web-app-capable" content="yes"> -->
+    <!-- <link rel="icon" sizes="192x192" href="images/android-desktop.png"> -->
 
-  <!-- Add to homescreen for Chrome on Android -->
-  <!-- <meta name="mobile-web-app-capable" content="yes"> -->
-  <!-- <link rel="icon" sizes="192x192" href="images/android-desktop.png"> -->
+    <!-- Add to homescreen for Safari on iOS -->
+    <!-- <meta name="apple-mobile-web-app-capable" content="yes"> -->
+    <!-- <meta name="apple-mobile-web-app-status-bar-style" content="black"> -->
+    <!-- <meta name="apple-mobile-web-app-title" content="Material Design Lite"> -->
+    <!-- <link rel="apple-touch-icon-precomposed" href="images/ios-desktop.png"> -->
 
-  <!-- Add to homescreen for Safari on iOS -->
-  <!-- <meta name="apple-mobile-web-app-capable" content="yes"> -->
-  <!-- <meta name="apple-mobile-web-app-status-bar-style" content="black"> -->
-  <!-- <meta name="apple-mobile-web-app-title" content="Material Design Lite"> -->
-  <!-- <link rel="apple-touch-icon-precomposed" href="images/ios-desktop.png"> -->
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <!-- <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png"> -->
+    <!-- <meta name="msapplication-TileColor" content="#3372DF"> -->
 
-  <!-- Tile icon for Win8 (144x144 + tile color) -->
-  <!-- <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png"> -->
-  <!-- <meta name="msapplication-TileColor" content="#3372DF"> -->
+    <!-- <link rel="shortcut icon" href="images/favicon.png"> -->
 
-  <!-- <link rel="shortcut icon" href="images/favicon.png"> -->
-
-  <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
-  <!--
+    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+    <!--
     <link rel="canonical" href="http://www.example.com/">
     -->
 
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.deep_purple-pink.min.css">
-  <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/print.css">
-</head>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link
+      rel="stylesheet"
+      href="https://code.getmdl.io/1.3.0/material.deep_purple-pink.min.css"
+    />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/print.css" />
+  </head>
 
-<body class="mdl-demo mdl-base">
-  <div id="print">
-    <div class="print_target">
-      印刷対象
-      <div class="check_out_wrap">
-        <div class="check_wrap" id="class_check_list">
-          <div>
-            <label for="class_check"><input type="checkbox" id="class_check">クラス</label>
+  <body class="mdl-demo mdl-base">
+    <div id="print">
+      <!-- <div id="print" class="dis_none"> -->
+      <div class="print_target">
+        印刷対象
+        <div class="check_out_wrap">
+          <div class="check_wrap" id="cls_check_list">
+            <div>
+              <label for="cls_check"
+                ><input type="checkbox" id="cls_check" />クラス</label
+              >
+            </div>
+          </div>
+
+          <div class="check_wrap" id="teacher_check_list">
+            <div>
+              <label for="teacher_check"
+                ><input type="checkbox" id="teacher_check" />教師</label
+              >
+            </div>
+          </div>
+
+          <div class="check_wrap" id="room_check_list">
+            <div>
+              <label for="room_check"
+                ><input type="checkbox" id="room_check" />教室</label
+              >
+            </div>
           </div>
         </div>
+      </div>
+      <div class="muki">
+        印刷時の向き
+        <div>
+          <label for="tate"
+            ><input type="radio" name="muki" id="tate" checked />縦</label
+          >
+        </div>
+        <div>
+          <label for="yoko"
+            ><input type="radio" name="muki" id="yoko" />横</label
+          >
+        </div>
+      </div>
 
-        <div class="check_wrap" id="teacher_check_list">
+      <div class="paper_sise">
+        印刷サイズ
+        <div class="paper_sise_radio"></div>
+        <div class="paper_size_input">
           <div>
-            <label for="teacher_check"><input type="checkbox" id="teacher_check">教師</label>
+            <label for="paper_sise_X"
+              >ページの横幅：<input
+                value="1"
+                type="number"
+                id="paper_sise_X"
+              />mm</label
+            >
+          </div>
+          <div>
+            <label for="paper_sise_Y"
+              >ページの縦幅：<input
+                value="1"
+                type="number"
+                id="paper_sise_Y"
+              />mm</label
+            >
           </div>
         </div>
+      </div>
 
-        <div class="check_wrap" id="room_check_list">
-          <div>
-            <label for="room_check"><input type="checkbox" id="room_check">教室</label>
-          </div>
+      <div class="per_page">
+        一ページ当たりの時間割の数
+        <div>
+          <label for="per_page_X"
+            >一行当たり：<input value="1" type="number" id="per_page_X"
+          /></label>
+        </div>
+        <div>
+          <label for="per_page_Y"
+            >一列当たり：<input value="1" type="number" id="per_page_Y"
+          /></label>
         </div>
       </div>
-    </div>
-    <div class="muki">
-      印刷時の向き
-      <div>
-        <label for="tate"><input type="radio" name="muki" id="tate" checked>縦</label>
-      </div>
-      <div>
-        <label for="yoko"><input type="radio" name="muki" id="yoko">横</label>
-      </div>
-    </div>
-
-    <div class="paper_sise">
-      印刷サイズ
-      <div class="paper_sise_radio">
-        <!-- <div>
-        <label for="A4"><input type="radio" name="paper_sise" id="A4" checked>A4</label>
-      </div>
-      <div>  
-        <label for="A3"><input type="radio" name="paper_sise" id="A3">A3</label>
-      </div> -->
-      </div>
-
 
       <div>
-        <label for="paper_sise_X">ページの横幅：<input value="1" type="number" id="paper_sise_X">mm</label>
+        <button id="print_btn" onclick="print()">印刷画面を開く</button>
       </div>
-      <div>
-        <label for="paper_sise_Y">ページの縦幅：<input value="1" type="number" id="paper_sise_Y">mm</label>
+
+      <div id="print_preview">
+        <p>印刷プレビュー</p>
+        <div id="print_table_list"></div>
       </div>
     </div>
 
-    <div class="per_page">
-      一ページ当たりの時間割の数
-      <div>
-        <label for="per_page_X">一行当たり：<input value="1" type="number" id="per_page_X"></label>
-      </div>
-      <div>
-        <label for="per_page_Y">一列当たり：<input value="1" type="number" id="per_page_Y"></label>
-      </div>
-    </div>
-
-    <div>
-      <button id="print_btn" onclick="print()">印刷画面を開く</button>
-    </div>
-
-    <div id="print_preview">
-      <p>印刷プレビュー</p>
-      <div id="print_table_list">
-
-      </div>
-    </div>
-  </div>
-
-  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
-      <!-- <div class="mdl-layout--large-screen-only mdl-layout__header-row" id="top">
+    <div
+      class="mdl-layout mdl-js-layout mdl-layout--fixed-header create_layout"
+    >
+      <header
+        class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary"
+      >
+        <!-- <div class="mdl-layout--large-screen-only mdl-layout__header-row" id="top">
       </div>
       <div class="mdl-layout--large-screen-only mdl-layout__header-row">
         <h3>時間割</h3>
       </div>
       <div class="mdl-layout--large-screen-only mdl-layout__header-row">
       </div> -->
-      <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">
-        <a href="#information" class="mdl-layout__tab is-active">情報設定</a>
-        <a href="#classlist" class="mdl-layout__tab">授業コマ設定</a>
-        <a href="#timetable" class="mdl-layout__tab">時間割</a>
-        <a class="mdl-layout-spacer"></a><!-- 右寄せに切り替えるためのスペース -->
-        <a class="mdl-layout__tab flex-end" id="data_load">データの読込</a>
-        <a class="mdl-layout__tab flex-end" id="data_save">データの保存</a>
-        <input type="file" id="file_load" style="display: none">
-      </div>
-    </header>
-    <main class="mdl-layout__content">
-      <!-- 情報設定パネル -->
-      <div class="mdl-layout__tab-panel is-active" id="information">
-        <section class="section--center mdl-grid mdl-grid--no-spacing">
-          <div class="mdl-cell mdl-cell--4-col" id="lesson">
-            <p>クラス一覧</p>
-            <input type="text" id="class_name_text"><button id="class_add_btn"
-              class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" onclick="class_add_btn()"><i
-                class="material-icons">add</i></button>
-            <div id="class_list"></div>
-          </div>
-          <div class="mdl-cell mdl-cell--4-col" id="teacher">
-            <p>教師一覧</p>
-            <input type="text" id="teacher_name_text"><button id="teacher_add_btn"
-              class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" onclick="teacher_add_btn()"><i
-                class="material-icons">add</i></button>
-            <div id="teacher_list"></div>
-          </div>
-          <div class="mdl-cell mdl-cell--4-col" id="lessonroom">
-            <p>使用教室一覧</p>
-            <input type="text" id="room_name_text"><button id="room_add_btn"
-              class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" onclick="room_add_btn()"><i
-                class="material-icons">add</i></button>
-            <div id="room_list"></div>
-          </div>
-        </section>
-      </div>
-      <!-- 情報設定パネルここまで -->
-      <!-- 授業コマ設定パネル -->
-      <div class="mdl-layout__tab-panel" id="classlist">
-        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
-          <div class="mdl-layout__drawer" id="backcol1">
-            <nav id="operation_link_sidebar" class="mdl-navigation">
-              <!-- <p>test</p> -->
-            </nav>
-          </div>
-          <main class="mdl-layout__content" id="side_nav">
-            <div class="page-content">
-              <!--Your content goes here -->
-              <section class="section--center mdl-grid mdl-grid--no-spacing" id="l-section">
-                <div class="l-frame">
-                  <div id="lesson_list"></div>
-                </div>
-              </section>
-            </div>
-          </main>
+        <div
+          class="
+            mdl-layout__tab-bar
+            mdl-js-ripple-effect
+            mdl-color--primary-dark
+          "
+        >
+          <a href="#information" class="mdl-layout__tab is-active">情報設定</a>
+          <a href="#classlist" class="mdl-layout__tab">授業コマ設定</a>
+          <a href="#timetable" class="mdl-layout__tab">時間割</a>
+          <a class="mdl-layout-spacer"></a
+          ><!-- 右寄せに切り替えるためのスペース -->
+          <a class="mdl-layout__tab flex-end" id="data_load">データの読込</a>
+          <a class="mdl-layout__tab flex-end" id="data_save">データの保存</a>
+          <input type="file" id="file_load" style="display: none" />
         </div>
-      </div>
-      <!-- 授業コマ設定パネルここまで -->
-      <!-- 時間割パネル -->
-      <div class="mdl-layout__tab-panel" id="timetable">
-        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
-          <div class="mdl-layout__drawer" id="backcol2">
-            <nav id="timetable_link_sidebar" class="mdl-navigation">
-              <div>
-                <p class="timetable_side_opt" id="timetable_sidebar_eraser">消しゴム</p>
-                <p class="timetable_side_opt" id="cell_change_btn">入れ替え</p>
-                <p class="timetable_side_opt" id="csv_preview_btn">CSVプレビュー</p>
-                <p class="timetable_side_opt" id="download">CSVダウンロード</p>
-                <p>
-                  <span class="timetable_side_opt" id="auto_create">自動生成</span>
-                  <span class="timetable_side_opt" id="auto_create_cancel">キャンセル</span>
-                </p>
-                <p class="timetable_side_opt" id="print_opt_btn">印刷設定</p>
-
-              </div>
-            </nav>
-          </div>
-          <main class="mdl-layout__content" id="side_nav">
-            <div class="page-content">
-              <!-- Your content goes here -->
-              <section class="section--center mdl-grid mdl-grid--no-spacing" id="t-section">
-
-
-                <div id="table">
-
-                  <div id="csv_preview" class="dis_none">
-                    <div id="csv_preview_list">
-
-                    </div>
+      </header>
+      <main class="mdl-layout__content">
+        <!-- 情報設定パネル -->
+        <div class="mdl-layout__tab-panel is-active" id="information">
+          <section class="section--center mdl-grid mdl-grid--no-spacing">
+            <div class="mdl-cell mdl-cell--4-col" id="lesson">
+              <p>クラス一覧</p>
+              <input type="text" id="class_name_text" /><button
+                id="class_add_btn"
+                class="
+                  mdl-button mdl-js-button
+                  mdl-button--fab mdl-button--mini-fab
+                "
+                onclick="class_add_btn()"
+              >
+                <i class="material-icons">add</i>
+              </button>
+              <div id="class_list"></div>
+            </div>
+            <div class="mdl-cell mdl-cell--4-col" id="teacher">
+              <p>教師一覧</p>
+              <input type="text" id="teacher_name_text" /><button
+                id="teacher_add_btn"
+                class="
+                  mdl-button mdl-js-button
+                  mdl-button--fab mdl-button--mini-fab
+                "
+                onclick="teacher_add_btn()"
+              >
+                <i class="material-icons">add</i>
+              </button>
+              <div id="teacher_list"></div>
+            </div>
+            <div class="mdl-cell mdl-cell--4-col" id="lessonroom">
+              <p>使用教室一覧</p>
+              <input type="text" id="room_name_text" /><button
+                id="room_add_btn"
+                class="
+                  mdl-button mdl-js-button
+                  mdl-button--fab mdl-button--mini-fab
+                "
+                onclick="room_add_btn()"
+              >
+                <i class="material-icons">add</i>
+              </button>
+              <div id="room_list"></div>
+            </div>
+          </section>
+        </div>
+        <!-- 情報設定パネルここまで -->
+        <!-- 授業コマ設定パネル -->
+        <div class="mdl-layout__tab-panel" id="classlist">
+          <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
+            <div class="mdl-layout__drawer" id="backcol1">
+              <nav id="operation_link_sidebar" class="mdl-navigation">
+                <!-- <p>test</p> -->
+              </nav>
+            </div>
+            <main class="mdl-layout__content" id="side_nav">
+              <div class="page-content">
+                <!--Your content goes here -->
+                <section
+                  class="section--center mdl-grid mdl-grid--no-spacing"
+                  id="l-section"
+                >
+                  <div class="l-frame">
+                    <div id="lesson_list"></div>
                   </div>
-
-                  <div id="timetable_list"></div>
-                </div>
-              </section>
-            </div>
-          </main>
+                </section>
+              </div>
+            </main>
+          </div>
         </div>
-      </div>
-      <!-- 時間割パネルここまで -->
-    </main>
-  </div>
-  <!-- <script src="https://code.getmdl.io/1.3.0/material.min.js"></script> -->
+        <!-- 授業コマ設定パネルここまで -->
+        <!-- 時間割パネル -->
+        <div class="mdl-layout__tab-panel" id="timetable">
+          <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
+            <div class="mdl-layout__drawer" id="backcol2">
+              <nav id="timetable_link_sidebar" class="mdl-navigation">
+                <div>
+                  <p class="timetable_side_opt" id="timetable_sidebar_eraser">
+                    消しゴム
+                  </p>
+                  <p class="timetable_side_opt" id="cell_change_btn">
+                    入れ替え
+                  </p>
+                  <p class="timetable_side_opt" id="csv_preview_btn">
+                    CSVプレビュー
+                  </p>
+                  <p class="timetable_side_opt" id="download">
+                    CSVダウンロード
+                  </p>
+                  <p>
+                    <span class="timetable_side_opt" id="auto_create"
+                      >自動生成</span
+                    >
+                    <span class="timetable_side_opt" id="auto_create_cancel"
+                      >キャンセル</span
+                    >
+                  </p>
+                  <p class="timetable_side_opt" id="print_opt_btn">印刷設定</p>
+                </div>
+              </nav>
+            </div>
+            <main class="mdl-layout__content" id="side_nav">
+              <div class="page-content">
+                <!-- Your content goes here -->
+                <section
+                  class="section--center mdl-grid mdl-grid--no-spacing"
+                  id="t-section"
+                >
+                  <div id="table">
+                    <div id="csv_preview" class="dis_none">
+                      <div id="csv_preview_list"></div>
+                    </div>
 
+                    <div id="timetable_list"></div>
+                  </div>
+                </section>
+              </div>
+            </main>
+          </div>
+        </div>
+        <!-- 時間割パネルここまで -->
+      </main>
+    </div>
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 
-  <!-- ルート（いろいろ） -->
-  <script src="js/method.js"></script>
-  <script src="js/init.js"></script>
+    <!-- ルート（いろいろ） -->
+    <script src="js/method.js"></script>
+    <script src="js/init.js"></script>
 
-  <!-- dom_opetationフォルダ -->
-  <script src="js/dom_operation/input_change.js"></script>
-  <script src="js/dom_operation/sidebar_operation.js"></script>
-  <script src="js/dom_operation/sidebar_timetable.js"></script>
-  <script src="js/dom_operation/infoTAB_create.js"></script>
-  <script src="js/dom_operation/cell_change.js"></script>
-  <script src="js/dom_operation/csv_preview.js"></script>
+    <!-- dom_opetationフォルダ -->
+    <script src="js/dom_operation/input_change.js"></script>
+    <script src="js/dom_operation/sidebar_operation.js"></script>
+    <script src="js/dom_operation/sidebar_timetable.js"></script>
+    <script src="js/dom_operation/infoTAB_create.js"></script>
+    <script src="js/dom_operation/cell_change.js"></script>
+    <script src="js/dom_operation/csv_preview.js"></script>
 
-  <!-- auto_createフォルダ -->
-  <script src="js/auto_create/read_auto_timetable.js"></script>
-  <script src="js/auto_create/pass_auto_timetable.js"></script>
-  <script src="js/auto_create/auto_create.js"></script>
+    <!-- auto_createフォルダ -->
+    <script src="js/auto_create/read_auto_timetable.js"></script>
+    <script src="js/auto_create/pass_auto_timetable.js"></script>
+    <script src="js/auto_create/auto_create.js"></script>
 
-  <!-- テスト用ファイル -->
-  <script src="js/test/test.js"></script>
+    <!-- テスト用ファイル -->
+    <script src="js/test/test.js"></script>
 
-  <!-- データ保存＆ロード -->
-  <script src="js/data_controll/data_load.js"></script>
-  <script src="js/data_controll/data_save.js"></script>
-  <script src="js/data_controll/timetable_save.js"></script>
+    <!-- データ保存＆ロード -->
+    <script src="js/data_controll/data_load.js"></script>
+    <script src="js/data_controll/data_save.js"></script>
+    <script src="js/data_controll/timetable_save.js"></script>
 
-  <!-- 印刷 -->
-  <script src="/js/print/print_data.js"></script>
-  <script src="/js/print/print.js"></script>
-
-
-</body>
-
+    <!-- 印刷 -->
+    <script src="/js/print/print_data.js"></script>
+    <script src="/js/print/print.js"></script>
+  </body>
 </html>
