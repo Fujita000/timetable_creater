@@ -1,14 +1,11 @@
 document.querySelector("#print_opt_btn").addEventListener("click", (e) => {
   //印刷設定ボタン
   printer();
-  // print_size_html()
-  // print_target_append()
-  // add_event_parent_check("#class_check");
-  // add_event_parent_check("#teacher_check");
-  // add_event_parent_check("#room_check");
-
-  // print()
-  // printer();
+  print_size_html();
+  print_target_append();
+  add_event_parent_check("#cls_check");
+  add_event_parent_check("#teacher_check");
+  add_event_parent_check("#room_check");
 });
 
 function refresh_table_preview_css() {
@@ -282,7 +279,6 @@ function refresh_table_preview() {
 //テストのため後で消す
 
 // print_size_html();
-// printer();
 // print_target_append();
 // add_event_parent_check("#cls_check");
 // add_event_parent_check("#teacher_check");
