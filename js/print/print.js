@@ -114,7 +114,7 @@ const get_perPage = () => {
 function printer() {
   const print_dom = document.querySelector("#print");
   document.querySelector("body").children[1].classList.toggle("dis_none");
-  // print_dom.classList.toggle("dis_none");
+  print_dom.classList.toggle("dis_none");
 }
 
 function print_target_append() {

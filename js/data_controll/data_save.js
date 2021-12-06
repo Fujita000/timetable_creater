@@ -12,8 +12,12 @@ function data_save() {
     teacher_list: zero_dis(teacher_list),
     room_list: zero_dis(room_list)
   };
+  const d = new Date()
+  const year = d.getFullYear()
+  const month = ("0" + (d.getMonth()+1)).slice(-2)
+  const day = ("0" + d.getDate()).slice(-2)
 
-  const fileName = "lesson_data.json";
+  const fileName = `${year}${month}${day}時間割.json`;
   const data = JSON.stringify(originalData, null, 2);
   const link = document.createElement("a");
   // リンク先にJSON形式の文字列データを置いておく。
