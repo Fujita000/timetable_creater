@@ -13,7 +13,7 @@ function pass_auto_timetable() {
 }
 
 //normal_lesson_listの名前の出力
-function get_lesson_name() {
+function get_lesson_name_list() {
   let ret = [];
   for (let i = 0; i < normal_lesson_list.length; i++) {
     ret.push([]);

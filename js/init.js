@@ -100,11 +100,14 @@ function update_lesson_list(par) {
     normal_lesson_list[suf1][suf2]["total"] = zt(par.children[3].value);
     normal_lesson_list[suf1][suf2]["continuity"] = zt(par.children[4].value);
   } else if (type == "elective") {
+    const ele = document.querySelector(`#elective_lesson_list_${suf1}_${suf2}`)
+    const total = ele.querySelector(".total").value
+    const conti = ele.querySelector(".continuity").value
     elective_lesson_list[suf1][suf2][suf3][0] = par.children[0].value;
     elective_lesson_list[suf1][suf2][suf3][1] = par.children[1].selectedIndex > -1 ? par.children[1].selectedIndex : "";
     elective_lesson_list[suf1][suf2][suf3][2] = par.children[2].selectedIndex > -1 ? par.children[2].selectedIndex : "";
-    elective_lesson_list[suf1][suf2]["total"] = zt(par.children[3].value);
-    elective_lesson_list[suf1][suf2]["continuity"] = zt(par.children[4].value);
+    elective_lesson_list[suf1][suf2]["total"] = zt(total);
+    elective_lesson_list[suf1][suf2]["continuity"] = zt(conti);
   }
 }
 
@@ -396,7 +399,7 @@ function tmp_timetable_validate(cls_num, lsn_num, target) {
 }
 
 function class_deleat_btn(e) {
-  let num = pareSp(btn)[2];
+  let num = pareSp(e)[2];
   tmp_timetable_validate(num, 0, "class");
   class_deleat_event(e);
   del_operation_link_sidebar(e);

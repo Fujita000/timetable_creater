@@ -173,7 +173,7 @@ var match = (m_teacher, m_class, m_grade, m_continuous) => {    //この引数(m
             // if (au_choice_lesson[i] === void 0) {
             //   continue;
             // }
-            if (au_choice_lesson[m_grade][k][3] == m_teacher[j]) {
+            if (au_choice_lesson[m_grade][k][3] == m_class[j]) {
               not_match = true;
             }
           }
@@ -272,3 +272,26 @@ function initialization() {
   pass_lesson = JSON.parse(JSON.stringify(lesson_initial));
 }
 
+function count_lesson_list(){
+  const lsn_list = join_lesson_and_fixed()
+  const cls_name = "";
+  const lsn_name = "";
+  const diff = 0;
+  lsn_list.forEach(e=>{
+    e.forEach(i=>{
+      if(i[3] - i[4] != 0){
+        console.log(i[3] - i[4])
+        
+      }
+    });
+  });
+}
+
+function get_lesson_name(cls, num){
+  const names = get_lesson_name_list();
+  if(num >= 100){
+    return "選択授業" + (num - 1)
+  }else{
+    return names[cls][num]
+  }
+}
