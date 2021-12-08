@@ -274,16 +274,25 @@ function initialization() {
 
 function count_lesson_list(){
   const lsn_list = join_lesson_and_fixed()
-  const cls_name = "";
+  let cls_name = "";
   const lsn_name = "";
   const diff = 0;
+  let msg = "";
+  
   lsn_list.forEach((e,cls)=>{
+    let cls_name = class_list[cls];
+    let flag = true;
     e.forEach((i)=>{
       if(i[3] - i[4] != 0){
-        console.log(get_lesson_name(cls, i[0])　+　"が" + (i[3] - i[4]) + ((i[3] - i[4]　> 0) ? "つ多く入っています" : "つ足りません"))
+        if(flag){
+          msg += cls_name + "\n";
+          flag = false;
+        }
+        msg += `${get_lesson_name(cls, i[0])}が${(i[3] - i[4])}${((i[3] - i[4]　> 0) ? "つ足りません" : "つ多く入っています" )}\n`;
       }
     });
   });
+  return msg;
 }
 
 function get_lesson_name(cls, num){
