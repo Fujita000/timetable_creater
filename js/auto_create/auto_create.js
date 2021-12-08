@@ -277,11 +277,10 @@ function count_lesson_list(){
   const cls_name = "";
   const lsn_name = "";
   const diff = 0;
-  lsn_list.forEach(e=>{
-    e.forEach(i=>{
+  lsn_list.forEach((e,cls)=>{
+    e.forEach((i)=>{
       if(i[3] - i[4] != 0){
-        console.log(i[3] - i[4])
-        
+        console.log(get_lesson_name(cls, i[0])　+　"が" + (i[3] - i[4]) + ((i[3] - i[4]　> 0) ? "つ多く入っています" : "つ足りません"))
       }
     });
   });
@@ -290,7 +289,7 @@ function count_lesson_list(){
 function get_lesson_name(cls, num){
   const names = get_lesson_name_list();
   if(num >= 100){
-    return "選択授業" + (num - 1)
+    return "選択授業" + (num - 99)
   }else{
     return names[cls][num]
   }
