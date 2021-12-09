@@ -326,11 +326,14 @@ function initialization() {
 
 function count_lesson_list_alert(err = false){
   const str = "エラーが発生しました\n\n"
-  if (err) {
-    alert(str + count_lesson_list());
-  }else{
-    alert(count_lesson_list());
-  }
+  const msg = count_lesson_list()
+  if(msg.trim() != ""){
+    if (err) {
+      alert(str + count_lesson_list());
+    }else{
+      alert(count_lesson_list());
+    }
+  } 
 }
 
 function count_lesson_list() {
@@ -341,7 +344,7 @@ function count_lesson_list() {
     let cls_name = class_list[cls];
     let flag = true;
     e.forEach((i) => {
-      if (i[3] - i[4] != 0) {
+      if (i[3] - i[4] != 0 && i[3] != 0) {
         if (flag) {
           msg += cls_name + "\n";
           flag = false;
@@ -352,6 +355,7 @@ function count_lesson_list() {
       }
     });
   });
+  console.log(msg);
   return msg;
 }
 

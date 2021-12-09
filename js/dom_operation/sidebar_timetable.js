@@ -93,16 +93,18 @@ timetable_sidebar_eraser.addEventListener("click", e => {
 
 let timetable_all_clear = document.getElementById("timetable_all_clear");
 timetable_all_clear.addEventListener("click", e => {
-  now_choice_lesson = 0;
-  now_choice_class = 0;
-  elaser_flag = true;
-  cell_change_reset();
-  document.querySelectorAll(".timetable").forEach(table=>{
-    table.querySelectorAll("td").forEach(td => {
-      td.click()
+  if(window.confirm('時間割の内容を全て消しますか？')){
+    now_choice_lesson = 0;
+    now_choice_class = 0;
+    elaser_flag = true;
+    cell_change_reset();
+    document.querySelectorAll(".timetable").forEach(table=>{
+      table.querySelectorAll("td").forEach(td => {
+        td.click()
+      });
     });
-  });
-  elaser_flag = false;
+    elaser_flag = false;
+  }
 });
 
 
