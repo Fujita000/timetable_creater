@@ -56,6 +56,10 @@ document.querySelector("#data_load").addEventListener("click", () => {
         //授業の決定ボタン、これを押さないと反映されない隠されてるやつ
         i.click()
       });
+
+      timetable = obj.timetable
+      update_timetable();
+      count_lesson_list_alert(false)
     };
     reader.readAsText(file);
 

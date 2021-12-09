@@ -113,7 +113,6 @@ function update_cell(arr) {
   let dom = get_cell(z, y, x);
   let lesson = get_lesson_status(z, timetable[z][y][x]);
   lesson = trans_after_lesson([z, timetable[z][y][x], lesson[1], lesson[2]]);
-  // console.log(dom)
   dom.innerHTML =
     "<ul>" +
     "<li>" + lesson[0] + "</li>" +
@@ -241,6 +240,12 @@ function z_color_chenge(x, y) {
       toggle_cell_color(cell_li[1], tmp[1])
       toggle_cell_color(cell_li[2], tmp[2])
     }
+    tmp_status = check_timetable_status_output(x, y, z);
+    if(cell != undefined){
+      let cell_li = cell.getElementsByTagName("li");
+      if(tmp[1])cell_li[1].innerText = tmp_status[1]; 
+      if(tmp[2])cell_li[2].innerText = tmp_status[2];
+    }
   }
 }
 
@@ -251,7 +256,6 @@ function toggle_cell_color(dom, tmp) {
   } else {
     dom.className = "toggle_cell_black";
   }
-
 }
 
 function all_color_change() {
@@ -264,17 +268,33 @@ function all_color_change() {
 
 //タイムテーブルの被りを調べる
 function check_timetable(sx, sy, sz) {
-  let ret = [false, false, false];
-  let is_range = (z,y,x) =>{
+  const is_range = (z,y,x) =>{
     return timetable[z][y] != undefined && timetable[z][y][x] != undefined
   }
+  let ret = [false, false, false];
   for (let z = 0; z < timetable.length; z++) {
-    if(is_range(sz,sy,sx) && is_range(z,sy,sx) && z != sz && timetable[sz][sy][sx] != 0) 
+    if(is_range(sz,sy,sx) && is_range(z,sy,sx) && z != sz && timetable[sz][sy][sx] != 0) {
       ret = comparison_lesson(z, timetable[z][sy][sx], sz, timetable[sz][sy][sx], ret);
+    }
   }
   if (is_range(sz,sy,sx)  && timetable[sz][sy][sx] >= 100 && (ret[1] || ret[2])) ret[0] = true;
   return ret;
 }
+
+function check_timetable_status_output(sx, sy, sz) {
+  const is_range = (z,y,x) =>{
+    return timetable[z][y] != undefined && timetable[z][y][x] != undefined
+  }
+  let ret = [false, false, false];
+  for (let z = 0; z < timetable.length; z++) {
+    if(is_range(sz,sy,sx) && is_range(z,sy,sx) && z != sz && timetable[sz][sy][sx] != 0) {
+      ret = comparison_ele_lesson_status(z, timetable[z][sy][sx], sz, timetable[sz][sy][sx]);
+    }
+  }
+  if (is_range(sz,sy,sx)  && timetable[sz][sy][sx] >= 100 && (ret[1] || ret[2])) ret[0] = true;
+  return ret;
+}
+
 
 function comparison_lesson(cls1, lsn_num1, cls2, lsn_num2, ret = [false, false, false]) {
   let lesson1 = get_lesson_contents(cls1, lsn_num1);
@@ -288,6 +308,23 @@ function comparison_lesson(cls1, lsn_num1, cls2, lsn_num2, ret = [false, false, 
       if (lesson1[i][2] != "" && lesson1[i][2] == lesson2[j][2]) ret[2] = true;
     }
   }
+  return ret;
+}
+
+function comparison_ele_lesson_status(cls1, lsn_num1, cls2, lsn_num2) {
+  let ret = ["", "", ""]
+  let lesson1 = get_lesson_contents(cls1, lsn_num1);
+  let lesson2 = get_lesson_contents(cls2, lsn_num2);
+  if (lsn_num1 < 100) lesson1 = [lesson1];
+  if (lsn_num2 < 100) lesson2 = [lesson2];
+  for (let i = 0; i < lesson1.length; i++) {
+    for (let j = 0; j < lesson2.length; j++) {
+      if (lesson1[i][1] != "" && lesson1[i][1] == lesson2[j][1])ret[1] += tgt(lesson1[i][1])+"・";
+      if (lesson1[i][2] != "" && lesson1[i][2] == lesson2[j][2])ret[2] += tgr(lesson1[i][2])+"・";
+    }
+  }
+  ret[1] = ret[1].slice( 0, -1 );
+  ret[2] = ret[2].slice( 0, -1 );
   return ret;
 }
 

@@ -10,7 +10,8 @@ function data_save() {
     elective_lesson_num_data: get_elective_lesson_num_data(),
     class_list: class_list,
     teacher_list: zero_dis(teacher_list),
-    room_list: zero_dis(room_list)
+    room_list: zero_dis(room_list),
+    timetable: timetable
   };
   const d = new Date()
   const year = d.getFullYear()

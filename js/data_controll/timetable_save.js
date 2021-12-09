@@ -22,7 +22,6 @@ function download_btn_clicked(evt) {
     timetable[z][0].forEach((e, i) => {
       name += i == 0 ? class_list[z] + "," : ",";
     });
-    console.log(name);
     content += name.slice(0, -1) + "\r\n";
 
     // content += "," + get_youbi(0, 4) + '\r\n';

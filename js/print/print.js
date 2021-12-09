@@ -9,7 +9,6 @@ document.querySelector("#print_opt_btn").addEventListener("click", (e) => {
 });
 
 function refresh_table_preview_css() {
-  console.log("refresh_table_preview_css");
   // 印刷プレビューにあるCSSを更新
   const table_list_root = document.querySelector("#print_table_list");
   const table_list = document
@@ -185,7 +184,6 @@ function refresh_table_preview() {
   const targetDom = document.querySelector("#print_table_list");
   const append_list = document.querySelectorAll('[name="print_target"]');
   targetDom.innerHTML = "";
-  console.log(targetDom);
   ts = {
     x: table_SizeX,
     y: table_SizeY,

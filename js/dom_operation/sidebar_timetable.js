@@ -91,6 +91,20 @@ timetable_sidebar_eraser.addEventListener("click", e => {
   // add_selected(e.target);
 });
 
+let timetable_all_clear = document.getElementById("timetable_all_clear");
+timetable_all_clear.addEventListener("click", e => {
+  now_choice_lesson = 0;
+  now_choice_class = 0;
+  elaser_flag = true;
+  cell_change_reset();
+  document.querySelectorAll(".timetable").forEach(table=>{
+    table.querySelectorAll("td").forEach(td => {
+      td.click()
+    });
+  });
+  elaser_flag = false;
+});
+
 
 function add_selected(e) {
   const selected = document.querySelector("selected");

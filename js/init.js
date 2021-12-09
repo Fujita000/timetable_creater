@@ -370,7 +370,6 @@ function select_chg(select_class_name, suf, insert_num) {
 function tmp_timetable_validate(cls_num, lsn_num, target) {
   // target:lessonまたはclass
   // 削除する対象を書く
-  console.log(cls_num, lsn_num, target)
   if (tmp_timetable != undefined) {
     switch (target) {
       case "lesson":
