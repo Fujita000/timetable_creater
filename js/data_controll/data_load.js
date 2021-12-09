@@ -73,9 +73,11 @@ document.querySelector("#data_load").addEventListener("click", () => {
         i.click();
       });
 
-      timetable = obj.timetable
+      timetable = obj.timetable;
       update_timetable();
-      count_lesson_list_alert(false)
+      count_lesson_list_alert(false);
+      now_choice_lesson = -1; //選択中の授業の内容
+      now_choice_class = -1; //選択中のクラス
     };
     reader.readAsText(file);
 

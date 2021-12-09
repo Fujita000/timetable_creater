@@ -1,8 +1,7 @@
-let timetable_sidebar = document.getElementById('timetable_link_sidebar');
+let timetable_sidebar = document.getElementById("timetable_link_sidebar");
 //timetable_sliderにプログラムで追加される要素のtimetable_slider子要素での開始番号
 //timetable_link_sidebar直下の要素数を変更したときに一緒に変更
 let start_num = 1;
-
 
 //ーーーーーーーークラス系の処理
 
@@ -30,7 +29,9 @@ function del_class_timetable_sidebar(btn) {
   // rewrite_class_id_timetable_sidebar();
 }
 function rewrite_class_name_timetable_sidebar(suf) {
-  timetable_sidebar.children[start_num + suf].children[0].children[0].innerText = class_list[suf];
+  timetable_sidebar.children[
+    start_num + suf
+  ].children[0].children[0].innerText = class_list[suf];
 }
 //ーーーーーーーークラス系の処理ここまで
 
@@ -40,9 +41,12 @@ function add_lesson_timetable_sidebar(div, tar) {
   let p = document.createElement("p");
   p.className = "mdl-navigation__link";
   p.innerText = div.children[0].value;
-  timetable_sidebar.children[start_num + getIdNum(div, 0)].getElementsByClassName(tar)[0].appendChild(p);
-  p.addEventListener("click", e => {
+  timetable_sidebar.children[start_num + getIdNum(div, 0)]
+    .getElementsByClassName(tar)[0]
+    .appendChild(p);
+  p.addEventListener("click", (e) => {
     div.getElementsByClassName("get_lesson_num_btn")[0].click();
+    sidebar_selected(p);
   });
 }
 
@@ -51,22 +55,28 @@ function add_ele_lesson_timetable_sidebar(div, tar) {
   let p = document.createElement("p");
   p.className = "mdl-navigation__link";
   p.innerText = "選択授業" + (num + 1);
-  timetable_sidebar.children[start_num + getIdNum(div, 0)].getElementsByClassName(tar)[0].appendChild(p);
-  p.addEventListener("click", e => {
+  timetable_sidebar.children[start_num + getIdNum(div, 0)]
+    .getElementsByClassName(tar)[0]
+    .appendChild(p);
+  p.addEventListener("click", (e) => {
     div.getElementsByClassName("get_lesson_num_btn")[0].click();
+    sidebar_selected(p);
   });
 }
 
 function del_lesson_timetable_sidebar(btn, tar) {
   let val1 = getIdNum(btn.parentElement, 0);
   let val2 = getIdNum(btn.parentElement, 1);
-  timetable_sidebar.children[start_num + val1].getElementsByClassName(tar)[0].children[val2 - 1].remove();
+  timetable_sidebar.children[start_num + val1]
+    .getElementsByClassName(tar)[0]
+    .children[val2 - 1].remove();
 }
 
 function del_ele_lesson_timetable_sidebar(btn, tar) {
   let val1 = getIdNum(btn.parentElement, 0);
   let val2 = getIdNum(btn.parentElement, 1);
-  let list = timetable_sidebar.children[start_num + val1].getElementsByClassName(tar)[0];
+  let list =
+    timetable_sidebar.children[start_num + val1].getElementsByClassName(tar)[0];
   list.children[val2].remove();
   for (let i = 0; i < list.children.length; i++) {
     list.getElementsByTagName("p")[i].innerText = "選択授業" + (i + 1);
@@ -75,15 +85,19 @@ function del_ele_lesson_timetable_sidebar(btn, tar) {
 
 //授業名の変更は普通授業でしか起きない
 function rewrite_lesson_name_timetable_sidebar(suf1, suf2) {
-  timetable_sidebar.children[start_num + suf1].getElementsByClassName("timetable_tab_normal_lesson")[0].children[suf2 - 1].innerText = normal_lesson_list[suf1][suf2][0];
+  timetable_sidebar.children[start_num + suf1].getElementsByClassName(
+    "timetable_tab_normal_lesson"
+  )[0].children[suf2 - 1].innerText = normal_lesson_list[suf1][suf2][0];
 }
 
 //ーーーーーーーー授業系の処理の処理ここまで
 
 //ーーーーーーーーその他
 //時間割タブの消しゴム
-let timetable_sidebar_eraser = document.getElementById("timetable_sidebar_eraser");
-timetable_sidebar_eraser.addEventListener("click", e => {
+let timetable_sidebar_eraser = document.getElementById(
+  "timetable_sidebar_eraser"
+);
+timetable_sidebar_eraser.addEventListener("click", (e) => {
   now_choice_lesson = 0;
   now_choice_class = 0;
   elaser_flag = true;
@@ -91,31 +105,35 @@ timetable_sidebar_eraser.addEventListener("click", e => {
   // add_selected(e.target);
 });
 
+//全消し
 let timetable_all_clear = document.getElementById("timetable_all_clear");
-timetable_all_clear.addEventListener("click", e => {
-  if(window.confirm('時間割の内容を全て消しますか？')){
+timetable_all_clear.addEventListener("click", (e) => {
+  if (window.confirm("時間割の内容を全て消しますか？")) {
     now_choice_lesson = 0;
     now_choice_class = 0;
     elaser_flag = true;
     cell_change_reset();
-    document.querySelectorAll(".timetable").forEach(table=>{
-      table.querySelectorAll("td").forEach(td => {
-        td.click()
+    document.querySelectorAll(".timetable").forEach((table) => {
+      table.querySelectorAll("td").forEach((td) => {
+        td.click();
       });
     });
     elaser_flag = false;
   }
 });
 
-
-function add_selected(e) {
-  const selected = document.querySelector("selected");
-  if (selected != null) selected.classList.toggle("selected");
+function sidebar_selected(e) {
+  const selected = document.querySelector(".selected");
+  if (selected != null && e != selected) selected.classList.toggle("selected");
   e.classList.toggle("selected", true);
 }
-
-function select_reset() {
-  const selected = document.querySelector("selected");
-  if (selected != null) selected.classList.toggle("selected");
+add_side_opt_selected();
+function add_side_opt_selected() {
+  document
+    .querySelectorAll("#timetable_sidebar_eraser, #cell_change_btn")
+    .forEach((dom) => {
+      dom.addEventListener("click", (e) => {
+        sidebar_selected(e.target);
+      });
+    });
 }
-

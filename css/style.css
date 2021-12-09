@@ -522,7 +522,7 @@ section
 
 .timetable_side_opt {
   color: #4169e1;
-  margin-left: 30px;
+  padding-left: 30px;
 }
 
 .timetable_side_opt:hover {
@@ -530,7 +530,7 @@ section
   color: RED;
 }
 
-#auto_create_cancel, #timetable_all_clear {
+#auto_create_cancel {
   padding-left: 5px;
   margin-left: 5px;
   border-left: black 3px solid;
@@ -545,11 +545,6 @@ section
 input.total,
 input.continuity {
   width: 60px;
-}
-
-.selected {
-  background-color: lightslategray;
-  color: #efffff;
 }
 
 /* 
@@ -635,7 +630,8 @@ input.continuity {
 }
 
 .create_layout p {
-  margin-bottom: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .create_layout td:hover {
@@ -655,5 +651,14 @@ input.continuity {
 .create_layout td {
   width: 85px;
   height: 90px;
+}
+
+.selected {
+  background-color: #b7c0dd !important;
+  color: #000 !important;
+}
+
+#timetable_link_sidebar .mdl-navigation__link:hover {
+  cursor: pointer;
 }
 /*# sourceMappingURL=style.css.map */
