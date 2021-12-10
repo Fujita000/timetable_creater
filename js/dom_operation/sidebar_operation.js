@@ -48,8 +48,13 @@ function count_now_lesson(list_name) {
   teacher_list.forEach((e, i) => {
     ret[i] = 0;
   });
-
-  join_lesson_and_fixed().forEach((i, cls_num) => {
+  let join = [];
+  const nor = get_lesson_num_data();
+  const ele = get_elective_lesson_num_data();
+  for (let i = 0; i < nor.length; i++) {
+    join.push(nor[i].concat(ele[i]));
+  }
+  join.forEach((i, cls_num) => {
     i.forEach((e, j) => {
       // console.log(list[e[offset]], e);
       if (e[0] < 100) {
@@ -61,7 +66,6 @@ function count_now_lesson(list_name) {
       }
     });
   });
-
   return ret;
 }
 
