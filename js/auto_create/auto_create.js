@@ -31,7 +31,7 @@ function click_auto_create() {
   timetable = lesson_out_timetable(rev_y_x(JSON.parse(JSON.stringify(rt))));
   update_timetable();
   all_color_change();
-  count_lesson_list_alert(err)
+  count_lesson_list_alert(err);
 }
 
 function validate_timetable(timetable) {
@@ -324,16 +324,16 @@ function initialization() {
   pass_lesson = JSON.parse(JSON.stringify(lesson_initial));
 }
 
-function count_lesson_list_alert(err = false){
-  const str = "エラーが発生しました\n\n"
-  const msg = count_lesson_list()
-  if(msg.trim() != ""){
+function count_lesson_list_alert(err = false) {
+  const str = "エラーが発生しました\n";
+  const msg = count_lesson_list();
+  if (msg.trim() != "") {
     if (err) {
       alert(str + count_lesson_list());
-    }else{
+    } else {
       alert(count_lesson_list());
     }
-  } 
+  }
 }
 
 function count_lesson_list() {
@@ -346,7 +346,7 @@ function count_lesson_list() {
     e.forEach((i) => {
       if (i[3] - i[4] != 0 && i[3] != 0) {
         if (flag) {
-          msg += cls_name + "\n";
+          msg += "\n" + cls_name + "\n";
           flag = false;
         }
         msg += `${get_lesson_name(cls, i[0])}が${

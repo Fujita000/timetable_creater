@@ -122,12 +122,21 @@ timetable_all_clear.addEventListener("click", (e) => {
   }
 });
 
+//授業数チェック
+let timetable_lesson_num_check = document.getElementById(
+  "timetable_lesson_num_check"
+);
+timetable_lesson_num_check.addEventListener("click", (e) => {
+  count_lesson_list_alert();
+});
+
 function sidebar_selected(e) {
   const selected = document.querySelector(".selected");
   if (selected != null && e != selected) selected.classList.toggle("selected");
   e.classList.toggle("selected", true);
 }
 add_side_opt_selected();
+
 function add_side_opt_selected() {
   document
     .querySelectorAll("#timetable_sidebar_eraser, #cell_change_btn")
