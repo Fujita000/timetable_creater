@@ -1,4 +1,4 @@
-let operation_link_sidebar = document.getElementById('operation_link_sidebar');
+let operation_link_sidebar = document.getElementById("operation_link_sidebar");
 
 function add_operation_link_sidebar(val) {
   let anker = document.createElement("a");
@@ -27,48 +27,44 @@ function rewrite_name_operation_link_sidebar(suf) {
   operation_link_sidebar.children[suf].innerText = class_list[suf];
 }
 
-function count_number_lesson(list,num){
-  let ret = 0
-  document.querySelectorAll(`.${list}_select`).forEach(i=>{
-    if(i.selectedIndex == num){
-      ret++;
-    }
-  })
-  return ret;
-}
+function chenge_now_lesson_count_All(list_name) {
+  // list_name:{"room" || "teacher"}
+  const count_list = count_now_lesson(list_name);
+  const list = list_name == "teacher" ? teacher_list : room_list;
 
-function aaa_teacher(){
-  let ret = []
-  teacher_list.forEach((e,i)=>{
-    ret[i] = 0;
-  })
-
-  join_lesson_and_fixed().forEach((i,cls_num)=>{
-    i.forEach(e=>{
-      if(e[0] < 100){
-        ret[e[1]] += e[3];
-      }else{
-        find_ele(cls_num,e[0]).forEach(j => {
-          ret[j[1]] += e[3];
-        })
-      }
-    })
-  })
-  teacher_list.forEach((e,i)=>{
-    console.log(e,ret[i])
-    
-  })
-  document.querySelectorAll(".teacher_select").forEach(par=>{
+  document.querySelectorAll(`.${list_name}_select`).forEach((par) => {
     for (let i = 0; i < par.children.length; i++) {
       const child = par[i];
-      child.innerText = `${teacher_list[i]} [${ret[i]}]`
-      
+      child.innerText = i == 0 ? "" : `${list[i]} [${count_list[i]}]`;
     }
-  })
+  });
+}
+
+function count_now_lesson(list_name) {
+  // list_name:{"room" || "teacher"}
+  let ret = [];
+  const list = list_name == "teacher" ? teacher_list : room_list;
+  const offset = list_name == "teacher" ? 1 : 2;
+  teacher_list.forEach((e, i) => {
+    ret[i] = 0;
+  });
+
+  join_lesson_and_fixed().forEach((i, cls_num) => {
+    i.forEach((e, j) => {
+      // console.log(list[e[offset]], e);
+      if (e[0] < 100) {
+        ret[e[offset]] += e[3];
+      } else {
+        find_ele(cls_num, e[0]).forEach((j) => {
+          ret[j[offset]] += e[3];
+        });
+      }
+    });
+  });
+
   return ret;
 }
 
-
-function find_ele(cls_num,lsn_num){
+function find_ele(cls_num, lsn_num) {
   return elective_lesson_list[cls_num][lsn_num - 100];
 }

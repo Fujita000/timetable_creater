@@ -76,6 +76,8 @@ document.querySelector("#data_load").addEventListener("click", () => {
       timetable = obj.timetable;
       update_timetable();
       count_lesson_list_alert(false);
+      chenge_now_lesson_count_All("room");
+      chenge_now_lesson_count_All("teacher");
       now_choice_lesson = -1; //選択中の授業の内容
       now_choice_class = -1; //選択中のクラス
     };

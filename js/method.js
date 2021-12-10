@@ -45,7 +45,7 @@ function parent_class_search(dom, class_name) {
   } else if (dom.tagName == "BODY") {
     return null;
   } else {
-    return parent_class_search(parentDom(dom), class_name)
+    return parent_class_search(parentDom(dom), class_name);
   }
 }
 
@@ -56,7 +56,7 @@ function parent_tag_search(dom, tag_name) {
   } else if (dom.tagName == "BODY") {
     return null;
   } else {
-    return parent_tag_search(parentDom(dom), tag_name)
+    return parent_tag_search(parentDom(dom), tag_name);
   }
 }
 
@@ -101,7 +101,7 @@ function log(str) {
 
 //テーブルDOMの指定された座標の要素を返す
 function get_cell(z, y, x) {
-  let dom = document.querySelector("#timetable_"+z)
+  let dom = document.querySelector("#timetable_" + z);
   return dom.getElementsByClassName(y + "_" + x)[0];
 }
 
@@ -115,11 +115,16 @@ function update_cell(arr) {
   lesson = trans_after_lesson([z, timetable[z][y][x], lesson[1], lesson[2]]);
   dom.innerHTML =
     "<ul>" +
-    "<li>" + lesson[0] + "</li>" +
-    "<li>" + lesson[1] + "</li>" +
-    "<li>" + lesson[2] + "</li>" +
+    "<li>" +
+    lesson[0] +
+    "</li>" +
+    "<li>" +
+    lesson[1] +
+    "</li>" +
+    "<li>" +
+    lesson[2] +
+    "</li>" +
     "</ul>";
-
 }
 
 //指定したセルの要素を変更する。
@@ -131,15 +136,21 @@ function set_cell_dom(dom) {
   let lesson = get_lesson_status(z, y);
   dom.innerHTML =
     "<ul>" +
-    "<li>" + lesson[0] + "</li>" +
-    "<li>" + lesson[1] + "</li>" +
-    "<li>" + lesson[2] + "</li>" +
+    "<li>" +
+    lesson[0] +
+    "</li>" +
+    "<li>" +
+    lesson[1] +
+    "</li>" +
+    "<li>" +
+    lesson[2] +
+    "</li>" +
     "</ul>";
 }
 
 //z：学年、num：授業番号、numが100以上の時は選択授業
 function get_lesson_status(z, num) {
-  let ret = ["", 0, 0]
+  let ret = ["", 0, 0];
   if (num >= 100) {
     //選択授業の時
     ret[0] = "選択授業" + (num - 100 + 1);
@@ -153,7 +164,9 @@ function get_lesson_status(z, num) {
 
 //z：学年、num：授業番号、numが100以上の時は選択授業
 function get_lesson_contents(z, num) {
-  return num >= 100 ? elective_lesson_list[z][num - 100] : normal_lesson_list[z][num];
+  return num >= 100
+    ? elective_lesson_list[z][num - 100]
+    : normal_lesson_list[z][num];
 }
 
 //tdタグのクラスから数値をとる
@@ -170,6 +183,8 @@ function dlt_use_functon() {
   now_choice_lesson = -1;
   update_lesson_list_all();
   update_timetable();
+  chenge_now_lesson_count_All("room");
+  chenge_now_lesson_count_All("teacher");
 }
 
 function update_specific_timetable(num) {
@@ -233,22 +248,21 @@ function rewrite_list_id(target_id, start_num) {
 function z_color_chenge(x, y) {
   for (let z = 0; z < timetable.length; z++) {
     let tmp = check_timetable(x, y, z);
-    let cell = get_cell(z, y, x)
-    if(cell != undefined){
+    let cell = get_cell(z, y, x);
+    if (cell != undefined) {
       let cell_li = cell.getElementsByTagName("li");
-      toggle_cell_color(cell_li[0], tmp[0])
-      toggle_cell_color(cell_li[1], tmp[1])
-      toggle_cell_color(cell_li[2], tmp[2])
+      toggle_cell_color(cell_li[0], tmp[0]);
+      toggle_cell_color(cell_li[1], tmp[1]);
+      toggle_cell_color(cell_li[2], tmp[2]);
     }
     tmp_status = check_timetable_status_output(x, y, z);
-    if(cell != undefined){
+    if (cell != undefined) {
       let cell_li = cell.getElementsByTagName("li");
-      if(tmp[1])cell_li[1].innerText = tmp_status[1]; 
-      if(tmp[2])cell_li[2].innerText = tmp_status[2];
+      if (tmp[1]) cell_li[1].innerText = tmp_status[1];
+      if (tmp[2]) cell_li[2].innerText = tmp_status[2];
     }
   }
 }
-
 
 function toggle_cell_color(dom, tmp) {
   if (tmp) {
@@ -268,35 +282,71 @@ function all_color_change() {
 
 //タイムテーブルの被りを調べる
 function check_timetable(sx, sy, sz) {
-  const is_range = (z,y,x) =>{
-    return timetable[z][y] != undefined && timetable[z][y][x] != undefined
-  }
+  const is_range = (z, y, x) => {
+    return timetable[z][y] != undefined && timetable[z][y][x] != undefined;
+  };
   let ret = [false, false, false];
   for (let z = 0; z < timetable.length; z++) {
-    if(is_range(sz,sy,sx) && is_range(z,sy,sx) && z != sz && timetable[sz][sy][sx] != 0) {
-      ret = comparison_lesson(z, timetable[z][sy][sx], sz, timetable[sz][sy][sx], ret);
+    if (
+      is_range(sz, sy, sx) &&
+      is_range(z, sy, sx) &&
+      z != sz &&
+      timetable[sz][sy][sx] != 0
+    ) {
+      ret = comparison_lesson(
+        z,
+        timetable[z][sy][sx],
+        sz,
+        timetable[sz][sy][sx],
+        ret
+      );
     }
   }
-  if (is_range(sz,sy,sx)  && timetable[sz][sy][sx] >= 100 && (ret[1] || ret[2])) ret[0] = true;
+  if (
+    is_range(sz, sy, sx) &&
+    timetable[sz][sy][sx] >= 100 &&
+    (ret[1] || ret[2])
+  )
+    ret[0] = true;
   return ret;
 }
 
 function check_timetable_status_output(sx, sy, sz) {
-  const is_range = (z,y,x) =>{
-    return timetable[z][y] != undefined && timetable[z][y][x] != undefined
-  }
+  const is_range = (z, y, x) => {
+    return timetable[z][y] != undefined && timetable[z][y][x] != undefined;
+  };
   let ret = [false, false, false];
   for (let z = 0; z < timetable.length; z++) {
-    if(is_range(sz,sy,sx) && is_range(z,sy,sx) && z != sz && timetable[sz][sy][sx] != 0) {
-      ret = comparison_ele_lesson_status(z, timetable[z][sy][sx], sz, timetable[sz][sy][sx]);
+    if (
+      is_range(sz, sy, sx) &&
+      is_range(z, sy, sx) &&
+      z != sz &&
+      timetable[sz][sy][sx] != 0
+    ) {
+      ret = comparison_ele_lesson_status(
+        z,
+        timetable[z][sy][sx],
+        sz,
+        timetable[sz][sy][sx]
+      );
     }
   }
-  if (is_range(sz,sy,sx)  && timetable[sz][sy][sx] >= 100 && (ret[1] || ret[2])) ret[0] = true;
+  if (
+    is_range(sz, sy, sx) &&
+    timetable[sz][sy][sx] >= 100 &&
+    (ret[1] || ret[2])
+  )
+    ret[0] = true;
   return ret;
 }
 
-
-function comparison_lesson(cls1, lsn_num1, cls2, lsn_num2, ret = [false, false, false]) {
+function comparison_lesson(
+  cls1,
+  lsn_num1,
+  cls2,
+  lsn_num2,
+  ret = [false, false, false]
+) {
   let lesson1 = get_lesson_contents(cls1, lsn_num1);
   let lesson2 = get_lesson_contents(cls2, lsn_num2);
   if (lsn_num1 < 100) lesson1 = [lesson1];
@@ -312,19 +362,21 @@ function comparison_lesson(cls1, lsn_num1, cls2, lsn_num2, ret = [false, false, 
 }
 
 function comparison_ele_lesson_status(cls1, lsn_num1, cls2, lsn_num2) {
-  let ret = ["", "", ""]
+  let ret = ["", "", ""];
   let lesson1 = get_lesson_contents(cls1, lsn_num1);
   let lesson2 = get_lesson_contents(cls2, lsn_num2);
   if (lsn_num1 < 100) lesson1 = [lesson1];
   if (lsn_num2 < 100) lesson2 = [lesson2];
   for (let i = 0; i < lesson1.length; i++) {
     for (let j = 0; j < lesson2.length; j++) {
-      if (lesson1[i][1] != "" && lesson1[i][1] == lesson2[j][1])ret[1] += tgt(lesson1[i][1])+"・";
-      if (lesson1[i][2] != "" && lesson1[i][2] == lesson2[j][2])ret[2] += tgr(lesson1[i][2])+"・";
+      if (lesson1[i][1] != "" && lesson1[i][1] == lesson2[j][1])
+        ret[1] += tgt(lesson1[i][1]) + "・";
+      if (lesson1[i][2] != "" && lesson1[i][2] == lesson2[j][2])
+        ret[2] += tgr(lesson1[i][2]) + "・";
     }
   }
-  ret[1] = ret[1].slice( 0, -1 );
-  ret[2] = ret[2].slice( 0, -1 );
+  ret[1] = ret[1].slice(0, -1);
+  ret[2] = ret[2].slice(0, -1);
   return ret;
 }
 
@@ -340,12 +392,16 @@ function tgr(num) {
 
 //学級番号と授業番号を変換して通常授業名を取得する
 function ntgsn(cls, num) {
-  return normal_lesson_list[cls][num][0] == undefined ? "" : normal_lesson_list[cls][num][0];
+  return normal_lesson_list[cls][num][0] == undefined
+    ? ""
+    : normal_lesson_list[cls][num][0];
 }
 
 //学級番号と授業番号を変換して選択授業名を取得する
 function etgsn(cls, num) {
-  return elective_lesson_list[cls][num][0] == undefined ? "" : elective_lesson_list[cls][num][0];
+  return elective_lesson_list[cls][num][0] == undefined
+    ? ""
+    : elective_lesson_list[cls][num][0];
 }
 
 //学級番号、授業番号、教師番号、教室番号を変換して授業の文字データを取得する
