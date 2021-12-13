@@ -333,6 +333,8 @@ function count_lesson_list_alert(err = false) {
     } else {
       alert(count_lesson_list());
     }
+  }else{
+    alert("\n不足している授業はありません\n");
   }
 }
 
@@ -344,7 +346,7 @@ function count_lesson_list() {
     let cls_name = class_list[cls];
     let flag = true;
     e.forEach((i) => {
-      if (i[3] - i[4] != 0 && i[3] != 0) {
+      if (i[3] - i[4] != 0) {
         if (flag) {
           msg += "\n" + cls_name + "\n";
           flag = false;
