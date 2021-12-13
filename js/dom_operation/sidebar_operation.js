@@ -56,12 +56,19 @@ function count_now_lesson(list_name) {
   }
   join.forEach((i, cls_num) => {
     i.forEach((e, j) => {
-      // console.log(list[e[offset]], e);
       if (e[0] < 100) {
         ret[e[offset]] += e[3];
       } else {
+        let tmp_arr = [];
         find_ele(cls_num, e[0]).forEach((j) => {
-          ret[j[offset]] += e[3];
+          let pushFlag = true;
+          tmp_arr.forEach(l=>{
+            if(l == j[offset])pushFlag = false;
+          })
+          if(pushFlag) tmp_arr.push(j[offset]);
+        });
+        tmp_arr.forEach(j=>{
+          ret[j] += e[3];
         });
       }
     });
