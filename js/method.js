@@ -365,16 +365,37 @@ function comparison_ele_lesson_status(cls1, lsn_num1, cls2, lsn_num2) {
   let ret = ["", "", ""];
   let lesson1 = get_lesson_contents(cls1, lsn_num1);
   let lesson2 = get_lesson_contents(cls2, lsn_num2);
+  let tmp_arr = [[],[]];//[0]:教師,[1]:教室
+
+
   if (lsn_num1 < 100) lesson1 = [lesson1];
   if (lsn_num2 < 100) lesson2 = [lesson2];
   for (let i = 0; i < lesson1.length; i++) {
     for (let j = 0; j < lesson2.length; j++) {
-      if (lesson1[i][1] != "" && lesson1[i][1] == lesson2[j][1])
-        ret[1] += tgt(lesson1[i][1]) + "・";
-      if (lesson1[i][2] != "" && lesson1[i][2] == lesson2[j][2])
-        ret[2] += tgr(lesson1[i][2]) + "・";
+      let pushFlagP = true;//教師フラグ
+      let pushFlagR = true;//教室フラグ
+      
+      tmp_arr[0].forEach(l=>{
+        if(l == lesson1[i][1])pushFlagP = false;
+      })
+      tmp_arr[1].forEach(l=>{
+        if(l == lesson1[i][2])pushFlagR = false;
+      })
+      
+      if (lesson1[i][1] != "" && lesson1[i][1] == lesson2[j][1] && pushFlagP){
+        tmp_arr[0].push(lesson1[i][1]);
+      }
+      if (lesson1[i][2] != "" && lesson1[i][2] == lesson2[j][2] && pushFlagR){
+        tmp_arr[1].push(lesson1[i][2]);
+      }
     }
   }
+  tmp_arr[0].forEach(i=>{
+    ret[1] += tgt(i) + "・";
+  })
+  tmp_arr[1].forEach(i=>{
+    ret[2] += tgr(i) + "・";
+  })
   ret[1] = ret[1].slice(0, -1);
   ret[2] = ret[2].slice(0, -1);
   return ret;
