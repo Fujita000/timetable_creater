@@ -45,7 +45,7 @@ function count_now_lesson(list_name) {
   let ret = [];
   const list = list_name == "teacher" ? teacher_list : room_list;
   const offset = list_name == "teacher" ? 1 : 2;
-  teacher_list.forEach((e, i) => {
+  list.forEach((e, i) => {
     ret[i] = 0;
   });
   let join = [];
@@ -54,21 +54,22 @@ function count_now_lesson(list_name) {
   for (let i = 0; i < nor.length; i++) {
     join.push(nor[i].concat(ele[i]));
   }
-  join.forEach((i, cls_num) => {
-    i.forEach((e, j) => {
-      if (e[0] < 100) {
-        ret[e[offset]] += e[3];
+  join.forEach((cls_lsn, cls_num) => {
+    cls_lsn.forEach((lsn) => {
+      if (lsn[0] < 100) {
+        ret[lsn[offset]] += lsn[3];
       } else {
         let tmp_arr = [];
-        find_ele(cls_num, e[0]).forEach((j) => {
+        find_ele(cls_num, lsn[0]).forEach((ele_lsn) => {
           let pushFlag = true;
-          tmp_arr.forEach(l=>{
-            if(l == j[offset])pushFlag = false;
-          })
-          if(pushFlag) tmp_arr.push(j[offset]);
+          tmp_arr.forEach((l) => {
+            if (l == ele_lsn[offset]) pushFlag = false;
+          });
+          if (pushFlag) tmp_arr.push(ele_lsn[offset]);
         });
-        tmp_arr.forEach(j=>{
-          ret[j] += e[3];
+        tmp_arr.forEach((i) => {
+          console.log(lsn[3]);
+          ret[i] += lsn[3];
         });
       }
     });
