@@ -7,6 +7,7 @@ document.querySelector("#auto_create_cancel").addEventListener("click", (e) => {
     timetable = JSON.parse(JSON.stringify(tmp_timetable));
     update_timetable();
     all_color_change();
+    add_class_diff_timetable(timetable, tmp_timetable)
     auto_create_flag = false;
     tmp_timetable = undefined;
   }
@@ -32,6 +33,37 @@ function click_auto_create() {
   update_timetable();
   all_color_change();
   count_lesson_list_alert(err);
+  add_class_diff_timetable(timetable, tmp_timetable)
+}
+
+function add_class_diff_timetable(timetables1, timetables2) {
+  const tl = document.querySelector("#timetable_list");
+  const timetable = diff_timetable(timetables1, timetables2);
+
+  timetable.forEach((table, z) => {
+    table.forEach((col, y) => {
+      col.forEach((row, x) => {
+        tl.querySelectorAll("table")[z].querySelectorAll("tr")[y].querySelectorAll("td")[x].classList.toggle("_tmpBgcg", false);
+        if (!row) {
+          // tl.querySelectorAll("table")[z].querySelectorAll("tr")[y].querySelectorAll("td > ul")[x].classList.toggle("bgc_g", true);
+          tl.querySelectorAll("table")[z].querySelectorAll("tr")[y].querySelectorAll("td")[x].classList.toggle("_tmpBgcg", true);
+        }
+      });
+    });
+  });
+}
+
+function diff_timetable(timetables1, timetables2) {
+  let ret = shallow_copy(timetables1);
+
+  timetables1.forEach((table, z) => {
+    table.forEach((col, y) => {
+      col.forEach((row, x) => {
+        ret[z][y][x] = row == timetables2[z][y][x];
+      });
+    });
+  });
+  return ret;
 }
 
 function validate_timetable(timetable) {
@@ -225,14 +257,10 @@ function run_timetable() {
   let err = false;
   loop: for (c = 0; c < pass_timetable.length; c++) {
     for (
-      run_weekday = 0;
-      run_weekday < pass_timetable[c].length;
-      run_weekday++
+      run_weekday = 0; run_weekday < pass_timetable[c].length; run_weekday++
     ) {
       for (
-        run_time = 0;
-        run_time < pass_timetable[c][run_weekday].length;
-        run_time++
+        run_time = 0; run_time < pass_timetable[c][run_weekday].length; run_time++
       ) {
         run_vacant = [];
         run_continuous = 0;
@@ -333,7 +361,7 @@ function count_lesson_list_alert(err = false) {
     } else {
       alert(count_lesson_list());
     }
-  }else{
+  } else {
     alert("\n不足している授業はありません\n");
   }
 }
@@ -357,7 +385,6 @@ function count_lesson_list() {
       }
     });
   });
-  console.log(msg);
   return msg;
 }
 

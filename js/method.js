@@ -101,8 +101,11 @@ function log(str) {
 
 //テーブルDOMの指定された座標の要素を返す
 function get_cell(z, y, x) {
-  let dom = document.querySelector("#timetable_" + z);
-  return dom.getElementsByClassName(y + "_" + x)[0];
+  // let dom = document.querySelector("#timetable_" + z);
+  // return dom.getElementsByClassName(y + "_" + x)[0];
+
+  let dom = document.querySelectorAll("table")[z];
+  return dom.querySelectorAll("tr")[y].querySelectorAll("td")[x];
 }
 
 //テーブルDOMの指定された座標の要素を更新する。
@@ -164,16 +167,19 @@ function get_lesson_status(z, num) {
 
 //z：学年、num：授業番号、numが100以上の時は選択授業
 function get_lesson_contents(z, num) {
-  return num >= 100
-    ? elective_lesson_list[z][num - 100]
-    : normal_lesson_list[z][num];
+  return num >= 100 ?
+    elective_lesson_list[z][num - 100] :
+    normal_lesson_list[z][num];
 }
 
 //tdタグのクラスから数値をとる
 function get_td_coordinate(dom) {
   let idz = getIdNum(parent_tag_search(dom, "table"));
-  let idy = getClsNum(parent_tag_search(dom, "td"), 0);
-  let idx = getClsNum(parent_tag_search(dom, "td"), 1);
+  // let idy = getClsNum(parent_tag_search(dom, "td"), 0);
+  // let idx = getClsNum(parent_tag_search(dom, "td"), 1);
+
+  let idy = parent_tag_search(dom, "tr").rowIndex;
+  let idx = parent_tag_search(dom, "td").cellIndex;
   return [idz, idy, idx];
 }
 
@@ -365,35 +371,38 @@ function comparison_ele_lesson_status(cls1, lsn_num1, cls2, lsn_num2) {
   let ret = ["", "", ""];
   let lesson1 = get_lesson_contents(cls1, lsn_num1);
   let lesson2 = get_lesson_contents(cls2, lsn_num2);
-  let tmp_arr = [[],[]];//[0]:教師,[1]:教室
+  let tmp_arr = [
+    [],
+    []
+  ]; //[0]:教師,[1]:教室
 
 
   if (lsn_num1 < 100) lesson1 = [lesson1];
   if (lsn_num2 < 100) lesson2 = [lesson2];
   for (let i = 0; i < lesson1.length; i++) {
     for (let j = 0; j < lesson2.length; j++) {
-      let pushFlagP = true;//教師フラグ
-      let pushFlagR = true;//教室フラグ
-      
-      tmp_arr[0].forEach(l=>{
-        if(l == lesson1[i][1])pushFlagP = false;
+      let pushFlagP = true; //教師フラグ
+      let pushFlagR = true; //教室フラグ
+
+      tmp_arr[0].forEach(l => {
+        if (l == lesson1[i][1]) pushFlagP = false;
       })
-      tmp_arr[1].forEach(l=>{
-        if(l == lesson1[i][2])pushFlagR = false;
+      tmp_arr[1].forEach(l => {
+        if (l == lesson1[i][2]) pushFlagR = false;
       })
-      
-      if (lesson1[i][1] != "" && lesson1[i][1] == lesson2[j][1] && pushFlagP){
+
+      if (lesson1[i][1] != "" && lesson1[i][1] == lesson2[j][1] && pushFlagP) {
         tmp_arr[0].push(lesson1[i][1]);
       }
-      if (lesson1[i][2] != "" && lesson1[i][2] == lesson2[j][2] && pushFlagR){
+      if (lesson1[i][2] != "" && lesson1[i][2] == lesson2[j][2] && pushFlagR) {
         tmp_arr[1].push(lesson1[i][2]);
       }
     }
   }
-  tmp_arr[0].forEach(i=>{
+  tmp_arr[0].forEach(i => {
     ret[1] += tgt(i) + "・";
   })
-  tmp_arr[1].forEach(i=>{
+  tmp_arr[1].forEach(i => {
     ret[2] += tgr(i) + "・";
   })
   ret[1] = ret[1].slice(0, -1);
@@ -413,16 +422,16 @@ function tgr(num) {
 
 //学級番号と授業番号を変換して通常授業名を取得する
 function ntgsn(cls, num) {
-  return normal_lesson_list[cls][num][0] == undefined
-    ? ""
-    : normal_lesson_list[cls][num][0];
+  return normal_lesson_list[cls][num][0] == undefined ?
+    "" :
+    normal_lesson_list[cls][num][0];
 }
 
 //学級番号と授業番号を変換して選択授業名を取得する
 function etgsn(cls, num) {
-  return elective_lesson_list[cls][num][0] == undefined
-    ? ""
-    : elective_lesson_list[cls][num][0];
+  return elective_lesson_list[cls][num][0] == undefined ?
+    "" :
+    elective_lesson_list[cls][num][0];
 }
 
 //学級番号、授業番号、教師番号、教室番号を変換して授業の文字データを取得する

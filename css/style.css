@@ -205,10 +205,7 @@ body {
   text-decoration: none;
 }
 
-.mdl-demo
-section
-.section__circle-container
-> .section__circle-container__circle {
+.mdl-demo section .section__circle-container > .section__circle-container__circle {
   width: 64px;
   height: 64px;
   border-radius: 32px;
@@ -635,8 +632,7 @@ input.continuity {
 }
 
 .create_layout td:hover {
-  color: white;
-  background-color: grey;
+  background-color: grey !important;
 }
 
 .create_layout table ul {
@@ -662,8 +658,15 @@ input.continuity {
   cursor: pointer;
 }
 
-.bgc_g {
-  background-color: red;
-  height: 100%;
+.lesson_colum_name {
+  margin-top: 0 !important;
+}
+
+.lesson_colum_name span {
+  margin-left: 15px;
+}
+
+._tmpBgcg {
+  background-color: #ececec;
 }
 /*# sourceMappingURL=style.css.map */

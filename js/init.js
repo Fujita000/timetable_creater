@@ -45,6 +45,7 @@ function cell_click_event(e) {
     if (now_choice_class == d[0] || elaser_flag) {
       timetable[d[0]][d[1]][d[2]] = now_choice_lesson;
       update_cell(d);
+      q.classList.toggle("_tmpBgcg", false)
     }
   }
   z_color_chenge(d[2], d[1]);
@@ -162,14 +163,12 @@ function lesson_list_add_event(val) {
   let div = creEle("div");
   div.id = lesson_list_dom.id + "_" + (normal_lesson_list.length - 1);
   div.className = "lesson_list";
-  div.innerHTML =
-    `
+  div.innerHTML = `
     <p class='p_class_name linkname'>&lt;${val}&gt;</p>
     <p>授業
       <button onclick=normal_lesson_add_btn(this) class=a_btn>追加</button>
       <button onclick=lesson_clear_btn(this) class=d_btn>消しゴム</button>
     </p> 
-    
     <p class="lesson_colum_name">
       <span>授業名</span>
       <span>教師名</span>
@@ -184,6 +183,7 @@ function lesson_list_add_event(val) {
     <div id='elective_${div.id}' class='elective_lesson_list_list'></div>`;
   lesson_list_dom.appendChild(div);
 }
+
 function normal_lesson_add_event(val, parent) {
   //配列追加
   normal_lesson_list[val].push([]);
@@ -286,16 +286,26 @@ function elective_lesson_list_add_event(val, parent) {
     "_" +
     (elective_lesson_list[val].length - 1);
   div.className = "elective_lesson_list";
-  div.innerHTML =
-    "<p>選択授業" +
-    elective_lesson_list[val].length +
-    "</p>" +
-    '<input class="total" type="number"  placeholder="授業数" size="3">' +
-    '<input class="continuity" type="number"  placeholder="連続時間" size="3">' +
-    '<input type="button" value="時間決定" onclick="elective_lesson_time_enter(this)" class=time_btn>' +
-    '<input type="button" class="get_lesson_num_btn" value="o" onclick="get_ele_lesson_num_btn(this)">' +
-    '<input type="button" value="追加" onclick="elective_lesson_add_btn(this)" class="a_btn">' +
-    '<input type="button" value="削除" onclick="elective_lesson_list_deleat_btn(this)" class="original_btn" tabindex="-1">';
+  div.innerHTML = `
+    <p>選択授業 
+      ${elective_lesson_list[val].length}
+    </p> 
+    <p class="lesson_colum_name">
+      <span>授業数</span>
+      <span>連続時間数</span>
+    </p>
+    <input class="total" type="number"  placeholder="授業数" size="3"> 
+    <input class="continuity" type="number"  placeholder="連続時間" size="3"> 
+    <input type="button" value="時間決定" onclick="elective_lesson_time_enter(this)" class="time_btn"> 
+    <input type="button" class="get_lesson_num_btn" value="o" onclick="get_ele_lesson_num_btn(this)"> 
+    <input type="button" value="追加" onclick="elective_lesson_add_btn(this)" class="a_btn"> 
+    <input type="button" value="削除" onclick="elective_lesson_list_deleat_btn(this)" class="original_btn" tabindex="-1">
+    <p class="lesson_colum_name">
+      <span>授業名</span>
+      <span>教師名</span>
+      <span>教室名</span>
+    </p>
+    `;
   div.querySelector(".total").addEventListener("input", (e) => {
     total_change_event(e);
   });

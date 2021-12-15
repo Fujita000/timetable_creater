@@ -68,7 +68,6 @@ function count_now_lesson(list_name) {
           if (pushFlag) tmp_arr.push(ele_lsn[offset]);
         });
         tmp_arr.forEach((i) => {
-          console.log(lsn[3]);
           ret[i] += lsn[3];
         });
       }

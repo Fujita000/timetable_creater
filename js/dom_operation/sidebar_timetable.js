@@ -28,6 +28,7 @@ function del_class_timetable_sidebar(btn) {
   timetable_sidebar.children[Number(start_num) + Number(num)].remove();
   // rewrite_class_id_timetable_sidebar();
 }
+
 function rewrite_class_name_timetable_sidebar(suf) {
   timetable_sidebar.children[
     start_num + suf
