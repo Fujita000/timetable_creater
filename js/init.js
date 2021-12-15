@@ -169,15 +169,14 @@ function lesson_list_add_event(val) {
       <button onclick=normal_lesson_add_btn(this) class=a_btn>追加</button>
       <button onclick=lesson_clear_btn(this) class=d_btn>消しゴム</button>
     </p> 
-    ` +
-    // <p class="lesson_colum_name">
-    //   <span>授業名</span>
-    //   <span>教師名</span>
-    //   <span>教室名</span>
-    //   <span>授業数</span>
-    //   <span>連続時間数</span>
-    // </p>
-    `
+    
+    <p class="lesson_colum_name">
+      <span>授業名</span>
+      <span>教師名</span>
+      <span>教室名</span>
+      <span>授業数</span>
+      <span>連続時間数</span>
+    </p>
     <div id='normal_${div.id}' class='normal_lesson_list'></div> 
     <p>選択授業
       <button onclick=elective_lesson_list_add_btn(this) class=a_btn>追加</button>

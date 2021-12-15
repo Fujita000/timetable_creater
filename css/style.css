@@ -661,4 +661,9 @@ input.continuity {
 #timetable_link_sidebar .mdl-navigation__link:hover {
   cursor: pointer;
 }
+
+.bgc_g {
+  background-color: red;
+  height: 100%;
+}
 /*# sourceMappingURL=style.css.map */
