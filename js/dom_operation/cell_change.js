@@ -16,7 +16,6 @@ function cell_change_event(e) {
   if (cell_change_target[0] != null && now_choice_class == d[0]) {
     let t = cell_change_target;
     let p = get_cell(t[0], t[1], t[2]);
-    console.log(q, p)
     let tmp = timetable[d[0]][d[1]][d[2]];
     timetable[d[0]][d[1]][d[2]] = timetable[t[0]][t[1]][t[2]];
     timetable[t[0]][t[1]][t[2]] = tmp;

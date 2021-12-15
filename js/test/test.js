@@ -88,26 +88,26 @@ function test_data_load() {
   });
 
   // //時間割の作成
-  // t_click_ele_lesson(0, 0, true);
-  // t_f_les(0, 0, 3, 3)
-  // t_f_les(0, 1, 0, 3)
-  // t_f_les(0, 2, 3, 3)
-  // t_click_ele_lesson(0, 4);
-  // t_f_les(0, 3, 3, 3)
+  t_click_ele_lesson(0, 0, true);
+  t_f_les(0, 0, 3, 3)
+  t_f_les(0, 1, 0, 3)
+  t_f_les(0, 2, 3, 3)
+  t_click_ele_lesson(0, 4);
+  t_f_les(0, 3, 3, 3)
 
-  // t_click_ele_lesson(1, 0, true);
-  // t_f_les(1, 0, 0, 3)
-  // t_f_les(1, 4, 0, 3)
-  // t_click_ele_lesson(1, 1);
-  // t_f_les(1, 0, 3, 3)
-  // t_click_ele_lesson(1, 0);
-  // t_f_les(1, 1, 0, 3)
-  // t_click_ele_lesson(1, 1, true);
-  // t_f_les(1, 2, 0, 3)
-  // t_click_ele_lesson(1, 3);
-  // t_f_les(1, 4, 3, 1)
-  // t_click_ele_lesson(1, 4);
-  // t_f_les(1, 4, 4, 2)
+  t_click_ele_lesson(1, 0, true);
+  t_f_les(1, 0, 0, 3)
+  t_f_les(1, 4, 0, 3)
+  t_click_ele_lesson(1, 1);
+  t_f_les(1, 0, 3, 3)
+  t_click_ele_lesson(1, 0);
+  t_f_les(1, 1, 0, 3)
+  t_click_ele_lesson(1, 1, true);
+  t_f_les(1, 2, 0, 3)
+  t_click_ele_lesson(1, 3);
+  t_f_les(1, 4, 3, 1)
+  t_click_ele_lesson(1, 4);
+  t_f_les(1, 4, 4, 2)
 
   // let z = 2
   // t_click_ele_lesson(z, 0);
@@ -190,7 +190,6 @@ function test_data_load() {
 
   function ele_lesson_item_opt(target, name, teacher_num, room_num) {
     //'target'で指定した、授業の設定を行う
-    console.log(qs(target))
     qs(target).children[0].value = name;
     qs(target).children[1].selectedIndex = teacher_num;
     qs(target).children[2].selectedIndex = room_num;
