@@ -75,6 +75,7 @@ document.querySelector("#data_load").addEventListener("click", () => {
 
       timetable = obj.timetable;
       update_timetable();
+      all_color_change();
       count_lesson_list_alert(false);
       chenge_now_lesson_count_All("room");
       chenge_now_lesson_count_All("teacher");
