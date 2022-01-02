@@ -663,7 +663,12 @@ input.continuity {
 }
 
 .lesson_colum_name span {
-  margin-left: 15px;
+  padding: 0 10px;
+  border-left: 3px solid black;
+}
+
+.lesson_colum_name span:last-of-type {
+  border-right: 3px solid black;
 }
 
 ._tmpBgcg {
