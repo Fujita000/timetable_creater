@@ -1,25 +1,25 @@
-const csv_preview = document.querySelector("#csv_preview");
-const csv_preview_btn = document.querySelector("#csv_preview_btn");
 let ts;//テーブルサイズ
-csv_preview_btn.addEventListener("click", e => {
-  if (csv_preview.classList.toggle('dis_none')) {
-    //消えたとき
-  } else {
-    //ついたとき
-    csv_preview.innerHTML = "";
+// const csv_preview = document.querySelector("#csv_preview");
+// const csv_preview_btn = document.querySelector("#csv_preview_btn");
+// csv_preview_btn.addEventListener("click", e => {
+//   if (csv_preview.classList.toggle('dis_none')) {
+//     //消えたとき
+//   } else {
+//     //ついたとき
+//     csv_preview.innerHTML = "";
 
-    ts = {
-      x: table_SizeX,
-      y: table_SizeY,
-      z: timetable.length
-    }
+//     ts = {
+//       x: table_SizeX,
+//       y: table_SizeY,
+//       z: timetable.length
+//     }
 
-    const teacher_timetable = timetable_source_create(teacher_list);
-    timetable_source_to_table(timetable_source_trans(teacher_timetable, "教師"), teacher_list, csv_preview)
-    const room_timetable = timetable_source_create(room_list);
-    timetable_source_to_table(timetable_source_trans(room_timetable, "教室"), room_list, csv_preview)
-  }
-});
+//     const teacher_timetable = timetable_source_create(teacher_list);
+//     timetable_source_to_table(timetable_source_trans(teacher_timetable, "教師"), teacher_list, csv_preview)
+//     const room_timetable = timetable_source_create(room_list);
+//     timetable_source_to_table(timetable_source_trans(room_timetable, "教室"), room_list, csv_preview)
+//   }
+// });
 
 function name_check(source, add_name) {
   // すでにつかされている名前の時に追加しない
