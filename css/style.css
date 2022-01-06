@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 /**
  * Copyright 2015 Google Inc. All Rights Reserved.
  *
@@ -51,7 +52,7 @@ body {
   padding-left: 16px;
   padding-right: 16px;
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   height: 100%;
   width: 100%;
 }
@@ -66,7 +67,7 @@ body {
   height: 4px;
 }
 
-.mdl-demo main > .mdl-layout__tab-panel {
+.mdl-demo main>.mdl-layout__tab-panel {
   padding: 8px;
   padding-top: 48px;
 }
@@ -79,10 +80,10 @@ body {
   -ms-flex-direction: column;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-          flex-direction: column;
+  flex-direction: column;
 }
 
-.mdl-demo .mdl-card > * {
+.mdl-demo .mdl-card>* {
   height: auto;
 }
 
@@ -90,7 +91,7 @@ body {
   margin: 40px;
   -ms-flex-positive: 1;
   -webkit-box-flex: 1;
-          flex-grow: 1;
+  flex-grow: 1;
   padding: 0;
   color: inherit;
   width: calc(100% - 80px);
@@ -118,7 +119,7 @@ body {
   background-color: transparent;
 }
 
-.mdl-demo .mdl-card__supporting-text + .mdl-card__actions {
+.mdl-demo .mdl-card__supporting-text+.mdl-card__actions {
   border-top: 1px solid rgba(0, 0, 0, 0.12);
 }
 
@@ -142,27 +143,27 @@ body {
   max-width: 620px;
 }
 
-.mdl-demo section > header {
+.mdl-demo section>header {
   display: -ms-flexbox;
   display: -webkit-box;
   display: flex;
   -ms-flex-align: center;
   -webkit-box-align: center;
-          align-items: center;
+  align-items: center;
   -ms-flex-pack: center;
   -webkit-box-pack: center;
-          justify-content: center;
+  justify-content: center;
 }
 
-.mdl-demo section > .section__play-btn {
+.mdl-demo section>.section__play-btn {
   min-height: 200px;
 }
 
-.mdl-demo section > header > .material-icons {
+.mdl-demo section>header>.material-icons {
   font-size: 3rem;
 }
 
-.mdl-demo section > button {
+.mdl-demo section>button {
   position: absolute;
   z-index: 99;
   top: 8px;
@@ -175,13 +176,13 @@ body {
   display: flex;
   -ms-flex-align: center;
   -webkit-box-align: center;
-          align-items: center;
+  align-items: center;
   -ms-flex-pack: start;
   -webkit-box-pack: start;
-          justify-content: flex-start;
+  justify-content: flex-start;
   -ms-flex-positive: 0;
   -webkit-box-flex: 0;
-          flex-grow: 0;
+  flex-grow: 0;
   -ms-flex-negative: 1;
   flex-shrink: 1;
 }
@@ -189,7 +190,7 @@ body {
 .mdl-demo section .section__text {
   -ms-flex-positive: 1;
   -webkit-box-flex: 1;
-          flex-grow: 1;
+  flex-grow: 1;
   -ms-flex-negative: 0;
   flex-shrink: 0;
   padding-top: 8px;
@@ -205,7 +206,7 @@ body {
   text-decoration: none;
 }
 
-.mdl-demo section .section__circle-container > .section__circle-container__circle {
+.mdl-demo section .section__circle-container>.section__circle-container__circle {
   width: 64px;
   height: 64px;
   border-radius: 32px;
@@ -235,7 +236,7 @@ body {
   border-bottom: 1px solid rgba(0, 0, 0, 0.13);
 }
 
-.mdl-demo .mdl-card .mdl-card__supporting-text > h3:first-child {
+.mdl-demo .mdl-card .mdl-card__supporting-text>h3:first-child {
   margin-bottom: 24px;
 }
 
@@ -263,7 +264,7 @@ body {
   -ms-flex-direction: column;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-          flex-direction: column;
+  flex-direction: column;
 }
 
 .mdl-demo .toc h4 {
@@ -457,7 +458,7 @@ body {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 
 .newtable {
@@ -555,8 +556,8 @@ input.continuity {
 
 .mdl-layout__tab.right {
   -webkit-box-pack: end !important;
-      -ms-flex-pack: end !important;
-          justify-content: flex-end !important;
+  -ms-flex-pack: end !important;
+  justify-content: flex-end !important;
 }
 
 #file_load {
@@ -590,11 +591,11 @@ input.continuity {
   display: none;
 }
 
-#auto_create > .enter {
+#auto_create>.enter {
   border: solid 1px black;
 }
 
-#auto_create > span:nth-child(2) {
+#auto_create>span:nth-child(2) {
   border: solid 1px black;
 }
 
@@ -674,4 +675,5 @@ input.continuity {
 ._tmpBgcg {
   background-color: #ececec;
 }
+
 /*# sourceMappingURL=style.css.map */

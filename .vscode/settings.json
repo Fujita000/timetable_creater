@@ -1,5 +1,4 @@
 {
-  "liveServer.settings.port": 5501,
-  "editor.defaultFormatter": "HookyQR.beautify",
-  "editor.formatOnSave": true
+  "liveServer.settings.port": 5502,
+  "editor.defaultFormatter": "HookyQR.beautify"
 }
